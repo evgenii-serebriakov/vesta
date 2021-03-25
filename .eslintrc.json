@@ -1,0 +1,36 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "es2020": true,
+        "jquery": true
+    },
+    "overrides": [
+        {
+            "files": [
+                "src/**/*.js"
+            ],
+            "extends": [
+                "standard",
+                "htmlacademy/es6"
+            ],
+            "rules": {
+                "indent": [
+                    "error",
+                    2
+                ],
+                "semi": [
+                    "error",
+                    "always"
+                ],
+                "quotes": [
+                    "error",
+                    "single",
+                    {
+                        "allowTemplateLiterals": true
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+header.header
+    nav.navbar.sticky-top.navbar-expand-lg.navbar-light.bg-light
+        .container
+            button.navbar-toggler(
+                type="button"
+                aria-label="Toggle navigation"
+            )
+                span.navbar-toggler-icon
+
+            .logo
+                a.logo__link.navbar-brand.d-none.d-lg-block(href="#/") 
+                    img.logo__img(
+                        src="img/svg/logo-desktop-left.svg" 
+                        alt="logo"
+                    )
+                a.logo__link.navbar-brand.d-lg-none(href="#/") 
+                    img.logo__img-mobile(
+                        src="img/svg/logo-mobile.svg" 
+                        alt="logo-mobile"
+                    )
+
+            .collapse.navbar-collapse.navigation.justify-content-end
+                ul.navbar-nav.navigation__list
+                    li.nav-item.navigation__list-item
+                        a.nav-link.navigation__link(href="#/") Главная
+                    li.nav-item.navigation__list-item
+                        a.nav-link.navigation__link(href="#/") Видео
+                    li.nav-item.navigation__list-item
+                        a.nav-link.navigation__link(href="#/") Новости
+                    li.nav-item.navigation__list-item
+                        a.nav-link.navigation__link(href="#/") Отзывы
+                    li.nav-item.navigation__list-item
+                        a.nav-link.navigation__link(href="#/") Контакты

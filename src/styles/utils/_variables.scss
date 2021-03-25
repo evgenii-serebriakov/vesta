@@ -1,0 +1,37 @@
+// Font
+$mainFont                        : "Tinos";
+
+/* Size */
+$mainFontSize                   : 18px;
+$mainFontStyle                  : normal;
+$mainFontWeight                 : normal;
+$mainLineHeight                 : 1.4;
+
+// Mobile first
+$mediaWidthMobile               : 320px;
+$mediaWidthTablet               : 768px;
+$mediaWidthTabletHorizontal     : 1024px;
+$mediaWidthLaptop               : 1366px;
+
+/* Main color */
+$defaultColor                   : rgba(16, 16, 16, 1);
+$primaryColor                   : rgba(68, 76, 224, 1);
+$successColor                   : rgba(38, 222, 129, 1);
+$dangerColor                    : rgba(252, 92, 101, 1);
+$warningColor                   : rgba(254, 211, 48, 1);
+$lightColor                     : rgba(153, 153, 153, 1);
+$greyColor                      : rgba(128, 128, 128, 1);
+$whiteColor                     : rgba(255, 255, 255, 1);
+
+$themeColor                     : rgb(168, 142, 188);
+
+$purpleColor100                 : rgba(188, 156, 255, 1);
+$purpleColor75                  : rgba(188, 156, 255, 0.75);
+$purpleColor50                  : rgba(188, 156, 255, 0.5);
+$purpleLight                    : rgb(198, 171, 255);
+$purpleGradient                 : linear-gradient(180deg, rgba(188, 156, 255, 1) 0%, rgba(139, 164, 249, 1) 100%);
+
+$greenColor100                  : rgba(111, 207, 151, 1);
+$greenColor75                   : rgba(111, 207, 151, 0.75);
+$greenColor50                   : rgba(111, 207, 151, 0.5);
+$greenGradient                  : linear-gradient(180deg, rgba(111, 207, 151, 1) 0%, rgba(102, 210, 234, 1) 100%);
