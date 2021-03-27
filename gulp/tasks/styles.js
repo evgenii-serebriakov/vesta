@@ -12,24 +12,18 @@ module.exports = function styles() {
     return gulp
         .src("src/styles/*.scss")
         .pipe(plumber())
-        .pipe(
-            gulpStylelint({
-                failAfterError: false,
-                reporters: [
-                {
-                    formatter: "string",
-                    console: true,
-                },
-                ],
-            })
-        )
+        .pipe(gulpStylelint({
+            failAfterError: false,
+            reporters: [{
+                formatter: "string",
+                console: true,
+            }]
+        }))
         .pipe(sourcemaps.init())
         .pipe(sass())
-        .pipe(
-            autoprefixer({
-                cascade: false,
-            })
-        )
+        .pipe(autoprefixer({
+            cascade: false,
+        }))
         .pipe(shorthand())
         .pipe(cleanCSS(
             {

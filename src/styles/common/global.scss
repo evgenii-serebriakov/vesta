@@ -23,8 +23,12 @@
     font-weight: $mainFontWeight;
     line-height: $mainLineHeight;
     font-size: $mainFontSize;
-    
     color: $defaultColor;
+}
+
+img, svg {
+    width: 100%;
+    height: 100%;
 }
 
 //  === / Common ===

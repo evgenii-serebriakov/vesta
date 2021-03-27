@@ -6,7 +6,7 @@
     "author": "Evgenii",
     "license": "ISC",
     "scripts": {
-        "start": "gulp start",
+        "dev": "gulp start",
         "build": "gulp build",
         "lighthouse": "gulp build && gulp lighthouse",
         "test": "editorconfig-cli && stylelint ./src/styles/**/*.scss --syntax scss && eslint ./src/js",

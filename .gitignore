@@ -110,6 +110,8 @@ dist
 
 # other files
 notes.md
+*.yml
+*.sh
 
 # Editor files
 .idea

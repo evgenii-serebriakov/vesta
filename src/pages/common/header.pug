@@ -1,11 +1,14 @@
-header.header
-    nav.navbar.sticky-top.navbar-expand-lg.navbar-light.bg-light
+- var sprite = "img/sprite/sprite.svg";
+
+header.header.position-relative
+    nav.navbar.position-sticky.navbar-expand-lg.navbar-light.bg-light.shadow-sm.py-0
         .container
-            button.navbar-toggler(
+            button.navbar-toggler.trigger.border-0.p-0(
                 type="button"
                 aria-label="Toggle navigation"
             )
-                span.navbar-toggler-icon
+                svg.trigger__icon
+                    use(xlink:href=sprite + "#filter")
 
             .logo
                 a.logo__link.navbar-brand.d-none.d-lg-block(href="#/") 
@@ -13,14 +16,16 @@ header.header
                         src="img/svg/logo-desktop-left.svg" 
                         alt="logo"
                     )
-                a.logo__link.navbar-brand.d-lg-none(href="#/") 
+                a.logo__link.navbar-brand.d-lg-none.m-0(href="#/") 
                     img.logo__img-mobile(
                         src="img/svg/logo-mobile.svg" 
                         alt="logo-mobile"
                     )
 
             .collapse.navbar-collapse.navigation.justify-content-end
-                ul.navbar-nav.navigation__list
+                ul.navbar-nav.navigation__list(
+                    aria-label="Navigation menu"
+                )
                     li.nav-item.navigation__list-item
                         a.nav-link.navigation__link(href="#/") Главная
                     li.nav-item.navigation__list-item
