@@ -1,3 +1,5 @@
+- var sprite = "img/sprite/sprite.svg";
+
 doctype html
 html(lang="ru")
     block head
@@ -18,11 +20,16 @@ html(lang="ru")
             link(rel="icon" href="img/favicons/favicon.ico")
 
             link(rel="stylesheet" href="css/style.min.css")
+           
     body.page
-        block header
-            include header
-        block content
-        //- block footer
-            include footer
+        block sidebar
+            include sidebar
+
+        .panel#main
+            block header
+                include header
+            block content
+            //- block footer
+                include footer
         block scripts
             script(src='js/main.min.js')

@@ -1,44 +1,54 @@
 .header {
     .logo {
-        max-width: 150px;
-        height: auto;
-
         &__link {
             display: block;
         }
 
         &__img {
-            &-mobile {
-                max-width: 35px;
-                height: auto;
-            }
+            max-width: 150px;
+            height: auto;
+        }
+    }
+
+    .logo-mobile {
+        &__link {
+            display: block;
+        }
+
+        &__img {
+            max-width: 35px;
+            height: auto;
         }
     }
 
     .trigger {
-        width: 40px;
-        height: 40px;
+        &__btn {
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+        }
 
         &__icon {
-            fill: $purpleColor100;
+            fill: $purpleSaturate;
 
             &:hover {
-                fill: $themeColor;
+                fill: $purpleColor100;
             }
         }
     }
 
     .navigation {
         &__link {
-            font-size: 18px;
+            font-size: 20px;
             text-transform: uppercase;
+            color: $greyColor;
 
             &:focus {
-                color: rgba(0, 0, 0, 0.7);
+                color: $purpleSaturate;
             }
 
             &:hover {
-                color: $themeColor !important;
+                color: $purpleSaturate;
             }
         }
     }

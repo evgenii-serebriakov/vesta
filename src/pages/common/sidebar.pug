@@ -1,0 +1,43 @@
+#menu.sidebar
+    header.menu.border-bottom.border-1.bg-light
+        .d-flex.justify-content-between.flex-wrap
+            .menu__caption.col-auto
+                h6.menu__text.m-0.text-uppercase.text-black-50.fw-bold Меню
+            .close.col-auto
+                button(type="button" class="close__btn" aria-label="Close")
+                    svg.close__icon
+                            use(xlink:href=sprite + "#close")
+
+    nav.nav-main.border-bottom.border-1.bg-light(aria-label="Navigation menu")
+                ul.nav.flex-column.nav-main__list
+                    li.nav-item.nav-main__list-item
+                        a.nav-link.nav-main__link(href="#/") 
+                            i.icon
+                                svg.icon__svg
+                                    use(xlink:href=sprite + "#home")
+                            span.nav-main__link-text Главная
+                    li.nav-item.nav-main__list-item
+                        a.nav-link.nav-main__link(href="#/") 
+                            i.icon
+                                svg.icon__svg
+                                    use(xlink:href=sprite + "#camera")
+                            span.nav-main__link-text Видео
+                    li.nav-item.nav-main__list-item
+                        a.nav-link.nav-main__link(href="#/") 
+                            i.icon
+                                svg.icon__svg
+                                    use(xlink:href=sprite + "#news")
+                            span.nav-main__link-text Новости
+                    li.nav-item.nav-main__list-item
+                        a.nav-link.nav-main__link(href="#/") 
+                            i.icon
+                                svg.icon__svg
+                                    use(xlink:href=sprite + "#comment")
+                            span.nav-main__link-text Отзывы
+                    li.nav-item.nav-main__list-item
+                        a.nav-link.nav-main__link(href="#/") 
+                            i.icon
+                                svg.icon__svg
+                                    use(xlink:href=sprite + "#phone")
+                            span.nav-main__link-text Контакты
+                    

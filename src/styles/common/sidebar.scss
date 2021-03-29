@@ -1,0 +1,54 @@
+.sidebar {
+    border-right: 2px solid $purpleSaturate;
+
+    .menu {
+        &__caption {
+            padding: 1px 6px;
+        }
+
+        &__text {
+            padding: 10px 0;
+        }
+    }
+
+    .close {
+        &__btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background-color: transparent;
+        }
+
+        &__icon {
+            fill: $purpleSaturate;
+
+            &:hover {
+                fill: $purpleColor100;
+            }
+        }
+    }
+
+    .nav-main {
+        &__link {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: $greyColor;
+            padding: 5px 16px;
+
+            &:hover {
+                color: $purpleSaturate;
+            }
+
+            .icon {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                fill: $purpleSaturate;
+            }
+
+            &-text {
+                padding-left: 4px;
+            }
+        }
+    }
+}

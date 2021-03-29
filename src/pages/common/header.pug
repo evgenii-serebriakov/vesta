@@ -1,31 +1,30 @@
-- var sprite = "img/sprite/sprite.svg";
+header.header.position-sticky.shadow-sm.py-2
+    .container
+        .row.justify-content-between
+            .trigger.d-lg-none.col-auto
+                button.trigger__btn.border-0.p-0(
+                    type="button"
+                    aria-label="Toggle navigation"
+                )
+                    svg.trigger__icon
+                        use(xlink:href=sprite + "#filter")
 
-header.header.position-relative
-    nav.navbar.position-sticky.navbar-expand-lg.navbar-light.bg-light.shadow-sm.py-0
-        .container
-            button.navbar-toggler.trigger.border-0.p-0(
-                type="button"
-                aria-label="Toggle navigation"
-            )
-                svg.trigger__icon
-                    use(xlink:href=sprite + "#filter")
-
-            .logo
-                a.logo__link.navbar-brand.d-none.d-lg-block(href="#/") 
+            .logo.d-none.d-lg-block.col-auto
+                a.logo__link(href="#/") 
                     img.logo__img(
                         src="img/svg/logo-desktop-left.svg" 
                         alt="logo"
                     )
-                a.logo__link.navbar-brand.d-lg-none.m-0(href="#/") 
-                    img.logo__img-mobile(
+                
+            .logo-mobile.d-lg-none.col-auto
+                a.logo-mobile__link(href="#/") 
+                    img.logo-mobile__img(
                         src="img/svg/logo-mobile.svg" 
                         alt="logo-mobile"
                     )
 
-            .collapse.navbar-collapse.navigation.justify-content-end
-                ul.navbar-nav.navigation__list(
-                    aria-label="Navigation menu"
-                )
+            nav.navigation.d-none.d-lg-block.col-auto(aria-label="Navigation menu")
+                ul.nav.navigation__list
                     li.nav-item.navigation__list-item
                         a.nav-link.navigation__link(href="#/") Главная
                     li.nav-item.navigation__list-item
