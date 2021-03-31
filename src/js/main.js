@@ -4,6 +4,8 @@ import Slideout from 'slideout';
 class Layout {
     constructor(options) {
         this.slider = options.slider;
+        this.screenWidth = window.screen.width;
+        this.target = $('.sidebar');
     }
 
     static handlerEvents(instance) {
@@ -17,10 +19,11 @@ class Layout {
                 $(this.panel).addClass('panel-open');
             },
             open() {
-                $(this.panel).one('click', close);
+                $(this.panel).on('click', close);
             },
             beforeclose() {
                 $(this.panel).removeClass('panel-open');
+                $(this.panel).off('click', close);
             }
         };
     }
@@ -29,19 +32,18 @@ class Layout {
         const slideout = new Slideout(config);
         const handlers = Layout.handlerEvents(slideout);
 
-        $.each(handlers, (i, handler) => {
-            slideout.on(i, handler);
-        });
-
-        $('.trigger').on('click', () => {
-            slideout.toggle();
+        $('.trigger__btn').on('click', () => {
+            slideout.open();
         });
 
         $('.close__btn').on('click', () => {
             slideout.close();
         });
 
-        slideout.open();
+        $.each(handlers, (i, handler) => {
+            slideout.on(i, handler);
+        });
+        // slideout.open();
     }
 
     scrollToTop() {
@@ -55,7 +57,13 @@ class Layout {
     }
 
     init() {
-        Layout.createSidebar(this.slider);
+        const widthScreen = this.screenWidth >= '992';
+
+        if (!widthScreen) {
+            this.target.remove();
+        } else {
+            Layout.createSidebar(this.slider);
+        }
     }
 }
 
@@ -63,7 +71,7 @@ $(function () {
 
     const layout = new Layout({
         slider: {
-            'panel': document.getElementById('main'),
+            'panel': document.querySelector('.wrapper'),
             'menu': document.getElementById('menu'),
             'padding': 256,
             'tolerance': 70

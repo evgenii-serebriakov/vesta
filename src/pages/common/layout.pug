@@ -1,4 +1,4 @@
-- var sprite = "img/sprite/sprite.svg";
+include variables
 
 doctype html
 html(lang="ru")
@@ -12,12 +12,8 @@ html(lang="ru")
             meta(content="ie=edge" http-equiv="x-ua-compatible")
             title Веста
             meta(name="description" content="Центр реабилитации")
-            //- Favicons
-            link(rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png" sizes="180x180")
-            link(rel="icon" href="img/favicons/favicon-32x32.png" sizes="32x32" type="image/png")
-            link(rel="icon" href="img/favicons/favicon-16x16.png" sizes="16x16" type="image/png")
-            link(rel="manifest" href="img/favicons/manifest.json")
-            link(rel="icon" href="img/favicons/favicon.ico")
+            
+            include favicons
 
             link(rel="stylesheet" href="css/style.min.css")
            
@@ -25,11 +21,14 @@ html(lang="ru")
         block sidebar
             include sidebar
 
-        .panel#main
+        .panel.wrapper
             block header
                 include header
-            block content
-            //- block footer
+            main.content.flex-grow-1
+                block content
+
+            block footer
                 include footer
+
         block scripts
             script(src='js/main.min.js')

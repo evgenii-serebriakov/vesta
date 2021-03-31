@@ -1,6 +1,6 @@
 header.header.position-sticky.shadow-sm.py-2
     .container
-        .row.justify-content-between
+        .row.justify-content-between.align-items-center
             .trigger.d-lg-none.col-auto
                 button.trigger__btn.border-0.p-0(
                     type="button"
@@ -25,13 +25,6 @@ header.header.position-sticky.shadow-sm.py-2
 
             nav.navigation.d-none.d-lg-block.col-auto(aria-label="Navigation menu")
                 ul.nav.navigation__list
-                    li.nav-item.navigation__list-item
-                        a.nav-link.navigation__link(href="#/") Главная
-                    li.nav-item.navigation__list-item
-                        a.nav-link.navigation__link(href="#/") Видео
-                    li.nav-item.navigation__list-item
-                        a.nav-link.navigation__link(href="#/") Новости
-                    li.nav-item.navigation__list-item
-                        a.nav-link.navigation__link(href="#/") Отзывы
-                    li.nav-item.navigation__list-item
-                        a.nav-link.navigation__link(href="#/") Контакты
+                    each item in navigation
+                        li.nav-item.navigation__list-item
+                            a.nav-link.navigation__link(href="#/") #{item.text}
