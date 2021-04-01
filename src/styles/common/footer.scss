@@ -26,6 +26,13 @@
                 color: $defaultColor;
             }
         }
+
+        &__icon {
+            &-svg {
+                width: 25px;
+                height: 25px;
+            }
+        }
     }
 
     .contacts {
@@ -50,10 +57,17 @@
             padding-left: 10px;
             text-transform: lowercase;
         }
+
+        &__icon {
+            &-svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
     }
 
-    @media screen and (min-width: 992px) {
-        .section-seperator {
+    @include media-laptop {
+        .seperator {
             padding: 4rem 0 !important;
         }
 
@@ -73,13 +87,6 @@
             font-size: 14px;
             text-transform: uppercase;
             color: $greyColor;
-        }
-    }
-
-    .icon {
-        &__svg {
-            width: 15px;
-            height: 15px;
         }
     }
 }

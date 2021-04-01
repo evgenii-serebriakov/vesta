@@ -1,5 +1,5 @@
 // Font
-$mainFont                        : "Tinos";
+$mainFont                       : "Tinos";
 
 /* Size */
 $mainFontSize                   : 18px;
@@ -7,11 +7,21 @@ $mainFontStyle                  : normal;
 $mainFontWeight                 : normal;
 $mainLineHeight                 : 1.4;
 
-// Mobile first
-$mediaWidthMobile               : 320px;
+/* Content size */
+$widthLaptopExtraLarge          : 1320px;
+$widthLaptopLarge               : 1140px;
+$widthLaptop                    : 960px;
+$widthTable                     : 720px;
+$widthMobile                    : 540px;
+$widthMobileSmall               : 100%;
+
+/* Media queries */
+$madiaWidthLaptopExtraLarge     : 1400px;
+$madiaWidthLaptopLarge          : 1200px;
+$mediaWidthLaptop               : 992px;
 $mediaWidthTablet               : 768px;
-$mediaWidthTabletHorizontal     : 1024px;
-$mediaWidthLaptop               : 1366px;
+$mediaWidthMobile               : 576px;
+
 
 /* Main color */
 $defaultColor                   : rgba(16, 16, 16, 1);

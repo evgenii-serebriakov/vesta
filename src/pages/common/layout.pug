@@ -17,11 +17,11 @@ html(lang="ru")
 
             link(rel="stylesheet" href="css/style.min.css")
            
-    body.page
+    body.page.vh-100.vw-100
         block sidebar
             include sidebar
 
-        .panel.wrapper
+        .panel.wrapper.d-flex.flex-column.w-100.h-100
             block header
                 include header
             main.content.flex-grow-1

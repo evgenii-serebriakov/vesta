@@ -1,0 +1,45 @@
+@import "../utils/variables";
+
+// Media queries
+
+@mixin media-laptop-extra-large {
+
+    @media screen and (min-width: $madiaWidthLaptopExtraLarge) {
+        @content;
+    }
+}
+
+@mixin media-laptop-large {
+
+    @media screen and (min-width: $madiaWidthLaptopLarge) {
+        @content;
+    }
+}
+
+@mixin media-laptop {
+
+    @media screen and (min-width: $mediaWidthLaptop) {
+        @content;
+    }
+}
+
+@mixin media-tablet {
+
+    @media screen and (min-width: $mediaWidthTablet) {
+        @content;
+    }
+}
+
+@mixin media-mobile {
+
+    @media screen and (min-width: $mediaWidthMobile) {
+        @content;
+    }
+}
+
+@mixin media-breakpoint($size) {
+
+    @media screen and (min-width: $size) {
+        @content;
+    }
+}

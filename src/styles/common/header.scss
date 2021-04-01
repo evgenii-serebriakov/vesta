@@ -1,4 +1,31 @@
 .header {
+    .social-bar,
+    .contacts-bar {
+        &__list {
+            list-style: none;
+        }
+
+        &__link {
+            padding: 8px 8px;
+        }
+
+        &__icon {
+            &-svg {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+
+    .contacts-bar {
+        &__icon {
+            &-svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+
     .logo {
         &__link {
             display: block;

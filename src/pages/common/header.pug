@@ -1,30 +1,58 @@
-header.header.position-sticky.shadow-sm.py-2
-    .container
-        .row.justify-content-between.align-items-center
-            .trigger.d-lg-none.col-auto
-                button.trigger__btn.border-0.p-0(
-                    type="button"
-                    aria-label="Toggle navigation"
-                )
-                    svg.trigger__icon
-                        use(xlink:href=sprite + "#filter")
+header.header.position-sticky
+    section.header__secondary.border-1.border-bottom.pb-3.pt-3.d-none.d-md-block.bg-light
+        .container
+            .row.justify-content-between
+                .col-auto
+                    .social-bar
+                        ul.social-bar__list.d-flex.flex-row.m-0.ps-0
+                            each item in social
+                                li.social-bar__list-item
+                                    a.social-bar__link(href="#/" title= item.title)
+                                        i.social-bar__icon
+                                            svg.social-bar__icon-svg(fill=item.color)
+                                                use(xlink:href=sprite + item.icon)
+                                        
+                .col-auto
+                    .contacts-bar
+                        ul.contacts-bar__list.d-flex.mb-0
+                            li.contacts-bar__list-item.pe-2
+                                i.contacts-bar__icon
+                                    svg.contacts-bar__icon-svg(fill="#22b9f5")
+                                        use(xlink:href=sprite + "#mail")
+                                span.contacts-bar__text.ps-2 test@mail.com
+                            li.contacts-bar__list-item
+                                i.contacts-bar__icon
+                                    svg.contacts-bar__icon-svg(fill="#17c42e")
+                                        use(xlink:href=sprite + "#phone")
+                                span.contacts-bar__phone.ps-2 89998994333
 
-            .logo.d-none.d-lg-block.col-auto
-                a.logo__link(href="#/") 
-                    img.logo__img(
-                        src="img/svg/logo-desktop-left.svg" 
-                        alt="logo"
+    section.header__main.py-2.shadow-sm
+        .container
+            .row.justify-content-between.align-items-center
+                .trigger.d-lg-none.col-auto
+                    button.trigger__btn.border-0.p-0(
+                        type="button"
+                        aria-label="Toggle navigation"
                     )
-                
-            .logo-mobile.d-lg-none.col-auto
-                a.logo-mobile__link(href="#/") 
-                    img.logo-mobile__img(
-                        src="img/svg/logo-mobile.svg" 
-                        alt="logo-mobile"
-                    )
+                        svg.trigger__icon
+                            use(xlink:href=sprite + "#filter")
 
-            nav.navigation.d-none.d-lg-block.col-auto(aria-label="Navigation menu")
-                ul.nav.navigation__list
-                    each item in navigation
-                        li.nav-item.navigation__list-item
-                            a.nav-link.navigation__link(href="#/") #{item.text}
+                .logo.d-none.d-lg-block.col-auto
+                    a.logo__link(href="#/") 
+                        img.logo__img(
+                            src="img/svg/logo-desktop-left.svg" 
+                            alt="logo"
+                        )
+                    
+                .logo-mobile.d-lg-none.col-auto
+                    a.logo-mobile__link(href="#/") 
+                        img.logo-mobile__img(
+                            src="img/svg/logo-mobile.svg" 
+                            alt="logo-mobile"
+                        )
+
+                nav.navigation.d-none.d-lg-block.col-auto(aria-label="Navigation menu")
+                    ul.nav.navigation__list
+                        each item in navigation
+                            li.nav-item.navigation__list-item
+                                a.nav-link.navigation__link(href="#/") #{item.text}
