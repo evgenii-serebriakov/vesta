@@ -1,5 +1,18 @@
 @import "../utils/variables";
 
+@function rem($pixels, $context: $mainFontSize) {
+
+    @if (unitless($pixels)) {
+        $pixels: $pixels * 1px;
+    }
+
+    @if (unitless($context)) {
+        $context: $context * 1px;
+    }
+
+    @return $pixels / $context * 1rem;
+}
+
 // Media queries
 
 @mixin media-laptop-extra-large {

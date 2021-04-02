@@ -87,3 +87,32 @@ svg {
     z-index: 99;
 }
 // === / Sidebar ===
+
+.decorating-line {
+    &::before {
+        position: absolute;
+        content: " ";
+        width: 200px;
+        height: 1px;
+        top: 40px;
+        left: 0;
+        background: $purpleSaturate;
+    }
+}
+
+.separator-line {
+    position: relative;
+    padding: rem(40) 0;
+    text-align: center;
+
+    &::before {
+        position: absolute;
+        content: " ";
+        width: 200px;
+        height: 1px;
+        background: $purpleSaturate;
+        margin: auto;
+        left: 0;
+        right: 0;
+    }
+}

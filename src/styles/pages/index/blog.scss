@@ -1,0 +1,57 @@
+.blog {
+    &__inner {
+        padding-top: 50px;
+    }
+    &__title {
+        position: relative;
+        color: $greyColor;
+        font-size: 25px;
+        margin-bottom: rem(40);
+    }
+
+    .teasers {
+        border: none;
+
+        &:hover {
+            box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)
+        }
+
+        &__title {
+            font-size: 22px;
+            color: $defaultColor;
+            margin: 0;
+            padding-top: 5px;
+        }
+
+        &__meta-info {
+            color: $greyColor;
+            font-size: 13px;
+        }
+
+        &__link {
+            text-decoration: none;
+            color: $greyColor;
+            fill: $greyColor;
+
+            &--hover {
+                &:hover {
+                    color: $purpleSaturate;
+                    fill: $purpleSaturate;
+                }
+            }
+        }
+
+        &__footer-wrap {
+            padding-top: 15px;
+        }
+
+        &__text {
+            font-size: 13px;
+        }
+
+        &__icon-svg {
+            width: 10px;
+            height: 10px;
+        }
+    }
+}

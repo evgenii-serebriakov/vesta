@@ -13,17 +13,13 @@ footer.footer
                 .col-12.col-sm-6.col-md-auto.col-lg-auto.order-md-2
                     .contacts
                         h5.contacts__title Контакты
-                        ul.contacts__list
-                            li.contacts__list-item
-                                i.contacts__icon
-                                    svg.contacts__icon-svg(fill="#17c42e")
-                                        use(xlink:href=sprite + "#phone")
-                                span.contacts__phone 89998994333
-                            li 
-                                i.contacts__icon
-                                    svg.contacts__icon-svg(fill="#22b9f5")
-                                        use(xlink:href=sprite + "#mail")
-                                span.contacts__text test@mail.com
+                        each item in contacts
+                            ul.contacts__list
+                                li.contacts__list-item(title= item.title)
+                                    i.contacts__icon
+                                        svg.contacts__icon-svg(fill= item.color)
+                                            use(xlink:href=sprite + item.icon)
+                                    span.ps-2(class= item.id) #{item.text}
                 
                 .col-12.col-md-auto.col-lg-auto.order-2.order-md-1.order-lg-1
                     .social

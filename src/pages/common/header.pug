@@ -15,16 +15,12 @@ header.header.position-sticky
                 .col-auto
                     .contacts-bar
                         ul.contacts-bar__list.d-flex.mb-0
-                            li.contacts-bar__list-item.pe-2
-                                i.contacts-bar__icon
-                                    svg.contacts-bar__icon-svg(fill="#22b9f5")
-                                        use(xlink:href=sprite + "#mail")
-                                span.contacts-bar__text.ps-2 test@mail.com
-                            li.contacts-bar__list-item
-                                i.contacts-bar__icon
-                                    svg.contacts-bar__icon-svg(fill="#17c42e")
-                                        use(xlink:href=sprite + "#phone")
-                                span.contacts-bar__phone.ps-2 89998994333
+                            each item in contacts
+                                li.contacts-bar__list-item.pe-2(title= item.title)
+                                    i.contacts-bar__icon
+                                        svg.contacts-bar__icon-svg(fill= item.color)
+                                            use(xlink:href=sprite + item.icon)
+                                    span.contacts-bar__text.ps-2 #{item.text}
 
     section.header__main.py-2.shadow-sm
         .container
