@@ -9,6 +9,9 @@ html(lang="ru")
                 name="viewport"
                 content="width=device-width, initial-scale=1, maximum-scale=1" 
             )
+            meta(content='true' name='HandheldFriendly')
+            meta(content='width' name='MobileOptimized')
+            meta(content='yes' name='apple-mobile-web-app-capable')
             meta(content="ie=edge" http-equiv="x-ua-compatible")
             title Веста
             meta(name="description" content="Центр реабилитации")
@@ -18,6 +21,9 @@ html(lang="ru")
             link(rel="stylesheet" href="css/style.min.css")
            
     body.page.vh-100
+        .scroll-up
+            svg.scroll-up__icon-svg(fill-rule="evenodd")
+                use(xlink:href=sprite + "#arrow-up")
         block sidebar
             include sidebar
 

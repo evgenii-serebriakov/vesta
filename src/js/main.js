@@ -17,6 +17,13 @@ class Layout {
         return {
             beforeopen() {
                 $(this.panel).addClass('panel-open');
+
+                if ($('.panel').hasClass('panel-open')) {
+                    $('.scroll-up').css({
+                        display: 'none',
+                        opacity: 0
+                    });
+                }
             },
             open() {
                 $(this.panel).on('click', close);
@@ -24,6 +31,11 @@ class Layout {
             beforeclose() {
                 $(this.panel).removeClass('panel-open');
                 $(this.panel).off('click', close);
+
+                $('.scroll-up').css({
+                    display: 'block',
+                    opacity: 1
+                });
             }
         };
     }
@@ -46,12 +58,18 @@ class Layout {
         // slideout.open();
     }
 
-    scrollToTop() {
+    static scrollUp(quantity) {
+        function handler() {
+            $(window).scrollTop(0);
+        }
+
+        $('.scroll-up').on('click', handler);
+
         $(window).on('scroll', () => {
-            if ($(window).scrollTop() >= 100) {
-                $('to-top').addClass('visible');
+            if ($(window).scrollTop() >= quantity) {
+                $('.scroll-up').addClass('visible');
             } else {
-                $('to-top').removeClass('visible');
+                $('.scroll-up').removeClass('visible');
             }
         });
     }
@@ -64,6 +82,8 @@ class Layout {
         } else {
             Layout.createSidebar(this.slider);
         }
+
+        Layout.scrollUp(100);
     }
 }
 

@@ -65,21 +65,24 @@
         .seperator {
             padding: 4rem 0 !important;
         }
-
-        .copyright {
-            padding: 30px 0 !important;
-        }
     }
 
     .copyright {
-        padding: 20px 0;
+        padding: rem(20) 0;
 
         &__logo {
             max-width: 90px;
         }
 
+        &__icon-svg {
+            fill: $greyColor;
+            width: 15px;
+            height: 15px;
+            padding-right: 5px;
+        }
+
         &__text {
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
             color: $greyColor;
         }

@@ -10,8 +10,8 @@
         "build": "gulp build",
         "lighthouse": "gulp build && gulp lighthouse",
         "test": "editorconfig-cli && stylelint ./src/styles/**/*.scss --syntax scss && eslint ./src/js",
-        "stylelint-fix": "stylelint ./src/styles/**/*.scss --fix --syntax scss",
-        "eslint-fix": "eslint ./src/js/** --fix"
+        "stylelint:fix": "stylelint ./src/styles/**/*.scss --fix --syntax scss",
+        "eslint:fix": "eslint ./src/js/** --fix"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
@@ -69,10 +69,10 @@
     "editorconfig-cli": [
         "*.json",
         "*.js",
-        "source/*.html",
-        "source/js/**/*.js",
-        "source/img/**/*.svg",
-        "source/sass/**/*.{sass,scss}"
+        "src/*.html",
+        "src/js/**/*.js",
+        "src/img/**/*.svg",
+        "src/sass/**/*.{sass,scss}"
     ],
     "husky": {
         "hooks": {
