@@ -2,17 +2,17 @@
     "env": {
         "browser": true,
         "node": true,
-        "es2020": true,
+        "es2021": true,
         "jquery": true
     },
     "overrides": [
         {
             "files": [
-                "src/**/*.js"
+                "resources/assets/js/**/*.{js,vue}"
             ],
             "extends": [
-                "standard",
-                "htmlacademy/es6"
+                "eslint:recommended",
+                "plugin:vue/vue3-recommended"
             ],
             "rules": {
                 "indent": [

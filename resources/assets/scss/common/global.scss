@@ -1,0 +1,109 @@
+@import "node_modules/vuetify/lib/styles/main";
+
+.page {
+    font-family: $body-font-family;
+    font-style: $mainFontStyle;
+    font-weight: $mainFontWeight;
+    line-height: $mainLineHeight;
+    font-size: $mainFontSize;
+    color: $defaultColor;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+svg {
+    vertical-align: middle;
+}
+//  === / Common ===
+
+// === Sidebar ===
+// .slideout-menu {
+//     position: fixed;
+//     top: 0;
+//     bottom: 0;
+//     width: 256px;
+//     min-height: 100vh;
+//     overflow-y: auto;
+//     -webkit-overflow-scrolling: touch;
+//     z-index: 0;
+//     display: none;
+// }
+
+// .slideout-menu-left {
+//     left: 0;
+// }
+
+// .slideout-menu-right {
+//     right: 0;
+// }
+
+// .slideout-panel {
+//     position: relative;
+//     z-index: 1;
+//     will-change: transform;
+//     background-color: #fff; /* A background-color is required */
+//     min-height: 100vh;
+// }
+
+// .slideout-open,
+// .slideout-open body,
+// .slideout-open .slideout-panel {
+//     overflow: hidden;
+// }
+
+// .slideout-open .slideout-menu {
+//     display: block;
+// }
+
+// .panel::before {
+//     content: "";
+//     display: block;
+//     background-color: rgba(0, 0, 0, 0);
+//     transition: background-color 0.5s ease-in-out 0s;
+// }
+
+// .panel-open::before {
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     width: 100%;
+//     background-color: rgba(0, 0, 0, 0.5);
+//     z-index: 99;
+// }
+// === / Sidebar ===
+
+// === Decorative line ===
+.decorating-line {
+    &::before {
+        position: absolute;
+        content: " ";
+        width: 200px;
+        height: 1px;
+        top: 40px;
+        left: 0;
+        background: $purpleSaturate;
+    }
+}
+// === / Decorative line ===
+
+// === Separator ===
+.separator-line {
+    position: relative;
+    padding: rem(40) 0;
+    text-align: center;
+
+    &::before {
+        position: absolute;
+        content: " ";
+        width: 200px;
+        height: 1px;
+        background: $purpleSaturate;
+        margin: auto;
+        left: 0;
+        right: 0;
+    }
+}
+// === / Separator ===

@@ -1,0 +1,27 @@
+@font-face {
+    font-family: "Tinos";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-regular.eot"); /* IE9 Compat Modes */
+    src:
+        local("Tinos"),
+        url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-regular.eot?#iefix") format("embedded-opentype"),
+        url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-regular.woff2") format("woff2"),
+        url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-regular.woff") format("woff"),
+        url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-regular.ttf") format("truetype"),
+        url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-regular.svg#Tinos") format("svg"); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: "Tinos";
+    font-style: normal;
+    font-weight: 700;
+    src: url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-700.eot"); /* IE9 Compat Modes */
+    src:
+        local("Tinos"),
+        url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-700.eot?#iefix") format("embedded-opentype"),
+        url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-700.woff2") format("woff2"),
+        url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-700.woff") format("woff"),
+        url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-700.ttf") format("truetype"),
+        url("../images/fonts/tinos-v15-latin_cyrillic-ext_cyrillic-700.svg#Tinos") format("svg"); /* Legacy iOS */
+}

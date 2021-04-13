@@ -1,0 +1,23 @@
+include variables
+
+doctype html
+html(lang="ru")
+           
+    body.page.vh-100
+        .scroll-up
+            svg.scroll-up__icon-svg(fill-rule="evenodd")
+                use(xlink:href=sprite + "#arrow-up")
+        block sidebar
+            include sidebar
+
+        .panel.wrapper.d-flex.flex-column.w-100.h-100
+            block header
+                include header
+            main.content.flex-grow-1
+                block content
+
+            block footer
+                include footer
+
+        block scripts
+            script(src='js/main.min.js')
