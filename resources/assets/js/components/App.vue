@@ -1,10 +1,16 @@
 <template lang="pug">
 
 v-app
-    ScrollUp
-    Navbar
-    //- Drawer
-    Home
+    v-navigation-drawer(
+        app
+        temporary
+        v-model="isVisible"
+    )
+        drawer(:drawer="isVisible")
+
+    scroll-up
+    navbar(:drawer="isVisible")
+    home
     Footer
     
 </template>
@@ -13,7 +19,7 @@ v-app
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollUp from './ScrollUp';
-// import Drawer from './Drawer';
+import Drawer from './Drawer';
 import Home from '@/js/pages/home/Home';
 
 export default {
@@ -23,7 +29,14 @@ export default {
         Home,
         Footer,
         ScrollUp,
-        // Drawer
+        Drawer
+    },
+    setup() {
+        const isVisible = false;
+
+        return {
+            isVisible
+        };
     }
 };
 </script>

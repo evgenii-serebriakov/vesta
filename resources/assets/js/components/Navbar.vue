@@ -29,6 +29,7 @@ header.header
                     button.trigger__btn.border-0.p-0(
                         type="button"
                         aria-label="Toggle navigation"
+                        @click="drawer = true"
                     )
                         svg.trigger__icon
                             use(:xlink:href="sprites + '#icon-filter'")
@@ -58,6 +59,9 @@ header.header
 
 export default {
     name: 'Navbar',
+    props: {
+        drawer: Boolean
+    },
     setup() {
         const sprites = '/assets/images/sprites.svg';
 
@@ -92,6 +96,17 @@ export default {
             sprites
         };
     },
+    data() {
+        return {
+            isDrawer: this.drawer
+        };
+    },
+    computed: {
+    },
+    methods: {
+        onVisible: function () {
+        }
+    }
 };
 </script>
 

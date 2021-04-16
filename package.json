@@ -4,15 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development mix",
-    "eslint:fix": "eslint ./resources/assets/js/**/*.{js,vue} --fix",
-    "hot": "cross-env NODE_ENV=development mix watch --hot",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production mix --production",
-    "stylelint:fix": "stylelint ./resources/assets/**/*.{scss,vue} --fix",
+    "production": "cross-env NODE_ENV=production CLEAN=true mix --production",
+    "development": "cross-env NODE_ENV=development CLEAN=true mix",
+    "hot": "cross-env NODE_ENV=development CLEAN=false mix watch --hot",
+    "watch": "cross-env NODE_ENV=development CLEAN=true mix watch",
+    "watch-poll": "cross-env NODE_ENV=development CLEAN=true mix watch -- --watch-options-poll=1000",
     "test": "eslint ./resources/assets/js/**/*.{js,vue} && stylelint ./resources/assets/scss/**/*.scss",
-    "watch": "cross-env NODE_ENV=development mix watch",
-    "watch-poll": "cross-env NODE_ENV=development mix watch -- --watch-options-poll=1000"
+    "eslint:fix": "eslint ./resources/assets/js/**/*.{js,vue} --fix",
+    "stylelint:fix": "stylelint ./resources/assets/**/*.{scss,vue} --fix"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.11",
@@ -57,11 +57,11 @@
     "vue-loader": "^16.2.0"
   },
   "dependencies": {
-    "jquery": "^3.6.0",
-    "slideout": "^1.0.1",
     "svg4everybody": "^2.1.9",
     "vue": "^3.0.11",
-    "vuetify": "^3.0.0-alpha.0"
+    "vue-router": "^4.0.6",
+    "vuetify": "^3.0.0-alpha.0",
+    "vuex": "^4.0.0"
   },
   "browserslist": [
     "defaults",

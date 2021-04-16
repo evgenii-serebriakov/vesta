@@ -1,7 +1,7 @@
 <template lang="pug">
 section.posts.grey.lighten-4
     v-container.posts__inner
-        h2.posts__title.text-uppercase.font-weight-bold.decorating-line Последние анонсы
+        h2.posts__title.text-uppercase.font-weight-bold.decorating-line Последние посты
 
         v-row
             v-col(cols="12" sm="6" md="4" v-for="item in images" :key="item.text")
@@ -53,6 +53,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/scss/utils/_variables";
+
+@import "@/scss/mixins/_media";
 
 .posts {
     &__inner {

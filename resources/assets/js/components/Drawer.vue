@@ -5,7 +5,11 @@
             v-col.menu__caption(cols="auto")
                 h6.menu__text.m-0.text-uppercase.text-black-50.font-weight-bold Меню
             v-col.close(cols="auto")
-                button.close__btn.p-0(type="button" aria-label="Close")
+                button.close__btn.p-0(
+                    type="button" 
+                    aria-label="Close"
+                    @click="drawer = false"
+                )
                     svg.close__icon
                             use(:xlink:href="sprites + '#icon-close'")
 
@@ -22,6 +26,10 @@
 
 <script>
 export default {
+    name: 'Drawer',
+    props: {
+        drawer: Boolean
+    },
     setup() {
         const sprites = '/assets/images/sprites.svg';
 
@@ -45,17 +53,9 @@ export default {
 @import "@/scss/utils/_variables";
 
 .drawer {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 256px;
     min-height: 100vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    z-index: 1;
     border-right: 2px solid $purpleSaturate;
     background-color: #fff;
-    // display: none;
 
     .menu {
         background-color: #f5f5f5;

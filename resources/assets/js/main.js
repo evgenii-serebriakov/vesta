@@ -3,7 +3,7 @@ import { createApp } from 'vue';
 import vuetify from './plugins/vuetify';
 // import $ from 'jquery';
 // import Slideout from 'slideout';
-// 16:23
+// 33:00
 
 import App from '@/js/components/App';
 
