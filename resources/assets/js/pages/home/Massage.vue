@@ -1,28 +1,11 @@
 <template lang="pug">
 section.massage
     v-container(fluid)
-        v-row(justify="end")
+        v-row(justify="center" justify-lg="end")
             v-col(cols="auto")
                 .massage__inner.text-center
-                    h2.massage__caption Душевное спокойствие
-                    p.masage__subtitle.mb-0.pt-2.text-h6.text-wrap это состояние гармонии со своим телом
-
-            //- v-col(cols="12" md="4" v-for="item in images" :key="item.alt")
-                //- v-card
-                //-     v-img(
-                //-         :alt="item.alt"
-                //-         :aspect-ratio="16/9"
-                //-         :lazy-src="item.path"
-                //-         height="125"
-                //-     )
-
-                //-     v-card-title
-                //-         h1 {{ item.title }}
-                //-     v-card-text {{ item.text }}
-
-
-
-
+                    h2.massage__caption.white-line Расслабляющий массаж
+                    p.masage__subtitle.mb-0.pt-2.text-h5.text-wrap Успокоит ваше тело и мысли
 </template>
 
 <script>
@@ -68,22 +51,12 @@ export default {
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     padding: rem(100) 0;
 
     @include media-laptop {
         padding: rem(200) 0;
     }
-
-    // &::before {
-    //     top: 0;
-    //     left: 0;
-    //     position: absolute;
-    //     display: block;
-    //     content: ' ';
-    //     background-color: rgba(243, 79, 229, 0.322);
-    //     width: 100%;
-    //     height: 100%;
-    // }
 
     &__inner {
         color: white;
@@ -91,7 +64,12 @@ export default {
     }
 
     &__caption {
-        font-size: rem(35);
+        position: relative;
+        font-size: rem(45);
+
+        &::before {
+            top: 60px;
+        }
     }
 }
 </style>

@@ -1,6 +1,11 @@
 <template lang="pug">
 section.posts.grey.lighten-4
     v-container.posts__inner
+        .isoteric
+            i.isoteric__icon
+                svg.isoteric__icon-svg
+                    use(:xlink:href="sprites + '#icon-isoteric'")
+
         h2.posts__title.text-uppercase.font-weight-bold.decorating-line Последние посты
 
         v-row
@@ -66,6 +71,20 @@ export default {
         color: $greyColor;
         font-size: 25px;
         margin-bottom: rem(40);
+    }
+
+    .isoteric {
+        &__icon {
+            fill: $purpleSaturate;
+            display: block;
+            text-align: center;
+            padding-bottom: rem(30);
+
+            &-svg {
+                width: 300px;
+                height: 35px;
+            }
+        }
     }
 
     .teasers {

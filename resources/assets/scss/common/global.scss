@@ -87,6 +87,24 @@ svg {
         background: $purpleSaturate;
     }
 }
+
+.white-line {
+    &::before {
+        position: absolute;
+        content: " ";
+        width: 150px;
+        height: 1px;
+        top: 90px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background: #fff;
+
+        @include media-tablet {
+            width: 200px;
+        }
+    }
+}
 // === / Decorative line ===
 
 // === Separator ===

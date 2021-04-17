@@ -28,6 +28,7 @@
             "px",
             "vh",
             "vm",
+            "vw",
             "vmax",
             "vmin",
             "deg",
