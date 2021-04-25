@@ -2,24 +2,24 @@
 
 footer.footer
 
-    section.seperator.border-t-sm.border-b-sm.py-3.py-md-10
-        v-container
-            v-row(justify-md="space-between")
-                v-col(cols="12" sm="6" md="auto" order-md="0")
+    section.seperator
+        .uk-container
+            .uk-flex.uk-flex-wrap(class="uk-flex-between@m")
+                .uk-width-1-1(class="uk-width-1-2@s uk-width-auto@m")
                     nav.bottom-nav(aria-label="Bottom navigation")
-                        ul.nav.flex-column.bottom-nav__list
-                            li.nav-item.bottom-nav__list-item(
+                        ul.bottom-nav__list.uk-flex-column
+                            li.bottom-nav__list-item(
                                 v-for="item in navigation"
                                 :key="item.text"
                             )
-                                a.nav-link.bottom-nav__link.text-uppercase(href="#/") 
+                                a.bottom-nav__link.uk-text-uppercase(href="#/") 
                                     span.bottom-nav__link-text {{ item.text }}
                 
-                v-col(cols="12" sm="6" md="auto" order-md="2")
+                .uk-width-1-1(class="uk-width-1-2@s uk-width-auto@m uk-flex-last@m")
                     .contacts
-                        h5.contacts__title.font-weight-medium Контакты
+                        h5.contacts__title.uk-text-uppercase.uk-margin-small-bottom Контакты
                         ul.contacts__list
-                            li.contacts__list-item.py-1.py-md-2(
+                            li.contacts__list-item(
                                 v-for="item in contacts"
                                 :title="item.title"
                                 :key="item.text"
@@ -27,31 +27,31 @@ footer.footer
                                 i.contacts__icon
                                     svg.contacts__icon-svg(:fill="item.color")
                                         use(:xlink:href="sprites + item.icon")
-                                span.pl-2(:class="item.id") {{ item.text }}
+                                span(:class="item.id") {{ item.text }}
                 
-                v-col(cols="12" sm="12" md="auto" order="2" order-md="1")
+                .uk-width-1-1(class="uk-width-1-1@s uk-width-auto@m")
                     .social
-                        ul.social__list.d-flex.flex-row.flex-md-column.flex-wrap.justify-center.m-0
+                        ul.social__list.uk-flex.uk-flex-row.uk-flex-wrap.uk-flex-center
                             li.social__list-item(
                                 v-for="item in social"
                                 :key="item.text"
                             )
                                 a.social__link(href="#/" :title="item.title")
-                                    i.social__icon.d-md-none
+                                    i.social__icon(class="uk-hidden@m")
                                         svg.social__icon-svg(:fill="item.color")
                                             use(:xlink:href="sprites + item.icon")
-                                    span.social__link-text.d-none.d-md-block {{ item.text }}
+                                    span.social__link-text(class="uk-visible@m") {{ item.text }}
 
-    section.copyright.py-2.py-md-3
-        v-container
-            v-row(justify="space-between" align="center")
-                v-col(cols="12" md="6")
-                    .copyright__logo.mx-auto.ml-md-0
+    section.copyright.uk-padding-small
+        .uk-container
+            .uk-flex.uk-flex-middle.uk-flex-wrap(class="uk-flex-between@m")
+                .uk-width-1-1(class="uk-width-1-2@m")
+                    .copyright__logo.uk-margin-auto(class="uk-margin-remove-left@m")
                         svg.copyright__icon-logo
                             use(:xlink:href="sprites + '#icon-logo-desktop-left'")
 
-                v-col(cols="12" md="6")
-                    p.copyright__text.text-center.text-md-end.mb-0
+                .uk-width-1-1(class="uk-width-1-2@m")
+                    p.copyright__text.uk-text-center.uk-margin-remove(class="uk-text-right@m")
                         i.copyright__icon
                             svg.copyright__icon-svg
                                 use(:xlink:href="sprites + '#icon-copyright'")
@@ -60,34 +60,15 @@ footer.footer
 </template>
 
 <script>
+import { inject } from 'vue';
+
 export default {
-    name: 'Footer',
+    name: 'NavbarBottom',
     setup() {
-        const sprites = '/assets/images/sprites.svg';
-
-        const navigation = [
-            {text: 'Главная', icon: '#icon-home'},
-            {text: 'Видео', icon: '#icon-camera'},
-            {text: 'Блог', icon: '#icon-news'},
-            {text: 'Отзывы', icon: '#icon-comment'},
-        //- {text: 'Контакты', icon: '#phone'}
-        ];
-
-        const social = [
-            {title: 'Youtube', text: 'Youtube', icon: '#icon-youtube', color: '#FF0000'},
-            {title: 'Instagram', text: 'Instagram', icon: '#icon-instagram', color: '#8134AF'},
-            {title: 'WhatsApp', text: 'WhatsApp', icon: '#icon-whatsapp', color: '#4FCE5D'},
-            {title: 'Twitter', text: 'Twitter', icon: '#icon-twitter', color: '#55ACEE'},
-            {title: 'Facebook', text: 'Facebook', icon: '#icon-facebook', color: '#3C5898'},
-            {title: 'Вконтакте', text: 'VK', icon: '#icon-vk', color: '#5181B8'},
-            {title: 'Viber', text: 'Viber', icon: '#icon-viber', color: '#665CAC'}
-        ];
-
-        const contacts = [
-            {title: 'Телефон', text: '8 (999) 899 43 33', icon: '#icon-phone', color: '#17c42e'},
-            {title: 'Почта', text: 'exemple@mail.com', icon: '#icon-mail', color: '#22b9f5', id: 'contacts__text'},
-            {title: 'Адрес', text: '216 street address, barisal, bd', icon: '#icon-map', color: '#be0000'}
-        ]; 
+        const sprites = inject('sprites');
+        const navigation = inject('navigation');
+        const contacts = inject('contacts');
+        const social = inject('social');
 
         return {
             navigation,
@@ -102,7 +83,19 @@ export default {
 <style lang="scss" scoped>
 @import "@/scss/utils/_variables";
 
+@import "@/scss/mixins/_media";
+
 .footer {
+    .seperator {
+        border-top: 1px solid $light-black;
+        border-bottom: 1px solid $light-black;
+        padding: rem(15) 0;
+
+        @include media-laptop {
+            padding: rem(40) 0;
+        }
+    }
+
     .bottom-nav {
         &__list {
             padding-left: 0;
@@ -116,7 +109,7 @@ export default {
             text-decoration: none;
 
             &:hover {
-                color: $defaultColor;
+                color: $default-color;
             }
         }
     }
@@ -125,6 +118,10 @@ export default {
         &__list {
             padding: 0;
             list-style: none;
+
+            @include media-breakpoint(960) {
+                flex-direction: column;
+            }
         }
 
         &__link {
@@ -135,7 +132,7 @@ export default {
             text-decoration: none;
 
             &:hover {
-                color: $defaultColor;
+                color: $default-color;
             }
         }
 
@@ -159,6 +156,14 @@ export default {
         &__list {
             list-style: none;
             padding-left: 0;
+
+            &-item {
+                padding: rem(4) 0;
+
+                @include media-laptop {
+                    padding: rem(8) 0;
+                }
+            }
         }
 
         &__text {
@@ -166,6 +171,8 @@ export default {
         }
 
         &__icon {
+            padding-right: rem(10);
+
             &-svg {
                 width: 18px;
                 height: 18px;
@@ -198,6 +205,11 @@ export default {
             font-size: 13px;
             text-transform: uppercase;
             color: $greyColor;
+            padding-top: rem(10);
+
+            @include media-breakpoint(960) {
+                padding: 0;
+            }
         }
     }
 }

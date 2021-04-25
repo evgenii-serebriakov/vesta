@@ -18,15 +18,15 @@
         <meta name="theme-color" content="#ffffff">
         
         <link rel="apple-touch-icon" 
-            href="{{ mix('/assets/images/favicons/apple-touch-icon.png') }}" sizes="180x180">
+            href="{{ mix('/assets/favicons/apple-touch-icon.png') }}" sizes="180x180">
         <link rel="icon" 
-            href="{{ mix('/assets/images/favicons/favicon-32x32.png') }}" sizes="32x32" type="image/png">
+            href="{{ mix('/assets/favicons/favicon-32x32.png') }}" sizes="32x32" type="image/png">
         <link rel="icon" 
-            href="{{ mix('/assets/images/favicons/favicon-16x16.png') }}" sizes="16x16" type="image/png">
+            href="{{ mix('/assets/favicons/favicon-16x16.png') }}" sizes="16x16" type="image/png">
         <link rel="manifest" 
-            href="{{ mix('/assets/images/favicons/manifest.json') }}">
+            href="{{ mix('/assets/favicons/manifest.json') }}">
         <link rel="icon" 
-            href="{{ mix('/assets/images/favicons/favicon.ico') }}">
+            href="{{ mix('/assets/favicons/favicon.ico') }}">
         
         <link rel="stylesheet" href="{{ mix('/assets/css/main.css') }}">
     </head>

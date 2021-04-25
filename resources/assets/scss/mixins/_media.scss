@@ -52,7 +52,7 @@
 
 @mixin media-breakpoint($size) {
 
-    @media screen and (min-width: $size) {
+    @media screen and (min-width: #{$size}px) {
         @content;
     }
 }

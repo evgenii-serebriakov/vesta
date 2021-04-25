@@ -8,17 +8,16 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 
-
 require('laravel-mix-webp');
 require('laravel-mix-polyfill');
 require('laravel-mix-clean');
 require('laravel-mix-blade-reload');
 
 const ENV = process.env.NODE_ENV;
-const CLEAN = process.env.CLEAN;
-const isClean = CLEAN === 'true';
-
 const isEnvProduction = ENV !== 'development';
+
+const isHmr = process.argv.includes('--hot');
+
 
 const PATHS = {
     src: path.join(__dirname, 'resources/assets'),
@@ -30,14 +29,24 @@ const PATHS = {
 // Loader options
 const additionalData = `
   @import "${PATHS.src}/scss/mixins/_media.scss";
-  @import "${PATHS.src}/scss/utils/_variables.scss";
-`;
+  `;
+//   @import "${PATHS.src}/scss/utils/_variables.scss";
 
-let plugins = [
+const plugins = [
     new webpack.DefinePlugin({
         __VUE_OPTIONS_API__: true,
         __VUE_PROD_DEVTOOLS__: false
       }),
+    new ImageminPlugin({
+        disable: !isEnvProduction,
+        test: /\.(jpe?g|png|gif)$/i,
+        plugins: [
+            imageminMozjpeg({
+                quality: 80,
+                progressive: true,
+            }),
+        ],
+    }),
     // Создаем svg-спрайт с иконками
     new SVGSpritemapPlugin(
         `${PATHS.src}/images/icons/*.svg`,
@@ -81,19 +90,28 @@ let plugins = [
                     ignore: ['**/icons/**'], // Игнорируем каталог с иконками
                 },
             },
+            {
+                from: `${PATHS.src}/fonts`,
+                to: 'assets/fonts'
+            },
+            {
+                from: `${PATHS.src}/favicons`,
+                to: 'assets/favicons'
+            },
+            {
+                from: `${PATHS.views}/index.html`,
+                to: 'assets'
+            }
         ],
     }),
     new StylelintPlugin({
         fix: true,
         files: [
-            './resources/assets/**/*.{vue,htm,html,css,sss,less,scss,sass}'
+            './resources/assets/**/*.{vue,html,css,scss}'
         ]
-    })
-]
-
-// Optimizing images
-const imageOptimization = (
+    }),
     new ImageminPlugin({
+        disable: !isEnvProduction,
         test: /\.(jpe?g|png|gif)$/i,
         plugins: [
             imageminMozjpeg({
@@ -102,7 +120,37 @@ const imageOptimization = (
             }),
         ],
     })
-);
+];
+
+const rules = [
+    {
+        test: /\.m?js/,
+        resolve: {
+          fullySpecified: false
+        }
+    },
+    {
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+        options: {
+            fix: true
+        }
+    },
+    {
+        test: /\.pug$/,
+        oneOf: [
+          {
+            resourceQuery: /^\?vue/,
+            use: ['pug-plain-loader']
+          },
+          {
+            use: ['raw-loader', 'pug-plain-loader']
+          }
+        ]
+    },
+];
 
 // Config
 const config = mix
@@ -118,8 +166,7 @@ const config = mix
         // debug: true, // Выкидывает ошибку
         corejs: '3.8'
     })
-    .sass(
-        `${PATHS.src}/scss/main.scss`,
+    .sass(`${PATHS.src}/scss/main.scss`,
         `${PATHS.dist}/css`, {
             additionalData
         }
@@ -141,79 +188,34 @@ const config = mix
     })
     // Настраиваем webpack для обработки изображений
     .webpackConfig({
-        resolve: {
-            extensions: [
-              '.mjs',
-              '.js',
-              '.jsx',
-              '.vue',
-              '.json',
-              '.wasm'
-            ]
-        },
         module: {
-            rules: [
-                {
-                    test: /\.m?js/,
-                    resolve: {
-                      fullySpecified: false
-                    }
-                },
-                {
-                    enforce: 'pre',
-                    test: /\.(js|vue)$/,
-                    loader: 'eslint-loader',
-                    exclude: /node_modules/,
-                    options: {
-                        fix: true
-                    }
-                },
-                {
-                    test: /\.pug$/,
-                    oneOf: [
-                      {
-                        resourceQuery: /^\?vue/,
-                        use: ['pug-plain-loader']
-                      },
-                      {
-                        use: ['raw-loader', 'pug-plain-loader']
-                      }
-                    ]
-                },
-            ]
+            rules,
         },
         plugins
     })
+    // .override((webpackConfig) => {
+    //     console.log(webpackConfig)
+    // })
+    // .copy(`${PATHS.views}/*.html`, PATHS.dist)
     .browserSync('http://vesta.loc:80')
-    .copy(`${PATHS.views}/*.html`, PATHS.dist)
-
-
-if (isClean) {
-    config.clean({
+    .clean({
+        dry: isHmr,
         cleanOnceBeforeBuildPatterns: [
-            path.join(__dirname, 'public/assets')
+            PATHS.dist
         ]
-    });
-}
+    })
+    // .ImageWebp({ // Создаем WEBP версии картинок
+    //     // disable: !isEnvProduction,
+    //     from: 'resources/assets/images',
+    //     to: 'resources/assets/images',
+    //     imageminWebpOptions: {
+    //         quality: 70
+    //     }
+    // });
+   
 
 if (isEnvProduction) {
-    plugins = [...plugins, imageOptimization];
-
-    config.version()
-        // Создаем WEBP версии картинок
-        .ImageWebp({
-            from: 'resources/assets/images/jpg/',
-            to: 'public/assets/images/jpg/',
-            imageminWebpOptions: {
-                quality: 70
-            }
-        })
-
-    
-
+    config.version().extract(['vue']);
 } else {
-    config.sourceMaps()
-        .bladeReload();
+    config.sourceMaps().bladeReload();
 }
-
-

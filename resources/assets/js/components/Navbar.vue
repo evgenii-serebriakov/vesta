@@ -1,111 +1,88 @@
 <template lang="pug">
     
 header.header
-    section.header__secondary.border-b-sm.d-none.d-md-block
-        v-container
-            v-row(justify-lg="space-between" justify-md="center")
-                v-col(cols="auto")
+    section.header__secondary.uk-padding-small(class="uk-visible@m")
+        .uk-container
+            .uk-flex.uk-flex-center.uk-flex-wrap(class="uk-flex-between@m")
+                .uk-width-auto
                     .social-bar
-                        ul.social-bar__list.d-flex.flex-row.m-0.pl-0
+                        ul.social-bar__list.uk-flex.uk-flex-row.uk-padding-remove-left
                             li.social-bar__list-item(v-for="item in social" :key="item.title")
                                 a.social-bar__link(href="#/" :title="item.title")
                                     i.social-bar__icon
                                         svg.social-bar__icon-svg(:fill="item.color")
                                             use(:xlink:href="sprites + item.icon")
                                         
-                v-col(cols="auto")
+                .uk-width-auto
                     .contacts-bar
-                        ul.contacts-bar__list.d-flex.mb-0
-                            li.contacts-bar__list-item.pr-3(v-for="item in contacts" :key="item.title" :title="item.title")
+                        ul.contacts-bar__list.uk-flex.uk-padding-remove-left
+                            li.contacts-bar__list-item(v-for="item in contacts" :key="item.title" :title="item.title")
                                 i.contacts-bar__icon
                                     svg.contacts-bar__icon-svg(:fill="item.color")
                                         use(:xlink:href="sprites + item.icon")
-                                span.contacts-bar__text.pl-1 {{ item.text }}
+                                span.contacts-bar__text {{ item.text }}
 
-    section.header__main
-        v-container
-            v-row(justify="space-between" align="center")
-                v-col(cols="auto").trigger.d-lg-none
-                    button.trigger__btn.border-0.p-0(
+    section.header__main.uk-padding-small
+        .uk-container
+            .uk-flex.uk-flex-between.uk-flex-middle
+                .uk-width-auto.trigger(class="uk-hidden@m")
+                    button.trigger__btn(
                         type="button"
                         aria-label="Toggle navigation"
-                        @click="drawer = true"
+                        @click="openDrawer"
                     )
                         svg.trigger__icon
                             use(:xlink:href="sprites + '#icon-filter'")
 
-                v-col.logo.d-none.d-lg-block(cols="auto")
+                .uk-width-auto.logo(class="uk-visible@m")
                     a.logo__link(href="#/")
                         svg.logo__icon
                             use(:xlink:href="sprites + '#icon-logo-desktop-left'")
                     
-                v-col(cols="auto").logo-mobile.d-lg-none
+                .uk-width-auto.logo-mobile(class="uk-hidden@m")
                     a.logo-mobile__link(href="#/") 
                         svg.logo-mobile__icon
                             use(:xlink:href="sprites + '#icon-logo-mobile'")
 
-                v-col.navigation.d-none.d-lg-block(
-                    cols="auto" tag="nav"
+                nav.uk-width-auto.navigation(
+                    class="uk-visible@m"
                     aria-label="Navigation menu"
                 )
-                    ul.nav.navigation__list.pl-0
-                        li.nav-item.navigation__list-item(v-for="item in navigation" :key="item.text")
-                            a.nav-link.navigation__link(href="#/") {{ item.text }}
+                    ul.navigation__list.uk-padding-remove-left
+                        li.navigation__list-item(v-for="item in navigation" :key="item.text")
+                            a.navigation__link(href="#/") {{ item.text }}
 
 
 </template>
 
 <script>
+import { inject, onMounted } from 'vue';
+import { sticky } from 'uikit';
 
 export default {
     name: 'Navbar',
     props: {
-        drawer: Boolean
+        openDrawer: {
+            type: Function,
+            default: () => {}
+        }
     },
     setup() {
-        const sprites = '/assets/images/sprites.svg';
+        const sprites = inject('sprites');
+        const navigation = inject('navigation');
+        const contacts = inject('contacts');
+        const social = inject('social');
 
-        const navigation = [
-            {text: 'Главная', icon: '#home'},
-            {text: 'Видео', icon: '#camera'},
-            {text: 'Блог', icon: '#news'},
-            {text: 'Отзывы', icon: '#comment'},
-        //- {text: 'Контакты', icon: '#phone'}
-        ];
-
-        const social = [
-            {title: 'Youtube', text: 'Youtube', icon: '#icon-youtube', color: '#FF0000'},
-            {title: 'Instagram', text: 'Instagram', icon: '#icon-instagram', color: '#8134AF'},
-            {title: 'WhatsApp', text: 'WhatsApp', icon: '#icon-whatsapp', color: '#4FCE5D'},
-            {title: 'Twitter', text: 'Twitter', icon: '#icon-twitter', color: '#55ACEE'},
-            {title: 'Facebook', text: 'Facebook', icon: '#icon-facebook', color: '#3C5898'},
-            {title: 'Вконтакте', text: 'VK', icon: '#icon-vk', color: '#5181B8'},
-            {title: 'Viber', text: 'Viber', icon: '#icon-viber', color: '#665CAC'}
-        ]; 
-
-        const contacts = [
-            {title: 'Телефон', text: '8 (999) 899 43 33', icon: '#icon-phone', color: '#17c42e'},
-            {title: 'Почта', text: 'exemple@mail.com', icon: '#icon-mail', color: '#22b9f5', id: 'contacts__text'},
-            {title: 'Адрес', text: '216 street address ', icon: '#icon-map', color: '#be0000'}
-        ]; 
+        onMounted(() => {
+            sticky('.header__main');
+        });
 
         return {
             navigation,
             social,
             contacts,
-            sprites
+            sprites,
         };
-    },
-    data() {
-        return {
-            isDrawer: this.drawer
-        };
-    },
-    computed: {
-    },
-    methods: {
-        onVisible: function () {
-        }
     }
 };
 </script>
@@ -113,12 +90,19 @@ export default {
 <style lang="scss" scoped>
 @import "@/scss/utils/_variables";
 
-.header {
-    z-index: 1;
-    box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+@import "@/scss/mixins/_media";
 
+.header {
     &__secondary {
         background-color: #f5f5f5;
+        border-bottom: 1px solid $light-black;
+    }
+
+    &__main {
+        position: relative;
+        background-color: #fff;
+        box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 15%);
+        z-index: 1;
     }
 
     .social-bar,
@@ -140,7 +124,15 @@ export default {
     }
 
     .contacts-bar {
+        &__list {
+            &-item {
+                padding-right: rem(15);
+            }
+        }
+
         &__icon {
+            padding-right: rem(10);
+
             &-svg {
                 width: 18px;
                 height: 18px;
@@ -174,6 +166,7 @@ export default {
 
     .trigger {
         &__btn {
+            border: none;
             background-color: transparent;
         }
 

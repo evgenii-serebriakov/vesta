@@ -1,5 +1,5 @@
 {
     "include": [
-      "./resources/js/**/*"
+      "public/resources/js/**/*"
     ]
 }

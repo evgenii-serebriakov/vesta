@@ -1,16 +1,49 @@
 <template lang="pug">
-.scroll-up
-    svg.scroll-up__icon-svg(fill-rule="evenodd")
+.scroll-up(:class="{ visible: isScrollable }")
+    svg.scroll-up__icon-svg(@click="scrollUp" fill-rule="evenodd")
         use(:xlink:href="sprites + '#icon-arrow-up'")  
 </template>
 
 <script>
+import {
+    inject,
+    onMounted,
+    watchEffect,
+    ref 
+} from 'vue';
+import { scroll } from 'uikit';
+
 export default {
+    name: 'ScrollUp',
+
     setup() {
-        const sprites = '/assets/images/sprites.svg';
+        const isScrollable = ref(false);
+        const sprites = inject('sprites');
+
+        const scrollUp = () => scroll('.scroll-up');
+
+        const scrollChange = (quantity) => {
+            document.addEventListener('scroll', () => {
+                if (document.documentElement.scrollTop >= quantity) {
+                    isScrollable.value = true;
+                } else {
+                    isScrollable.value = false;
+                }
+            });
+        };
+
+        watchEffect(() => {
+            scrollChange(300);
+        });
+
+        onMounted(()=> {
+            // console.dir(scroll);
+        });
 
         return {
-            sprites  
+            sprites,
+            scrollUp,
+            isScrollable
         };
     }
 };

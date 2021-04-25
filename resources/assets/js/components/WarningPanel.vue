@@ -5,9 +5,9 @@ section.warning(
     aria-label="cookieconsent"
     aria-describedby="cookieconsent:desc"
 )
-    v-container
-        v-row(justify="space-between" align)
-            v-col(cols="auto")
+    .uk-container
+        .uk-flex.uk-flex-wrap.uk-flex-between.uk-flex-middle
+            .uk-width-auto
                 p Этот сайт использует файлы cookies для более комфортной работы пользователя. Продолжая просмотр страниц сайта, вы соглашаетесь с использованием файлов cookies. 
                     a(
                         aria-label="learn more about cookies"
@@ -17,6 +17,12 @@ section.warning(
                         href="/ru/confidential/#cookies"
                     ) Подробнее
 
-            v-col(cols="auto")
+            .uk-width-auto
                 button(type="button" aria-label="dismiss cookie message") Понятно
 </template>
+
+<script>
+export default {
+    name: 'WarningPanel'
+};
+</script>

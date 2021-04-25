@@ -1,58 +1,55 @@
 <template lang="pug">
-section.posts.grey.lighten-4
-    v-container.posts__inner
+section.posts.uk-background-muted
+    .uk-container.posts__inner
         .isoteric
             i.isoteric__icon
                 svg.isoteric__icon-svg
                     use(:xlink:href="sprites + '#icon-isoteric'")
 
-        h2.posts__title.text-uppercase.font-weight-bold.decorating-line Последние посты
+        h2.posts__title.uk-text-uppercase.uk-text-bold.decorating-line Последние видео
+        //- Slider start
+        div(class="uk-slider-container-offset slider")
 
-        v-row
-            v-col(cols="12" sm="6" md="4" v-for="item in images" :key="item.text")
-                .teasers.white
-                    .teasers__item-wrap
-                        a.teasers__link(href="#/") 
-                            img.teasers__img(:src="item.path", :alt="item.text")
-                    .teasers__content
-                        a.teasers__link(href="#/") 
-                            h5.teasers__title.text-uppercase.font-weight-medium Lorem ipsum
-                        span.teasers__meta-info Март 06 2021
-                        .teasers__footer-wrap
-                            a.teasers__link.teasers__link--hover(href="#/") 
-                                span.teasers__text.text-uppercase Далее
-                                i.teasers__icon
-                                    svg.teasers__icon-svg
-                                        use(:xlink:href="sprites + '#icon-arrow-right'")
+            div(class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1")
+
+                ul(class="uk-slider-items uk-child-width-* uk-child-width-1-2@s uk-child-width-1-3@m uk-grid")
+                    li(v-for="item in [1, 2, 3]" :key="item")
+                        div(class="uk-card uk-card-default")
+                            div(class="uk-card-media-top")
+                                img(src="assets/images/bg_0.jpg" alt="")
+                           
+                            div(class="uk-card-body")
+                                h3(class="uk-card-title") Headline lorem
+                   
+
+                a(class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous")
+
+                a(class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next")
+
+
+            ul(class="uk-slider-nav uk-dotnav uk-flex-center uk-margin")
+        //- Slider end
 
         .separator-line
 </template>
 
 <script>
+import { onMounted, inject } from 'vue';
+import { slider } from 'uikit';
+
 export default {
+    name:'HomeVideoPreview',
     setup() {
-        const sprites = '/assets/images/sprites.svg';
+        const sprites = inject('sprites');
 
-        const images = [
-            {
-                path: '/assets/images/jpg/sity_bg.jpg',
-                text: 'bg-1'
-            },
-            {
-                path: '/assets/images/jpg/bg_0.jpg',
-                text: 'bg-2'
-            },
-            {
-                path: '/assets/images/jpg/bg_1.jpg',
-                text: 'bg-3'
-            },
-        ];
-
+        onMounted(() => {
+            slider('.slider', { center: false, finite: false });
+        });
+        
         return {
-            images,
             sprites
         };
-    }
+    },
 };
 </script>
 
@@ -78,7 +75,6 @@ export default {
             fill: $purpleSaturate;
             display: block;
             text-align: center;
-            padding-bottom: rem(30);
 
             &-svg {
                 width: 300px;
@@ -100,7 +96,7 @@ export default {
 
         &__title {
             font-size: 22px;
-            color: $defaultColor;
+            color: $default-color;
             margin: 0;
         }
 

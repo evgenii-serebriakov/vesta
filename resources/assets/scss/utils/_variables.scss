@@ -1,7 +1,5 @@
 // Font
-$mainFont                       : "Tinos";
-$body-font-family: $mainFont;
-$heading-font-family: $mainFont;
+$main-font                       : "Tinos";
 
 /* Size */
 $mainFontSize                   : 18px;
@@ -25,13 +23,14 @@ $mediaWidthTablet               : 768px;
 $mediaWidthMobile               : 576px;
 
 /* Main color */
-$defaultColor                   : rgba(16, 16, 16, 1);
-$primaryColor                   : rgba(68, 76, 224, 1);
-$successColor                   : rgba(38, 222, 129, 1);
-$dangerColor                    : rgba(252, 92, 101, 1);
-$warningColor                   : rgba(254, 211, 48, 1);
-$lightColor                     : rgba(153, 153, 153, 1);
-$greyLight                      : rgba(119, 119, 119, 1);
+$default-color                   : rgba(16, 16, 16, 1);
+$light-black                    : rgba(0, 0, 0, 0.12);
+$primary-color                   : rgba(68, 76, 224, 1);
+$success-color                   : rgba(38, 222, 129, 1);
+$danger-color                    : rgba(252, 92, 101, 1);
+$warning-color                   : rgba(254, 211, 48, 1);
+$light-color                     : rgba(153, 153, 153, 1);
+$grey-light                      : rgba(119, 119, 119, 1);
 $greyColor                      : rgba(128, 128, 128, 1);
 $whiteColor                     : rgba(255, 255, 255, 1);
 
@@ -44,7 +43,7 @@ $purpleLight                    : rgb(198, 171, 255);
 $purpleSaturate                 : rgb(168, 91, 212);
 $purpleGradient                 : linear-gradient(180deg, rgba(188, 156, 255, 1) 0%, rgba(139, 164, 249, 1) 100%);
 
-$greenColor100                  : rgba(111, 207, 151, 1);
-$greenColor75                   : rgba(111, 207, 151, 0.75);
-$greenColor50                   : rgba(111, 207, 151, 0.5);
-$greenGradient                  : linear-gradient(180deg, rgba(111, 207, 151, 1) 0%, rgba(102, 210, 234, 1) 100%);
+$green-color100                  : rgba(111, 207, 151, 1);
+$green-color75                   : rgba(111, 207, 151, 0.75);
+$green-color50                   : rgba(111, 207, 151, 0.5);
+$green-gradient                  : linear-gradient(180deg, rgba(111, 207, 151, 1) 0%, rgba(102, 210, 234, 1) 100%);

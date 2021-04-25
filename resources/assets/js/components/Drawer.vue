@@ -1,20 +1,20 @@
 <template lang="pug">
 .drawer
-    header.menu.border-b-sm
-        .d-flex.justify-space-between.flex-wrap.align-center
-            v-col.menu__caption(cols="auto")
-                h6.menu__text.m-0.text-uppercase.text-black-50.font-weight-bold Меню
-            v-col.close(cols="auto")
-                button.close__btn.p-0(
+    header.menu
+        .uk-flex.uk-flex-middle.uk-flex-between.uk-flex-wrap
+            .uk-width-auto.menu__caption
+                h6.menu__text.m-0.uk-text-uppercase.uk-text-bold.uk-margin-remove-bottom Меню
+            .uk-width-auto.close
+                button.close__btn(
                     type="button" 
                     aria-label="Close"
-                    @click="drawer = false"
+                    @click="closeDrawer"
                 )
                     svg.close__icon
                             use(:xlink:href="sprites + '#icon-close'")
 
-    nav.nav-main.border-b-sm(aria-label="Mobile navigation")
-        ul.flex-column.nav-main__list.pl-0
+    nav.nav-main(aria-label="Mobile navigation")
+        ul.nav-main__list.uk-flex.uk-flex-column.uk-padding-remove-left
             li.nav-main__list-item(v-for="item in navigation" :key="item.text")
                 a.nav-main__link(href="#/") 
                     i.icon
@@ -25,21 +25,19 @@
 </template>
 
 <script>
+import { inject } from 'vue';
+
 export default {
     name: 'Drawer',
     props: {
-        drawer: Boolean
+        closeDrawer: {
+            type: Function,
+            default: () => {}
+        }
     },
     setup() {
-        const sprites = '/assets/images/sprites.svg';
-
-        const navigation = [
-            {text: 'Главная', icon: '#icon-home'},
-            {text: 'Видео', icon: '#icon-camera'},
-            {text: 'Блог', icon: '#icon-news'},
-            {text: 'Отзывы', icon: '#icon-comment'},
-        //- {text: 'Контакты', icon: '#phone'}
-        ];
+        const sprites = inject('sprites');
+        const navigation = inject('navigation');
 
         return {
             sprites,
@@ -52,6 +50,8 @@ export default {
 <style lang="scss" scoped>
 @import "@/scss/utils/_variables";
 
+@import "@/scss/mixins/_media";
+
 .drawer {
     min-height: 100vh;
     border-right: 2px solid $purpleSaturate;
@@ -59,6 +59,16 @@ export default {
 
     .menu {
         background-color: #f5f5f5;
+        border-bottom: 1px solid $light-black;
+
+        &__caption {
+            padding-left: rem(10);
+        }
+
+        &__text {
+            color: rgba(0, 0, 0, 0.63);
+            font-size: 18px;
+        }
     }
 
     .close {
@@ -80,6 +90,7 @@ export default {
 
     .nav-main {
         background-color: #f5f5f5;
+        border-bottom: 1px solid $light-black;
 
         &__list {
             list-style: none;

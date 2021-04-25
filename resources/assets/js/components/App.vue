@@ -1,42 +1,96 @@
 <template lang="pug">
 
-v-app
-    v-navigation-drawer(
-        app
-        temporary
-        v-model="isVisible"
-    )
-        drawer(:drawer="isVisible")
+//-  <loading ref="loading" />
 
-    scroll-up
-    navbar(:drawer="isVisible")
-    home
-    Footer
+//- <transition name="page" mode="out-in">
+//-   <component :is="layout" v-if="layout" />
+//- </transition>
+
+#offcanvas-reveal
+    .uk-offcanvas-bar.offcanvas-bar--padding
+        drawer(:close-drawer="closeDrawer")
+
+scroll-up
+
+navbar(:open-drawer="openDrawer")
+
+main.main-content
+    home-page
+
+navbar-bottom
     
 </template>
 
 <script>
+import {
+    // ref,
+    onMounted,
+    provide,
+    readonly,
+    computed
+} from 'vue';
+
+import { offcanvas } from 'uikit';
+
 import Navbar from './Navbar';
-import Footer from './Footer';
+import NavbarBottom from './NavbarBottom';
 import ScrollUp from './ScrollUp';
 import Drawer from './Drawer';
-import Home from '@/js/pages/home/Home';
+import { HomePage } from '@/js/pages';
+
+import {
+    contacts,
+    images,
+    social,
+    sprites,
+    navigation
+} from '@/js/store/data';
 
 export default {
     name: 'App',
     components: {
         Navbar,
-        Home,
-        Footer,
+        HomePage,
+        NavbarBottom,
         ScrollUp,
         Drawer
     },
     setup() {
-        const isVisible = false;
+        const createDrawer = computed(() => {
+            return offcanvas('#offcanvas-reveal', {
+                mode: 'reveal',
+                overlay: true
+            });
+        });
+
+        const openDrawer = () => {
+            createDrawer.value.show();
+        };
+        
+        const closeDrawer = () => {
+            createDrawer.value.hide();
+        };
+
+        provide('sprites', sprites);
+        provide('navigation', readonly(navigation));
+        provide('contacts', readonly(contacts));
+        provide('social', readonly(social));
+        provide('images', readonly(images));
+
+        onMounted(() => {
+          
+        });
 
         return {
-            isVisible
+            openDrawer,
+            closeDrawer
         };
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.offcanvas-bar--padding {
+    padding: 0;
+}
+</style>
