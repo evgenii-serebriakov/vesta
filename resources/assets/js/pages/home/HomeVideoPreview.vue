@@ -1,12 +1,12 @@
 <template lang="pug">
-section.posts.uk-background-muted
-    .uk-container.posts__inner
+section.videos.uk-background-muted
+    .uk-container.videos__inner
         .isoteric
             i.isoteric__icon
                 svg.isoteric__icon-svg
                     use(:xlink:href="sprites + '#icon-isoteric'")
 
-        h2.posts__title.uk-text-uppercase.uk-text-bold.decorating-line Последние видео
+        h2.videos__title.uk-text-uppercase.uk-text-bold.decorating-line Последние видео
         //- Slider start
         div(class="uk-slider-container-offset slider")
 
@@ -14,12 +14,14 @@ section.posts.uk-background-muted
 
                 ul(class="uk-slider-items uk-child-width-* uk-child-width-1-2@s uk-child-width-1-3@m uk-grid")
                     li(v-for="item in [1, 2, 3]" :key="item")
-                        div(class="uk-card uk-card-default")
-                            div(class="uk-card-media-top")
-                                img(src="assets/images/bg_0.jpg" alt="")
-                           
-                            div(class="uk-card-body")
-                                h3(class="uk-card-title") Headline lorem
+                        //- div(class="uk-card")
+                        article.teasers.uk-article.uk-card
+                            a.teasers__link.uk-display-block(href="#/")
+                                .teasers__image.uk-card-media-top
+                                    img(src="assets/images/bg_0.jpg" alt="")
+                            
+                                .teasers__body
+                                    h5.teasers__title.uk-card-title.uk-text-uppercase Headline lorem
                    
 
                 a(class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous")
@@ -58,7 +60,7 @@ export default {
 
 @import "@/scss/mixins/_media";
 
-.posts {
+.videos {
     &__inner {
         padding-top: 50px;
     }
@@ -67,6 +69,7 @@ export default {
         position: relative;
         color: $greyColor;
         font-size: 25px;
+        margin-top: rem(20);
         margin-bottom: rem(40);
     }
 
@@ -84,52 +87,33 @@ export default {
     }
 
     .teasers {
-        border: none;
-
-        &__content {
-            padding: 0.7rem 1rem;
-        }
-
-        &:hover {
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-        }
-
         &__title {
+            padding-top: rem(10);
             font-size: 22px;
             color: $default-color;
             margin: 0;
-        }
 
-        &__meta-info {
-            color: $greyColor;
-            font-size: 13px;
-        }
+            &::after {
+                content: " ";
+                display: block;
+                width: 0%;
+                margin: 0 auto;
+                height: 1px;
+                background: $purpleSaturate;
+                transition: width 0.4s, ease 0.4s;
+            }
 
-        &__link {
-            display: block;
-            text-decoration: none;
-            color: $greyColor;
-            fill: $greyColor;
-
-            &--hover {
-                &:hover {
-                    color: $purpleSaturate;
-                    fill: $purpleSaturate;
+            &:hover {
+                &::after {
+                    width: 100%;
                 }
             }
         }
+    }
 
-        &__footer-wrap {
-            padding-top: 15px;
-        }
-
-        &__text {
-            font-size: 13px;
-        }
-
-        &__icon-svg {
-            width: 10px;
-            height: 10px;
+    .teasers:hover .teasers__title {
+        &::after {
+            width: 100%;
         }
     }
 }

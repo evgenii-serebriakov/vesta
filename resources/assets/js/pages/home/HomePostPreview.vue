@@ -14,22 +14,21 @@ section.posts.uk-background-muted
                 ul(class="uk-slider-items uk-child-width-* uk-child-width-1-2@s uk-child-width-1-3@m uk-grid")
                     li(v-for="item in images" :key="item.text")
                         article.uk-article
-                            .teasers(class="uk-card uk-card-default")
-                                .teasers__item-wrap(class="uk-card-media-top")
-                                    a.teasers__link(href="#/") 
+                            a.teasers.uk-display-block.uk-card.uk-card-default.uk-card-hover(href="#/")
+                                .teasers__item-wrap.uk-card-media-top
+                                    .teasers__link
                                         img.teasers__img(:src="item.path", :alt="item.text")
                             
-                                .teasers__content(class="uk-card-body")
-                                    a.teasers__link(href="#/") 
-                                        h5.teasers__title.uk-card-title.uk-text-normal.uk-text-uppercase Lorem ipsum
+                                .teasers__content.uk-card-body
+                                    h5.teasers__title.uk-card-title.uk-text-normal.uk-text-uppercase Lorem ipsum
 
-                                    span.teasers__meta-info.uk-text-meta Март 06 2021
-                                    .teasers__footer-wrap
-                                        a.teasers__link.teasers__link--hover(href="#/") 
-                                            span.teasers__text.uk-text-uppercase Далее
-                                            i.teasers__icon
-                                                svg.teasers__icon-svg
-                                                    use(:xlink:href="sprites + '#icon-arrow-right'")
+                                    p.teasers__meta-info.uk-text-meta
+                                        time(datetime="2004-07-24T18:18") Март 06 2021
+                                .teasers__footer.uk-card-footer
+                                    span.teasers__text.uk-text-uppercase.uk-text-middle Далее
+                                    i.teasers__icon
+                                        svg.teasers__icon-svg
+                                            use(:xlink:href="sprites + '#icon-arrow-right'")
                     
 
                 a(class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous")
@@ -102,10 +101,6 @@ export default {
             padding: 0.7rem 1rem;
         }
 
-        &:hover {
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-        }
-
         &__title {
             font-size: 22px;
             color: $default-color;
@@ -114,34 +109,27 @@ export default {
 
         &__meta-info {
             color: $greyColor;
-            // font-size: 13px;
         }
 
-        &__link {
-            display: block;
-            text-decoration: none;
+        &__footer {
+            padding: 0.7rem 1rem;
             color: $greyColor;
             fill: $greyColor;
 
-            &--hover {
-                &:hover {
-                    color: $purpleSaturate;
-                    fill: $purpleSaturate;
-                }
+            &:hover {
+                color: $purpleSaturate;
+                fill: $purpleSaturate;
             }
-        }
-
-        &__footer-wrap {
-            padding-top: 15px;
         }
 
         &__text {
             font-size: 14px;
+            padding-right: 2px;
         }
 
         &__icon-svg {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
         }
     }
 }

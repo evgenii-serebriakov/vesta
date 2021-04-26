@@ -167,6 +167,7 @@ export default {
     .trigger {
         &__btn {
             border: none;
+            outline: none;
             background-color: transparent;
         }
 
@@ -199,6 +200,10 @@ export default {
             }
 
             &:hover {
+                color: $purpleSaturate;
+            }
+
+            &--active {
                 color: $purpleSaturate;
             }
         }

@@ -1,11 +1,11 @@
 const sprites = '/assets/images/sprites.svg';
 
 const navigation = [
-    {text: 'Главная', icon: '#home'},
-    {text: 'Видео', icon: '#camera'},
-    {text: 'Блог', icon: '#news'},
-    {text: 'Отзывы', icon: '#comment'},
-//- {text: 'Контакты', icon: '#phone'}
+    {text: 'Главная', icon: '#icon-home'},
+    {text: 'Видео', icon: '#icon-camera'},
+    {text: 'Блог', icon: '#icon-news'},
+    {text: 'Отзывы', icon: '#icon-comment'},
+//- {text: 'Контакты', icon: '#icon-phone'}
 ];
 
 const contacts = [

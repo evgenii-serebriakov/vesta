@@ -9,9 +9,18 @@ section.massage
 </template>
 
 <script>
+import { onMounted } from 'vue';
+import { scrollspy } from 'uikit';
+
 export default {
     name: 'HomeMassage',
     setup() {
+        
+        onMounted(() => {
+            scrollspy('.massage__inner', {
+                cls: 'uk-animation-slide-bottom-medium'
+            });
+        });
 
         return {
         };

@@ -16,10 +16,10 @@
     nav.nav-main(aria-label="Mobile navigation")
         ul.nav-main__list.uk-flex.uk-flex-column.uk-padding-remove-left
             li.nav-main__list-item(v-for="item in navigation" :key="item.text")
-                a.nav-main__link(href="#/") 
+                a.nav-main__link.uk-display-block(href="#/") 
                     i.icon
                         svg.icon__svg
-                            use(:link:href="sprites + item.icon")
+                            use(:xlink:href="sprites + item.icon")
                     span.nav-main__link-text {{ item.text }}
 
 </template>
@@ -94,13 +94,15 @@ export default {
 
         &__list {
             list-style: none;
+            padding-top: 15px;
+            padding-bottom: 15px;
         }
 
         &__link {
             font-size: 16px;
             text-transform: uppercase;
             color: $greyColor;
-            padding-left: 5px;
+            padding: 10px 8px;
             text-decoration: none;
 
             &:hover {
@@ -108,8 +110,12 @@ export default {
             }
 
             &-text {
-                padding-left: 5px;
-                display: inline-block;
+                font-size: 18px;
+                padding-left: 8px;
+            }
+
+            &--active {
+                color: $purpleSaturate;
             }
         }
     }

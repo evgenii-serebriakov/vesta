@@ -9,12 +9,19 @@ section.banner
 </template>
 
 <script>
-import { inject } from 'vue';
+import { inject, onMounted } from 'vue';
+import { scrollspy } from 'uikit';
 
 export default {
     name: 'HomeBanner',
     setup() {
         const sprites = inject('sprites');
+
+        onMounted(() => {
+            scrollspy('.banner__inner', {
+                cls: 'uk-animation-slide-bottom-medium'
+            });
+        });
        
         return {
             sprites
