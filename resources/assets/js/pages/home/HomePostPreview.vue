@@ -1,6 +1,6 @@
 <template lang="pug">
-section.posts.uk-background-muted
-     .uk-container.posts__inner
+section.posts
+     .uk-container-large.uk-margin-auto.posts__inner
         .isoteric
             i.isoteric__icon
                 svg.isoteric__icon-svg
@@ -13,7 +13,7 @@ section.posts.uk-background-muted
 
                 ul(class="uk-slider-items uk-child-width-* uk-child-width-1-2@s uk-child-width-1-3@m uk-grid")
                     li(v-for="item in images" :key="item.text")
-                        article.uk-article
+                        article.uk-article.article
                             a.teasers.uk-display-block.uk-card.uk-card-default.uk-card-hover(href="#/")
                                 .teasers__item-wrap.uk-card-media-top
                                     .teasers__link
@@ -70,6 +70,8 @@ export default {
 @import "@/scss/mixins/_media";
 
 .posts {
+    background-image: radial-gradient(circle at left bottom, #f8f8f8 49%, rgba(150, 23, 23, 0) 0%);
+
     &__inner {
         padding-top: 50px;
     }
@@ -77,7 +79,7 @@ export default {
     &__title {
         position: relative;
         color: $greyColor;
-        font-size: 25px;
+        margin-left: 15px;
         margin-bottom: rem(40);
     }
 
@@ -92,6 +94,10 @@ export default {
                 height: 35px;
             }
         }
+    }
+
+    .article {
+        padding: 0 15px;
     }
 
     .teasers {
@@ -128,8 +134,8 @@ export default {
         }
 
         &__icon-svg {
-            width: 12px;
-            height: 12px;
+            width: 11px;
+            height: 11px;
         }
     }
 }

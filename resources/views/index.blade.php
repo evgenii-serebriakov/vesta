@@ -32,7 +32,7 @@
     </head>
     <body class="page">
 
-        <div id="app"></div>
+        <div id="app" style="overflow: hidden;"></div>
         
         <script src="{{ mix('/assets/js/main.js') }}"></script>
     </body>

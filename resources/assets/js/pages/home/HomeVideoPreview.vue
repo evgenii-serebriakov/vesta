@@ -1,6 +1,6 @@
 <template lang="pug">
-section.videos.uk-background-muted
-    .uk-container.videos__inner
+section.videos
+    .uk-container-large.uk-margin-auto.videos__inner
         .isoteric
             i.isoteric__icon
                 svg.isoteric__icon-svg
@@ -61,6 +61,8 @@ export default {
 @import "@/scss/mixins/_media";
 
 .videos {
+    background-image: radial-gradient(circle at 100% 0%, #f8f8f8 50%, rgba(150, 23, 23, 0) 0%);
+
     &__inner {
         padding-top: 50px;
     }
@@ -68,7 +70,7 @@ export default {
     &__title {
         position: relative;
         color: $greyColor;
-        font-size: 25px;
+        margin-left: 15px;
         margin-top: rem(20);
         margin-bottom: rem(40);
     }
@@ -87,6 +89,8 @@ export default {
     }
 
     .teasers {
+        padding: 0 15px;
+
         &__title {
             padding-top: rem(10);
             font-size: 22px;

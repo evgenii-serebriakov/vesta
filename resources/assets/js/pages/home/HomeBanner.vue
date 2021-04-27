@@ -41,12 +41,13 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
     background-image: radial-gradient(circle at left center, rgba(185, 132, 246, 0.657) 75%, rgba(150, 23, 23, 0) 0%), url('/assets/images/water.jpg');
+    background-attachment: fixed;
+    background-position: 0 -20%;
 
     @include media-laptop {
         padding: rem(150) 0;
         background-image: radial-gradient(circle at right center, rgba(185, 132, 246, 0.657) 70%, rgba(150, 23, 23, 0) 0%), url('/assets/images/water.jpg');
         background-size: cover;
-        background-position: 0 0;
     }
 
     @include media-laptop-large {

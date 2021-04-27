@@ -55,15 +55,15 @@ export default {
 // === Scroll up ===
 .scroll-up {
     position: fixed;
-    right: 20px;
-    bottom: 15px;
-    z-index: 1000;
+    right: 40px;
+    bottom: 40px;
+    z-index: 10;
     transition: transform 0.3s ease 0s;
     transform: translateY(100px);
 
     &__icon-svg {
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         background-color: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
         fill: rgb(134, 4, 255);

@@ -1,9 +1,10 @@
 <template lang="pug">
 
 home-banner
+home-post-preview
+home-services
 home-video-preview
 home-massage
-home-post-preview
 
 </template>
 
@@ -12,6 +13,7 @@ import HomeBanner from './HomeBanner';
 import HomeMassage from './HomeMassage';
 import HomePostPreview from './HomePostPreview';
 import HomeVideoPreview from './HomeVideoPreview';
+import HomeServices from './HomeServices';
 
 export default {
     name: 'HomePage',
@@ -19,7 +21,8 @@ export default {
         HomeBanner,
         HomeMassage,
         HomePostPreview,
-        HomeVideoPreview
+        HomeVideoPreview,
+        HomeServices
     }
 };
 </script>
