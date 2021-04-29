@@ -32,7 +32,10 @@
     </head>
     <body class="page">
 
-        <div id="app" style="overflow: hidden;"></div>
+        <div
+            id="app"
+            class="uk-flex uk-flex-column wrapper"
+        ></div>
         
         <script src="{{ mix('/assets/js/main.js') }}"></script>
     </body>

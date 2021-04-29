@@ -14,9 +14,10 @@ section.videos
 
                 ul(class="uk-slider-items uk-child-width-* uk-child-width-1-2@s uk-child-width-1-3@m uk-grid")
                     li(v-for="item in [1, 2, 3]" :key="item")
-                        //- div(class="uk-card")
                         article.teasers.uk-article.uk-card
-                            a.teasers__link.uk-display-block(href="#/")
+                            router-link.teasers__link.uk-display-block(
+                                to="/video/:id"
+                            )
                                 .teasers__image.uk-card-media-top
                                     img(src="assets/images/bg_0.jpg" alt="")
                             
@@ -65,6 +66,8 @@ export default {
 
     &__inner {
         padding-top: 50px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     &__title {
@@ -89,8 +92,6 @@ export default {
     }
 
     .teasers {
-        padding: 0 15px;
-
         &__title {
             padding-top: rem(10);
             font-size: 22px;

@@ -50,7 +50,7 @@ header.header
                 )
                     ul.navigation__list.uk-padding-remove-left
                         li.navigation__list-item(v-for="item in navigation" :key="item.text")
-                            a.navigation__link(href="#/") {{ item.text }}
+                            router-link.navigation__link(:to="item.path" active-class="navigation__link--active") {{ item.text }}
 
 
 </template>

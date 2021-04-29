@@ -15,9 +15,10 @@ scroll-up
 navbar(:open-drawer="openDrawer")
 
 main.main-content
-    home-page
+    router-view
 
 navbar-bottom
+
     
 </template>
 
@@ -36,7 +37,6 @@ import Navbar from './Navbar';
 import NavbarBottom from './NavbarBottom';
 import ScrollUp from './ScrollUp';
 import Drawer from './Drawer';
-import { HomePage } from '@/js/pages';
 
 import {
     contacts,
@@ -50,7 +50,6 @@ export default {
     name: 'App',
     components: {
         Navbar,
-        HomePage,
         NavbarBottom,
         ScrollUp,
         Drawer

@@ -13,8 +13,10 @@ section.posts
 
                 ul(class="uk-slider-items uk-child-width-* uk-child-width-1-2@s uk-child-width-1-3@m uk-grid")
                     li(v-for="item in images" :key="item.text")
-                        article.uk-article.article
-                            a.teasers.uk-display-block.uk-card.uk-card-default.uk-card-hover(href="#/")
+                        article.teasers.uk-article.article
+                            router-link.teasers__link.uk-display-block.uk-card.uk-card-default.uk-card-hover(
+                                to="/posts/:id"
+                            )
                                 .teasers__item-wrap.uk-card-media-top
                                     .teasers__link
                                         img.teasers__img(:src="item.path", :alt="item.text")
@@ -74,6 +76,8 @@ export default {
 
     &__inner {
         padding-top: 50px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     &__title {
@@ -96,13 +100,7 @@ export default {
         }
     }
 
-    .article {
-        padding: 0 15px;
-    }
-
     .teasers {
-        border: none;
-
         &__content {
             padding: 0.7rem 1rem;
         }

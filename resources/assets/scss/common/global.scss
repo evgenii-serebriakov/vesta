@@ -12,6 +12,11 @@
     font-size: $mainFontSize;
     color: $default-color;
 }
+
+.wrapper {
+    overflow-x: hidden;
+    // height: 100%;
+}
 //  === / Common ===
 
 // === Decorative line ===

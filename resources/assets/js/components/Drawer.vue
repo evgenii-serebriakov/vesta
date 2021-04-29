@@ -16,7 +16,10 @@
     nav.nav-main(aria-label="Mobile navigation")
         ul.nav-main__list.uk-flex.uk-flex-column.uk-padding-remove-left
             li.nav-main__list-item(v-for="item in navigation" :key="item.text")
-                a.nav-main__link.uk-display-block(href="#/") 
+                router-link.nav-main__link.uk-display-block(
+                    :to="item.path"
+                    active-class="nav-main__link--active"
+                )
                     i.icon
                         svg.icon__svg
                             use(:xlink:href="sprites + item.icon")
