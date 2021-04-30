@@ -161,10 +161,11 @@ const config = mix
     // Используем полифиллы
     .polyfill({
         enabled: true,
-        useBuiltIns: 'usage',
+        useBuiltIns: 'entry',
         targets: false, // Используем настройки browserslist из package.json
         // debug: true, // Выкидывает ошибку
-        corejs: '3.8'
+        corejs: '3.8',
+        entryPoints: 'all'
     })
     .sass(`${PATHS.src}/scss/main.scss`,
         `${PATHS.dist}/css`, {

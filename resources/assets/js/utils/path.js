@@ -1,6 +1,11 @@
+import { defineAsyncComponent } from 'vue';
+
 /**
  * @param {String} path
  */
-export function page (path) {
-    return () => import(/* webpackChunkName: '' */ `@/js/${path}`);
-}
+export const page = (path) => (
+    defineAsyncComponent({
+        loader: () => import(/* webpackChunkName: '' */  `@/js/${path}`),
+        delay: 1000,
+    })
+);

@@ -77,13 +77,16 @@ export default {
         provide('images', readonly(images));
 
         onMounted(() => {
-          
+            
         });
 
         return {
             openDrawer,
             closeDrawer
         };
+    },
+    created() {
+        // console.log(this.$router);
     }
 };
 </script>

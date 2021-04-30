@@ -15,7 +15,7 @@ section.posts
                     li(v-for="item in images" :key="item.text")
                         article.teasers.uk-article.article
                             router-link.teasers__link.uk-display-block.uk-card.uk-card-default.uk-card-hover(
-                                to="/posts/:id"
+                                :to="{ name: 'single-post', params: { id: '123' }}"
                             )
                                 .teasers__item-wrap.uk-card-media-top
                                     .teasers__link
@@ -25,7 +25,10 @@ section.posts
                                     h5.teasers__title.uk-card-title.uk-text-normal.uk-text-uppercase Lorem ipsum
 
                                     p.teasers__meta-info.uk-text-meta
-                                        time(datetime="2004-07-24T18:18") Март 06 2021
+                                        time(
+                                            datetime="2004-07-24T18:18"
+                                            aria-label="Date of publication"
+                                        ) Март 06 2021
                                 .teasers__footer.uk-card-footer
                                     span.teasers__text.uk-text-uppercase.uk-text-middle Далее
                                     i.teasers__icon

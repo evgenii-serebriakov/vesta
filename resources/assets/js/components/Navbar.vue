@@ -35,12 +35,12 @@ header.header
                             use(:xlink:href="sprites + '#icon-filter'")
 
                 .uk-width-auto.logo(class="uk-visible@m")
-                    a.logo__link(href="#/")
+                    router-link.logo__link(to="/")
                         svg.logo__icon
                             use(:xlink:href="sprites + '#icon-logo-desktop-left'")
                     
                 .uk-width-auto.logo-mobile(class="uk-hidden@m")
-                    a.logo-mobile__link(href="#/") 
+                    router-link.logo-mobile__link(to="/")
                         svg.logo-mobile__icon
                             use(:xlink:href="sprites + '#icon-logo-mobile'")
 
@@ -50,7 +50,9 @@ header.header
                 )
                     ul.navigation__list.uk-padding-remove-left
                         li.navigation__list-item(v-for="item in navigation" :key="item.text")
-                            router-link.navigation__link(:to="item.path" active-class="navigation__link--active") {{ item.text }}
+                            router-link.navigation__link(
+                                :to="item.path" active-class="navigation__link--active"
+                            ) {{ item.text }}
 
 
 </template>

@@ -16,7 +16,7 @@ section.videos
                     li(v-for="item in [1, 2, 3]" :key="item")
                         article.teasers.uk-article.uk-card
                             router-link.teasers__link.uk-display-block(
-                                to="/video/:id"
+                                :to="{ name: 'single-video', params: { id: '999' }}"
                             )
                                 .teasers__image.uk-card-media-top
                                     img(src="assets/images/bg_0.jpg" alt="")

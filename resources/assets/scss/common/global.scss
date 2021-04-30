@@ -4,6 +4,21 @@
 
 @import "../utils/reset";
 
+//  === Common ===
+// html {
+//     // overflow-x: hidden;
+// }
+
+html,
+body {
+    height: 100%;
+    // overflow-x: hidden;
+}
+
+// body {
+//     overflow-x: hidden;
+// }
+
 .page {
     font-family: $main-font;
     font-style: $mainFontStyle;

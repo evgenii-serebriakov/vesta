@@ -1,7 +1,9 @@
 const sprites = '/assets/images/sprites.svg';
 
 const navigation = [
-    {text: 'Главная', icon: '#icon-home', path: '/'},
+    {
+        text: 'Главная', icon: '#icon-home', path: '/'
+    },
     {text: 'Видео', icon: '#icon-camera', path: '/video'},
     {text: 'Блог', icon: '#icon-news', path: '/posts'},
     {text: 'Отзывы', icon: '#icon-comment', path: '/reviews'}
