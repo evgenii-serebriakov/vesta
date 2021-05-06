@@ -1,5 +1,4 @@
 <template lang="pug">
-    
 header.header
     section.header__secondary.uk-padding-small(class="uk-visible@m")
         .uk-container
@@ -53,8 +52,6 @@ header.header
                             router-link.navigation__link(
                                 :to="item.path" active-class="navigation__link--active"
                             ) {{ item.text }}
-
-
 </template>
 
 <script>

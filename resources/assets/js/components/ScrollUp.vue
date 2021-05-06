@@ -1,7 +1,7 @@
 <template lang="pug">
 .scroll-up(:class="{ visible: isScrollable }")
     svg.scroll-up__icon-svg(@click="scrollUp" fill-rule="evenodd")
-        use(:xlink:href="sprites + '#icon-arrow-up'")  
+            use(:xlink:href="sprites + '#icon-arrow-up'")  
 </template>
 
 <script>

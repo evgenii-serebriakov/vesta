@@ -8,6 +8,7 @@ import { inject, onMounted } from 'vue';
 import { spinner } from 'uikit';
 
 export default {
+    name: 'Spinner',
     setup() {
         const sprites = inject('sprites');
 

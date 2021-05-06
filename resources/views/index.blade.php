@@ -31,7 +31,6 @@
         <link rel="stylesheet" href="{{ mix('/assets/css/main.css') }}">
     </head>
     <body class="page">
-
         <div
             id="app"
             class="uk-flex uk-flex-column wrapper"
