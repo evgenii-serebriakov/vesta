@@ -1,7 +1,7 @@
 <template lang="pug">
 section.video.uk-section
     .uk-container
-        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match.uk-grid-small(class="uk-child-width-1-3@m uk-child-width-1-2@s")
+        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match.uk-grid-small(class="uk-child-width-1-3@m uk-child-width-1-2@s" v-if="numbers && numbers.length !== 0")
             .video__col(v-for="item in numbers" :key="item")
                 article.teaser.uk-article.uk-card
                     router-link.teaser__link.uk-display-block(
@@ -12,7 +12,8 @@ section.video.uk-section
                         
                         .teaser__image.uk-card-media-top
                             img(src="assets/images/bg_0.jpg" alt="")
-                    
+        .posts__empty(v-else)
+            h2.uk-text-uppercase.uk-text-center.uk-text-muted Список отзывов пуст            
 </template>
 
 <script>

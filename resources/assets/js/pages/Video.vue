@@ -1,33 +1,37 @@
 <template lang="pug">
 section.video.uk-section
     .uk-container
-        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match.uk-grid-small(class="uk-child-width-1-3@m uk-child-width-1-2@s")
-            .video__col(v-for="item in videos" :key="item")
+        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match.uk-grid-small(class="uk-child-width-1-3@m uk-child-width-1-2@s" v-if="videos && videos.length !== 0")
+            .video__col(v-for="item in videos" :key="item.alt")
                 article.teaser.uk-article.uk-card
                     router-link.teaser__link.uk-display-block(
                         :to="{ name: 'single-video', params: { id: '999' }}"
                     )
                         .teaser__image.uk-card-media-top
-                            img(src="assets/images/bg_0.jpg" alt="")
+                            img(:src="item.image" :alt="item.alt")
                     
                         .teaser__body
-                            h5.teaser__title.uk-card-title.uk-text-uppercase Headline lorem
+                            h5.teaser__title.uk-card-title.uk-text-uppercase {{ item.title }}
+        .video__empty(v-else)
+            h2.uk-text-uppercase.uk-text-center.uk-text-muted Список видео пуст
 </template>
 
 <script>
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
 import { grid } from 'uikit';
 
 export default {
     setup() {
-        const videos = [...Array(9).fill().keys()];
+        const store = useStore();
+        const videos = computed(() => store.getters.videos);
 
         onMounted(() => {
             grid('.grid');
         });
 
         return {
-            videos
+            videos: videos.value
         };
     },
 };

@@ -7,16 +7,8 @@ suspense
 </template>
 
 <script>
-import { defineAsyncComponent, provide, readonly } from 'vue';
+import { defineAsyncComponent  } from 'vue';
 import Spinner from './Spinner';
-
-import {
-    contacts,
-    images,
-    social,
-    sprites,
-    navigation
-} from '@/js/store/data';
 
 export default {
     name: 'App',
@@ -30,11 +22,7 @@ export default {
         
     },
     setup() {
-        provide('sprites', sprites);
-        provide('navigation', readonly(navigation));
-        provide('contacts', readonly(contacts));
-        provide('social', readonly(social));
-        provide('images', readonly(images));
+        // To do
     }
 };
 </script>

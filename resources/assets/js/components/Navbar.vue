@@ -55,7 +55,11 @@ header.header
 </template>
 
 <script>
-import { inject, onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
+import { 
+    useStore,
+} from 'vuex';
+
 import { sticky } from 'uikit';
 
 export default {
@@ -67,20 +71,21 @@ export default {
         }
     },
     setup() {
-        const sprites = inject('sprites');
-        const navigation = inject('navigation');
-        const contacts = inject('contacts');
-        const social = inject('social');
+        const store = useStore();
+        const navigation = computed(() => store.getters.navigation);
+        const sprites = computed(() => store.getters.sprites);
+        const social = computed(() => store.getters.social);
+        const contacts = computed(() => store.getters.contacts);
 
         onMounted(() => {
             sticky('.header__main');
         });
 
         return {
-            navigation,
-            social,
-            contacts,
-            sprites,
+            navigation: navigation.value,
+            social: social.value,
+            contacts: contacts.value,
+            sprites: sprites.value,
         };
     }
 };

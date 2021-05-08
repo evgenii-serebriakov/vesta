@@ -6,11 +6,10 @@
 
 <script>
 import {
-    inject,
-    onMounted,
     watchEffect,
     ref 
 } from 'vue';
+import { useStore } from 'vuex';
 import { scroll } from 'uikit';
 
 export default {
@@ -18,7 +17,8 @@ export default {
 
     setup() {
         const isScrollable = ref(false);
-        const sprites = inject('sprites');
+        const store = useStore();
+        const sprites = store.state.shared.sprites;
 
         const scrollUp = () => scroll('.scroll-up');
 
@@ -34,10 +34,6 @@ export default {
 
         watchEffect(() => {
             scrollChange(300);
-        });
-
-        onMounted(()=> {
-            // console.dir(scroll);
         });
 
         return {

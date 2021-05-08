@@ -1,5 +1,5 @@
 <template lang="pug">
-section.posts
+section.posts(v-if="posts && posts.length !== 0")
      .uk-container-large.uk-margin-auto.posts__inner
         .isoteric
             i.isoteric__icon
@@ -12,23 +12,23 @@ section.posts
             div(class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1")
 
                 ul(class="uk-slider-items uk-child-width-* uk-child-width-1-2@s uk-child-width-1-3@m uk-grid")
-                    li(v-for="item in images" :key="item.text")
+                    li(v-for="item in posts" :key="item.alt")
                         article.teasers.uk-article.article
                             router-link.teasers__link.uk-display-block.uk-card.uk-card-default.uk-card-hover(
                                 :to="{ name: 'single-post', params: { id: '123' }}"
                             )
                                 .teasers__item-wrap.uk-card-media-top
                                     .teasers__link
-                                        img.teasers__img(:src="item.path", :alt="item.text")
+                                        img.teasers__img(:src="item.image", :alt="item.alt")
                             
                                 .teasers__content.uk-card-body
-                                    h5.teasers__title.uk-card-title.uk-text-normal.uk-text-uppercase Lorem ipsum
+                                    h5.teasers__title.uk-card-title.uk-text-normal.uk-text-uppercase {{ item.title }}
 
                                     p.teasers__meta-info.uk-text-meta
                                         time(
                                             datetime="2004-07-24T18:18"
                                             aria-label="Date of publication"
-                                        ) Март 06 2021
+                                        ) {{ item.date }}
                                 .teasers__footer.uk-card-footer
                                     span.teasers__text.uk-text-uppercase.uk-text-middle Далее
                                     i.teasers__icon
@@ -47,23 +47,25 @@ section.posts
 </template>
 
 <script>
-import { inject, onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
 import { slider } from 'uikit';
 
 export default {
     name: 'HomePostPreview',
     setup() {
-        const sprites = inject('sprites');
-        const images = inject('images');
+        const store = useStore();
+
+        const posts = computed(() => store.getters.posts);
+        const sprites = computed(() => store.getters.sprites);
 
         onMounted(() => {
             slider('.slider');
         });
         
-        
         return {
-            images,
-            sprites
+            posts: posts.value,
+            sprites: sprites.value
         };
     }
 };

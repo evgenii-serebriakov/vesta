@@ -1,5 +1,6 @@
 <template lang="pug">
 section.videos
+section.videos(v-if="videos && videos.length !== 0")
     .uk-container-large.uk-margin-auto.videos__inner
         .isoteric
             i.isoteric__icon
@@ -13,16 +14,16 @@ section.videos
             div(class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1")
 
                 ul(class="uk-slider-items uk-child-width-* uk-child-width-1-2@s uk-child-width-1-3@m uk-grid")
-                    li(v-for="item in [1, 2, 3]" :key="item")
+                    li(v-for="item in videos" :key="item.alt")
                         article.teasers.uk-article.uk-card
                             router-link.teasers__link.uk-display-block(
                                 :to="{ name: 'single-video', params: { id: '999' }}"
                             )
                                 .teasers__image.uk-card-media-top
-                                    img(src="assets/images/bg_0.jpg" alt="")
+                                    img(:src="item.image" :alt="item.alt")
                             
                                 .teasers__body
-                                    h5.teasers__title.uk-card-title.uk-text-uppercase Headline lorem
+                                    h5.teasers__title.uk-card-title.uk-text-uppercase {{ item.title }}
                    
 
                 a(class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous")
@@ -37,20 +38,25 @@ section.videos
 </template>
 
 <script>
-import { onMounted, inject } from 'vue';
+import { onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
 import { slider } from 'uikit';
 
 export default {
     name:'HomeVideoPreview',
     setup() {
-        const sprites = inject('sprites');
+        const store = useStore();
+
+        const sprites = computed(() => store.getters.sprites);
+        const videos = computed(() => store.getters.videos);
 
         onMounted(() => {
             slider('.slider', { center: false, finite: false });
         });
         
         return {
-            sprites
+            sprites: sprites.value,
+            videos: videos.value
         };
     },
 };

@@ -28,7 +28,8 @@
 </template>
 
 <script>
-import { inject } from 'vue';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
     name: 'Drawer',
@@ -39,12 +40,14 @@ export default {
         }
     },
     setup() {
-        const sprites = inject('sprites');
-        const navigation = inject('navigation');
+        const store = useStore();
+
+        const sprites = computed(() => store.getters.sprites);
+        const navigation = computed(() => store.getters.navigation);
 
         return {
-            sprites,
-            navigation
+            sprites: sprites.value,
+            navigation: navigation.value
         };
     },
 };

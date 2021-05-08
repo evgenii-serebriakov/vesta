@@ -4,13 +4,15 @@
 </template>
 
 <script>
-import { inject, onMounted } from 'vue';
+import { onMounted } from 'vue';
+import { useStore } from 'vuex';
 import { spinner } from 'uikit';
 
 export default {
     name: 'Spinner',
     setup() {
-        const sprites = inject('sprites');
+        const store = useStore();
+        const sprites = store.state.shared.sprites;
 
         onMounted(() => {
             spinner('.spinner__icon', { ratio: 3 });

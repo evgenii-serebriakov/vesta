@@ -12,7 +12,10 @@ footer.footer
                                 v-for="item in navigation"
                                 :key="item.text"
                             )
-                                a.bottom-nav__link.uk-text-uppercase(href="#/") 
+                                router-link.bottom-nav__link.uk-text-uppercase(
+                                    :to="item.path"
+                                    active-class="bottom-nav__link--active"
+                                ) 
                                     span.bottom-nav__link-text {{ item.text }}
                 
                 .uk-width-1-1(class="uk-width-1-2@s uk-width-auto@m uk-flex-last@m")
@@ -60,21 +63,23 @@ footer.footer
 </template>
 
 <script>
-import { inject } from 'vue';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
     name: 'NavbarBottom',
     setup() {
-        const sprites = inject('sprites');
-        const navigation = inject('navigation');
-        const contacts = inject('contacts');
-        const social = inject('social');
+        const store = useStore();
+        const navigation = computed(() => store.getters.navigation);
+        const sprites = computed(() => store.getters.sprites);
+        const social = computed(() => store.getters.social);
+        const contacts = computed(() => store.getters.contacts);
 
         return {
-            navigation,
-            social,
-            contacts,
-            sprites
+            navigation: navigation.value,
+            social: social.value,
+            contacts: contacts.value,
+            sprites: sprites.value,
         };
     }
 };
@@ -109,6 +114,10 @@ export default {
             text-decoration: none;
 
             &:hover {
+                color: $default-color;
+            }
+
+            &--active {
                 color: $default-color;
             }
         }

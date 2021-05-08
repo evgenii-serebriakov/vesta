@@ -1,52 +1,56 @@
 <template lang="pug">
 section.posts.uk-section
     .uk-container
-        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match.uk-grid-small(class="uk-child-width-1-1@m")
-            .post__col(v-for="item in images" :key="item.text")
+        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match.uk-grid-small(class="uk-child-width-1-1@m" v-if="posts && posts.length !== 0")
+            .post__col(v-for="item in posts" :key="item.alt")
                 article.teaser.uk-article.article
                     router-link.teaser__link.uk-flex.uk-flex-column.uk-flex-wrap.uk-card.uk-card-default.uk-card-hover(
                         :to="{ name: 'single-post', params: { id: '123' }}"
                     )
                         .teaser__item-wrap.uk-card-media-top.uk-width-1-1(class="uk-width-1-3@m")
                             .teaser__link
-                                img.teaser__img(:src="item.path", :alt="item.text")
+                                img.teaser__img(:src="item.image", :alt="item.alt")
                     
                         .teaser__content.uk-flex.uk-flex-column.uk-width-1-1(class="uk-width-2-3@m")
                             .teaser__header.uk-card-headers
-                                h5.teaser__title.uk-card-title.uk-text-normal.uk-text-uppercase.decorating-line Lorem ipsum
+                                h5.teaser__title.uk-card-title.uk-text-normal.uk-text-uppercase.decorating-line {{ item.title }}
 
                                 p.teaser__meta-info.uk-text-meta
                                     time(
                                         datetime="2004-07-24T18:18"
                                         aria-label="Date of publication"
-                                    ) Март 06 2021
+                                    ) {{ item.date }}
 
                             .teaser__body.uk-card-body.uk-flex-1
-                                p.teaser__desc.uk-text-break Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut dolore...
+                                p.teaser__desc.uk-text-break {{ item.message }}
 
                             .teaser__footer.uk-card-footer
                                 span.teaser__text.uk-text-uppercase.uk-text-middle Далее
                                 i.teaser__icon
                                     svg.teaser__icon-svg
                                         use(:xlink:href="sprites + '#icon-arrow-right'")
-
+        .posts__empty(v-else)
+            h2.uk-text-uppercase.uk-text-center.uk-text-muted Список записей пуст
 
 </template>
 
 <script>
-import { onMounted, inject } from 'vue';
+import { onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
 import { grid } from 'uikit';
 
 export default {
     setup() {
-        const sprites = inject('sprites');
-        const images = inject('images');
+        const store = useStore();
+        const sprites = store.state.shared.sprites;
+
+        const posts = computed(() => store.getters.posts);
 
         onMounted(() => grid('.grid'));
         
         return {
-            images,
-            sprites
+            sprites,
+            posts: posts.value
         };
     },
 };

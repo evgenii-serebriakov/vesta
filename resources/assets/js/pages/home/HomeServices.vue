@@ -50,6 +50,16 @@ section.services-bottom
 
 @import "@/scss/mixins/_media";
 
+.services {
+    &-top {
+        padding-top: rem(50);
+    }
+
+    &-bottom {
+        padding-bottom: rem(50);
+    }
+}
+
 .services-top,
 .services-bottom {
     &__caption {
