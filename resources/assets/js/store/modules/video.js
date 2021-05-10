@@ -1,38 +1,62 @@
+import * as types from '../mutation-types';
+import { _videos } from '@/js/api/data';
+
+import {
+    fetchData,
+    fetchVideoApi
+} from '../../api';
+
 export const state = {
-    video: {
-        video: 'https://www.youtube.com/embed/TwXilp2mUtE',
-        image: '/assets/images/video_0.jpeg',
-        alt: 'bg-1',
-        date: 'Март 06 2021',
-        title: 'Ipsum video',
-        message: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, obcaecati dolor sit amet consectetur adipisicing. Dignissimos, obcaecati dolor sit amet consectetur adipisicing.'
-    },
-    videos: [
-        {   video: 'https://www.youtube.com/embed/TwXilp2mUtE',
-            image: '/assets/images/video_0.jpeg',
-            alt: 'bg-1',
-            date: 'Март 06 2021',
-            title: 'Ipsum dolor video',
-            message: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, obcaecati dolor sit amet consectetur adipisicing...'
-        },
-        {   video: 'https://www.youtube.com/embed/TwXilp2mUtE',
-            image: '/assets/images/video_1.jpeg',
-            alt: 'bg-2',
-            date: 'Февраль 14 2021',
-            title: 'Ipsum dolor',
-            message: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, obcaecati dolor sit amet consectetur adipisicing...'
-        },
-        {   video: 'https://www.youtube.com/embed/TwXilp2mUtE',
-            image: '/assets/images/video_2.jpeg',
-            alt: 'bg-3',
-            date: 'Декабрь 10 2020',
-            title: 'Ipsum dolor',
-            message: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, obcaecati dolor sit amet consectetur adipisicing...'
-        },
-    ]
+    videos: [],
+    video: null,
+    error: null
 };
 
 export const getters = {
     video: (store) => store.video,
     videos: (store) => store.videos
+};
+
+export const mutations = {
+    [types.FETCH_VIDEOS_SUCCESS] (state, videos) {
+        state.videos = videos;
+    }, 
+    [types.FETCH_VIDEO_SUCCESS] (state, video) {
+        state.video = video;
+    },
+    [types.FETCH_VIDEOS_FAILURE] (state, err) {
+        state.error = err;
+    },
+    [types.FETCH_VIDEO_FAILURE] (state, err) {
+        state.error = err;
+    }
+};
+
+export const actions = {
+    async fetchVideos ({ commit }) {
+        commit(types.IS_LOADING, true);
+
+        try {
+            const videos = await fetchData(_videos);
+
+            commit(types.FETCH_VIDEOS_SUCCESS, videos);
+        } catch (err) {
+            commit(types.FETCH_VIDEOS_FAILURE, err);
+        } finally {
+            commit(types.IS_LOADING, false);
+        }
+    },
+    async fetchVideo ({ commit }, id) {
+        commit(types.IS_LOADING, true);
+
+        try {
+            const video = await fetchVideoApi(id);
+
+            commit(types.FETCH_VIDEO_SUCCESS, video);
+        } catch (err) {
+            commit(types.FETCH_VIDEO_FAILURE, err);
+        } finally {
+            commit(types.IS_LOADING, false);
+        }
+    }
 };

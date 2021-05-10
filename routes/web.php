@@ -12,21 +12,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('index');
-});
-
-// Route::get('/{any}', 'HomeController@vueroute')->where('any', '.*');
-
 /**
  * Redirect on index.php
  */
-Route::get('/{any}', function () {
+Route::get('{path}', function () {
     return view('index');
-})->where('any', '.*');
+})->where('path', '(.*)');
 
-
-// Route::get('{path}', function () {
+// Route::get('/', function () {
 //     return view('index');
-// })->where('path', '(.*)');
+// });
+
+// Route::get('/{any}', 'HomeController@vueroute')->where('any', '(.*)');
+
+// Route::get('/{any}', function () {
+//     return view('index');
+// })->where('any', '(.*)');
+

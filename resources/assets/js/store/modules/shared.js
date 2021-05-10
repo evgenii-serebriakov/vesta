@@ -1,3 +1,5 @@
+import * as types from '../mutation-types';
+
 export const state = {
     sprites: '/assets/images/sprites.svg',
     navigation: [
@@ -21,12 +23,22 @@ export const state = {
         {title: 'Facebook', text: 'Facebook', icon: '#icon-facebook', color: '#3C5898'},
         {title: 'Вконтакте', text: 'VK', icon: '#icon-vk', color: '#5181B8'},
         {title: 'Viber', text: 'Viber', icon: '#icon-viber', color: '#665CAC'}
-    ]
+    ],
+    loading: false,
+    error: null
 };
+
 
 export const getters = {
     sprites: (state) => state.sprites,
     navigation: (state) => state.navigation,
     contacts: (state) => state.contacts,
     social: (state) => state.social,
+    loading: (state) => state.loading
+};
+
+export const mutations = {
+    [types.IS_LOADING] (state, loading) {
+        state.loading = loading;
+    }
 };

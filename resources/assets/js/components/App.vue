@@ -14,10 +14,11 @@ export default {
     name: 'App',
     components: {
         Spinner,
-        Basic: defineAsyncComponent(() => import('@/js/layouts/Basic'))
+        Basic: defineAsyncComponent(() => import('@/js/layouts/Basic')),
         // Basic: defineAsyncComponent({
         //     loader: () => import('@/js/layouts/Basic'),
-        //     delay: 1000
+        //     loadingComponent: Spinner
+        //     // delay: 1000
         // })
         
     },

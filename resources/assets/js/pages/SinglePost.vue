@@ -1,6 +1,6 @@
 <template lang="pug">
-section.post.uk-section
-    article.uk-article
+section.post.uk-section.uk-position-relative
+    article.uk-article(v-if="!loading && post !== null")
         .uk-container.uk-container-small
             .uk-flex.uk-flex-wrap.uk-flex-center
                 .uk-width-1-1(v-if="post.image")
@@ -18,25 +18,41 @@ section.post.uk-section
                                 ) {{ post.date }}
 
                             p.post__message.uk-text-break {{ post.message }}
+    spinner.uk-position-absolute(v-else)
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watchEffect } from 'vue';
+import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
+import Spinner from '@/js/components/Spinner';
 
 export default {
+    name: 'SinglePost',
+    components: {
+        Spinner
+    },
     setup() {
-        const state = useStore();
-        const post = computed(() => state.getters.post);
+        const store = useStore();
+        const route = useRoute();
+        store.dispatch('fetchPost', route.params.id);
+
+        const post = computed(() => store.getters.post);
+        const loading = computed(() => store.getters.loading);
+
+        watchEffect(() => {
+            post.value;
+        });
 
         onMounted(() => {
-            // console.log(post.value);
+            
         });
 
         return {
-            post: post.value
+            post,
+            loading
         };
-    },
+    }
 };
 </script>
 
@@ -46,6 +62,8 @@ export default {
 @import "@/scss/mixins/_media";
 
 .post {
+    background-image: radial-gradient(circle at 0% 50%, #f8f8f8 50%, rgba(150, 23, 23, 0) 0%);
+
     &__image {
         margin-bottom: rem(40);
     }

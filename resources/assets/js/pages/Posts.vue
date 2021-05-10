@@ -1,11 +1,11 @@
 <template lang="pug">
 section.posts.uk-section
-    .uk-container
-        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match.uk-grid-small(class="uk-child-width-1-1@m" v-if="posts && posts.length !== 0")
-            .post__col(v-for="item in posts" :key="item.alt")
+    .uk-container.uk-position-relative
+        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match(class="uk-child-width-1-1@m")
+            .post__col(v-for="item in posts" :key="item.id" v-if="!loading && posts && posts.length !== 0")
                 article.teaser.uk-article.article
                     router-link.teaser__link.uk-flex.uk-flex-column.uk-flex-wrap.uk-card.uk-card-default.uk-card-hover(
-                        :to="{ name: 'single-post', params: { id: '123' }}"
+                        :to="{ name: 'single-post', params: { id: item.id }}"
                     )
                         .teaser__item-wrap.uk-card-media-top.uk-width-1-1(class="uk-width-1-3@m")
                             .teaser__link
@@ -29,30 +29,52 @@ section.posts.uk-section
                                 i.teaser__icon
                                     svg.teaser__icon-svg
                                         use(:xlink:href="sprites + '#icon-arrow-right'")
-        .posts__empty(v-else)
+        .posts__empty(v-if="!loading && posts.length === 0")
             h2.uk-text-uppercase.uk-text-center.uk-text-muted Список записей пуст
 
+        spinner.uk-position-absolute(v-if="loading")
 </template>
 
 <script>
-import { onMounted, computed } from 'vue';
+import { 
+    onMounted, 
+    computed,
+    watchEffect,
+    // watch
+} from 'vue';
 import { useStore } from 'vuex';
 import { grid } from 'uikit';
+import Spinner from '@/js/components/Spinner';
 
 export default {
-    setup() {
+    name: 'Posts',
+    components: {
+        Spinner
+    },
+    async setup() {
         const store = useStore();
         const sprites = store.state.shared.sprites;
+        
+        store.dispatch('fetchPosts');
 
         const posts = computed(() => store.getters.posts);
+        const loading = computed(() => store.getters.loading);
 
-        onMounted(() => grid('.grid'));
+        watchEffect(() => {
+            posts.value;
+        });
+
+
+        onMounted(() => {
+            grid('.grid');
+        });
         
         return {
             sprites,
-            posts: posts.value
+            posts,
+            loading
         };
-    },
+    }
 };
 </script>
 

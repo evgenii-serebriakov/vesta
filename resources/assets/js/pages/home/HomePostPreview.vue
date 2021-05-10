@@ -1,5 +1,5 @@
 <template lang="pug">
-section.posts(v-if="posts && posts.length !== 0")
+section.posts()
      .uk-container-large.uk-margin-auto.posts__inner
         .isoteric
             i.isoteric__icon
@@ -9,13 +9,17 @@ section.posts(v-if="posts && posts.length !== 0")
         h2.posts__title.uk-text-uppercase.uk-text-bold.decorating-line Последние посты
 
         div(class="uk-slider-container-offset slider")
-            div(class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1")
+            div(
+                v-if="posts && posts.length !== 0"
+                class="uk-position-relative uk-visible-toggle uk-light" 
+                tabindex="-1"
+            )
 
                 ul(class="uk-slider-items uk-child-width-* uk-child-width-1-2@s uk-child-width-1-3@m uk-grid")
-                    li(v-for="item in posts" :key="item.alt")
-                        article.teasers.uk-article.article
+                    li(v-for="item in posts" :key="item.id")
+                        article.teasers.uk-article.article  
                             router-link.teasers__link.uk-display-block.uk-card.uk-card-default.uk-card-hover(
-                                :to="{ name: 'single-post', params: { id: '123' }}"
+                                :to="{ name: 'single-post', params: { id: item.id }}"
                             )
                                 .teasers__item-wrap.uk-card-media-top
                                     .teasers__link
@@ -47,7 +51,7 @@ section.posts(v-if="posts && posts.length !== 0")
 </template>
 
 <script>
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 import { slider } from 'uikit';
 
@@ -55,17 +59,20 @@ export default {
     name: 'HomePostPreview',
     setup() {
         const store = useStore();
+        store.dispatch('fetchPosts');
 
         const posts = computed(() => store.getters.posts);
         const sprites = computed(() => store.getters.sprites);
+
+        watchEffect(() => posts.value);
 
         onMounted(() => {
             slider('.slider');
         });
         
         return {
-            posts: posts.value,
-            sprites: sprites.value
+            posts,
+            sprites
         };
     }
 };

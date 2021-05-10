@@ -1,6 +1,6 @@
 <template lang="pug">
-section.single-video.uk-section
-    article.uk-article
+section.single-video.uk-section.uk-position-relative
+    article.uk-article(v-if="!loading && video !== null")
         .uk-container
             .uk-flex.uk-flex-wrap
                 .uk-width-1-1(class="uk-width-1-2@m")
@@ -34,27 +34,39 @@ section.single-video.uk-section
                                     aria-label="Date of publication"
                                 ) {{ video.date }}
                             p.single-video__text.uk-text-break {{ video.message }}
+    spinner.uk-position-absolute(v-else)
 </template>
 
 <script>
 import { computed, ref } from 'vue';
+import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
+import Spinner from '@/js/components/Spinner';
 
 export default {
+    name: 'SingleVideo',
+    components: {
+        Spinner
+    },
     setup() {
         const store = useStore();
+        const route = useRoute();
+        store.dispatch('fetchVideo', route.params.id);
+
         const video = computed(() => store.getters.video);
+        const loading = computed(() => store.getters.loading);
 
         const isVisible = ref(true);
-        const hasChanges = computed(() => isVisible);
+        const hasChanges = computed(() => isVisible.value);
         const onFrameLoading = () => isVisible.value = false;
 
         return {
-            video: video.value,
-            hasChanges: hasChanges.value,
-            onFrameLoading
+            video,
+            hasChanges,
+            onFrameLoading,
+            loading
         };
-    },
+    }
 };
 </script>
 
@@ -64,6 +76,8 @@ export default {
 @import "@/scss/mixins/_media";
 
 .single-video {
+    background-image: radial-gradient(circle at 100% 50%, #f8f8f8 50%, rgba(150, 23, 23, 0) 0%);
+
     &__box {
         margin-bottom: rem(30);
         position: relative;

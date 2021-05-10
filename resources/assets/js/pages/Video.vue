@@ -1,37 +1,51 @@
 <template lang="pug">
 section.video.uk-section
-    .uk-container
-        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match.uk-grid-small(class="uk-child-width-1-3@m uk-child-width-1-2@s" v-if="videos && videos.length !== 0")
-            .video__col(v-for="item in videos" :key="item.alt")
+    .uk-container.uk-position-relative
+        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match.uk-grid-small(class="uk-child-width-1-3@m uk-child-width-1-2@s")
+            .video__col(v-if="!loading && videos && videos.length !== 0" v-for="item in videos" :key="item.id")
                 article.teaser.uk-article.uk-card
                     router-link.teaser__link.uk-display-block(
-                        :to="{ name: 'single-video', params: { id: '999' }}"
+                        :to="{ name: 'single-video', params: { id: item.id }}"
                     )
                         .teaser__image.uk-card-media-top
                             img(:src="item.image" :alt="item.alt")
                     
                         .teaser__body
                             h5.teaser__title.uk-card-title.uk-text-uppercase {{ item.title }}
-        .video__empty(v-else)
+        
+        .video__empty(v-if="!loading && videos.length === 0")
             h2.uk-text-uppercase.uk-text-center.uk-text-muted Список видео пуст
+
+        spinner.uk-position-absolute(v-if="loading")
 </template>
 
 <script>
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 import { grid } from 'uikit';
+import Spinner from '@/js/components/Spinner';
 
 export default {
+    name: 'Video',
+    components: {
+        Spinner
+    },
     setup() {
         const store = useStore();
+        store.dispatch('fetchVideos');
+
         const videos = computed(() => store.getters.videos);
+        const loading = computed(() => store.getters.loading);
+
+        watchEffect(() => videos.value);
 
         onMounted(() => {
             grid('.grid');
         });
 
         return {
-            videos: videos.value
+            videos,
+            loading
         };
     },
 };
