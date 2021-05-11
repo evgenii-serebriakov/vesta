@@ -1,35 +1,58 @@
 <template lang="pug">
-section.video.uk-section
-    .uk-container
-        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match.uk-grid-small(class="uk-child-width-1-3@m uk-child-width-1-2@s" v-if="numbers && numbers.length !== 0")
-            .video__col(v-for="item in numbers" :key="item")
-                article.teaser.uk-article.uk-card
-                    router-link.teaser__link.uk-display-block(
-                        :to="{ name: 'single-video', params: { id: '999' }}"
-                    )
-                        .teaser__body
-                            h5.teaser__title.uk-card-title.uk-text-uppercase Headline lorem
-                        
-                        .teaser__image.uk-card-media-top
-                            img(src="assets/images/bg_0.jpg" alt="")
-        .posts__empty(v-else)
-            h2.uk-text-uppercase.uk-text-center.uk-text-muted Список отзывов пуст            
+section.reviews.uk-section
+    .uk-container.uk-position-relative
+        .grid.uk-child-width-1-1.uk-grid-divider(
+            class="uk-child-width-1-3@m uk-child-width-1-2@s"
+        )
+            .reviews__col(
+                v-if="!loading && reviews && reviews.length !== 0"
+                v-for="item in reviews"
+                :key="item.id" 
+            )
+                a.reviews__link.uk-inline(
+                    :href="`https://www.youtube-nocookie.com/embed/${item.video}`"
+                    :data-caption="item.title"
+                    data-type="iframe"
+                )
+                    img.reviews__image(:src="item.image" :alt="item.alt")
+                                    
+        .reviews__empty(v-if="!loading && reviews && reviews.length === 0")
+            h2.uk-text-uppercase.uk-text-center.uk-text-muted Список отзывов пуст
+
+        spinner.uk-position-absolute(v-if="loading")    
 </template>
 
 <script>
-import { onMounted } from 'vue';
-import { grid } from 'uikit';
+import { onMounted, watchEffect, computed } from 'vue';
+import { useStore } from 'vuex';
+import { grid, lightbox } from 'uikit';
+import Spinner from '@/js/components/Spinner';
 
 export default {
+    name: 'Reviews',
+    components: {
+        Spinner
+    },
     setup() {
-        const numbers = [...Array(9).fill().keys()];
+        const store = useStore();
+        store.dispatch('fetchReviews');
+
+        const reviews = computed(() => store.getters.reviews);
+        const loading = computed(() => store.getters.loading);
+
+        watchEffect(() => reviews.value);
 
         onMounted(() => {
             grid('.grid');
+            lightbox('.grid', {
+                animation: 'scale',
+                toggle: '.reviews__link'
+            });
         });
 
         return {
-            numbers
+            reviews,
+            loading
         };
     },
 };
@@ -40,42 +63,8 @@ export default {
 
 @import "@/scss/mixins/_media";
 
-.video {
+.reviews {
     background-image: radial-gradient(circle at 0% 50%, #f8f8f8 50%, rgba(150, 23, 23, 0) 0%);
 }
 
-.teaser {
-    &__link {
-        text-decoration: none;
-    }
-
-    &__title {
-        padding-top: rem(10);
-        font-size: 22px;
-        color: $default-color;
-        margin: 0;
-
-        &::after {
-            content: " ";
-            display: block;
-            width: 0%;
-            margin: 0 auto;
-            height: 1px;
-            background: $purpleSaturate;
-            transition: width 0.4s, ease 0.4s;
-        }
-
-        &:hover {
-            &::after {
-                width: 100%;
-            }
-        }
-    }
-}
-
-.teaser:hover .teaser__title {
-    &::after {
-        width: 100%;
-    }
-}
 </style>

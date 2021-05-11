@@ -21,7 +21,7 @@ Route::get('{path}', function () {
 
 // Route::get('/', function () {
 //     return view('index');
-// });
+// })->name('index');
 
 // Route::get('/{any}', 'HomeController@vueroute')->where('any', '(.*)');
 

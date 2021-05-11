@@ -47,8 +47,8 @@ export const _posts = [
 export const _videos = [
     {   
         id: '1',
-        video: 'https://www.youtube.com/embed/TwXilp2mUtE',
-        image: '/assets/images/video_0.jpeg',
+        video: 'FWGyiSTQ0yo',
+        image: '/assets/images/post_1.jpeg',
         alt: 'bg-1',
         date: 'Март 06 2021',
         title: 'Ipsum dolor video 1',
@@ -56,8 +56,8 @@ export const _videos = [
     },
     {   
         id: '2',
-        video: 'https://www.youtube.com/embed/VsIl16MhL-I',
-        image: '/assets/images/video_1.jpeg',
+        video: 'VsIl16MhL-I',
+        image: '/assets/images/post_4.jpeg',
         alt: 'bg-2',
         date: 'Февраль 14 2021',
         title: 'Ipsum dolor 2',
@@ -65,8 +65,8 @@ export const _videos = [
     },
     {   
         id: '3',
-        video: 'https://www.youtube.com/embed/h9L-U-hg8x4',
-        image: '/assets/images/video_2.jpeg',
+        video: 'h9L-U-hg8x4',
+        image: '/assets/images/post_5.jpg',
         alt: 'bg-3',
         date: 'Декабрь 10 2020',
         title: 'Ipsum dolor 3',
@@ -74,7 +74,7 @@ export const _videos = [
     },
     {   
         id: '4',
-        video: 'https://www.youtube.com/embed/TgNDm7ulSkY',
+        video: 'TgNDm7ulSkY',
         image: '/assets/images/video_4.jpg',
         alt: 'bg-3',
         date: 'Декабрь 10 2020',
@@ -83,11 +83,46 @@ export const _videos = [
     },
     {   
         id: '5',
-        video: 'https://www.youtube.com/embed/-xSTF6w9Wfo',
+        video: '-xSTF6w9Wfo',
         image: '/assets/images/video_5.jpg',
         alt: 'bg-3',
         date: 'Декабрь 10 2020',
         title: 'Ipsum dolor 4',
         message: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, obcaecati dolor sit amet consectetur adipisicing...'
+    },
+];
+
+export const _reviews = [
+    {
+        id: '1',
+        video: 'FWGyiSTQ0yo',
+        image: '/assets/images/video_5.jpg',
+        alt: 'bg-1',
+        date: 'Март 06 2021',
+        title: 'Lorem, ipsum dolor 1',
+    },
+    {
+        id: '2',
+        video: 'VsIl16MhL-I',
+        image: '/assets/images/post_1.jpeg',
+        alt: 'bg-1',
+        date: 'Март 06 2021',
+        title: 'Lorem, ipsum dolor 2',
+    },
+    {
+        id: '3',
+        video: 'h9L-U-hg8x4',
+        image: '/assets/images/post_5.jpg',
+        alt: 'bg-1',
+        date: 'Март 06 2021',
+        title: 'Lorem, ipsum dolor 3',
+    },
+    {
+        id: '4',
+        video: 'TgNDm7ulSkY',
+        image: '/assets/images/video_4.jpg',
+        alt: 'bg-1',
+        date: 'Март 06 2021',
+        title: 'Lorem, ipsum dolor 4',
     },
 ];

@@ -1,7 +1,6 @@
 <template lang="pug">
 
 footer.footer
-
     section.seperator
         .uk-container
             .uk-flex.uk-flex-wrap(class="uk-flex-between@m")
@@ -30,7 +29,7 @@ footer.footer
                                 i.contacts__icon
                                     svg.contacts__icon-svg(:fill="item.color")
                                         use(:xlink:href="sprites + item.icon")
-                                span(:class="item.id") {{ item.text }}
+                                span.contacts__text(:class="item.id") {{ item.text }}
                 
                 .uk-width-1-1(class="uk-width-1-1@s uk-width-auto@m")
                     .social
@@ -155,7 +154,6 @@ export default {
 
     .contacts {
         color: rgb(82, 78, 78);
-        text-transform: uppercase;
         padding-left: 16px;
 
         &__title {
@@ -176,7 +174,7 @@ export default {
         }
 
         &__text {
-            text-transform: lowercase;
+            font-size: 20px;
         }
 
         &__icon {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Dotenv\Validator;
@@ -35,16 +36,25 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|min:5|max:20',
-            'body' => 'required|min:5|max:100',
-        ]);
-        
+        // $validated = $request->validate([
+        //     'title' => 'required|min:3|max:30',
+        //     'message' => 'required|min:5|max:100',
+        //     'alt' => 'required|min:3|max:30',
+        // ]);
+
         // if ($validated->fails()) {
         //     return $validator->messages();
         // }
+
+        $post = new Post();
+        $post->title = $request->input('title');
+        $post->message = $request->input('message');
+        $post->image = $request->input('image');
+        $post->alt = $request->input('alt');
+
+        $post->save();
     }
 
     /**

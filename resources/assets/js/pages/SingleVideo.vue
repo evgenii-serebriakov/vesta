@@ -14,7 +14,7 @@ section.single-video.uk-section.uk-position-relative
                             )
                         iframe(
                             class="single-video__frame"
-                            :src="video.video"
+                            :src="`https://www.youtube.com/embed/${video.video}`"
                             width="100%"
                             height="315"
                             title="YouTube video player"

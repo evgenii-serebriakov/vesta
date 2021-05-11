@@ -11,9 +11,9 @@ export const state = {
         {text: 'Отзывы', icon: '#icon-comment', path: '/reviews'}
     ],
     contacts: [
-        {title: 'Телефон', text: '8 (999) 899 43 33', icon: '#icon-phone', color: '#17c42e'},
-        {title: 'Почта', text: 'exemple@mail.com', icon: '#icon-mail', color: '#22b9f5', id: 'contacts__text'},
-        {title: 'Адрес', text: '216 street address, barisal, bd', icon: '#icon-map', color: '#be0000'}
+        {title: 'Телефон', text: '8 (922) 631 02 00', icon: '#icon-phone', color: '#17c42e'},
+        {title: 'Почта', text: 't28051962l@yandex.ru', icon: '#icon-mail', color: '#22b9f5', id: 'contacts__text'},
+        {title: 'Адрес', text: 'г. Снежинск, ул. Ленина, д. 8, оф. 31', icon: '#icon-map', color: '#be0000'}
     ],
     social: [
         {title: 'Youtube', text: 'Youtube', icon: '#icon-youtube', color: '#FF0000'},

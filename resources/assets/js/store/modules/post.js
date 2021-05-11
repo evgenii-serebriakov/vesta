@@ -4,7 +4,7 @@ import { _posts } from '@/js/api/data';
 import {
     fetchData,
     fetchPostApi
-} from '../../api';
+} from '@/js/api';
 
 export const state = {
     posts: [],

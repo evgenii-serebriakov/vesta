@@ -1,7 +1,7 @@
 <template lang="pug">
 section.video.uk-section
     .uk-container.uk-position-relative
-        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match.uk-grid-small(class="uk-child-width-1-3@m uk-child-width-1-2@s")
+        .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match(class="uk-child-width-1-3@m uk-child-width-1-2@s")
             .video__col(v-if="!loading && videos && videos.length !== 0" v-for="item in videos" :key="item.id")
                 article.teaser.uk-article.uk-card
                     router-link.teaser__link.uk-display-block(

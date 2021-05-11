@@ -4,7 +4,7 @@ import { _videos } from '@/js/api/data';
 import {
     fetchData,
     fetchVideoApi
-} from '../../api';
+} from '@/js/api';
 
 export const state = {
     videos: [],
