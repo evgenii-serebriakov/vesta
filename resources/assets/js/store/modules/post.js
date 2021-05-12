@@ -25,9 +25,11 @@ export const mutations = {
         state.post = post;
     },
     [types.FETCH_POSTS_FAILURE] (state, err) {
+        state.posts = [];
         state.error = err;
     },
     [types.FETCH_POST_FAILURE] (state, err) {
+        state.post = null;
         state.error = err;
     }
 };
@@ -38,6 +40,7 @@ export const actions = {
 
         try {
             const posts = await fetchData(_posts);
+            // const posts = await fetchData('api/posts');
 
             commit(types.FETCH_POSTS_SUCCESS, posts);
         } catch (err) {

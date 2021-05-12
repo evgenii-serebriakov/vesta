@@ -2,16 +2,20 @@
 section.video.uk-section
     .uk-container.uk-position-relative
         .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match(class="uk-child-width-1-3@m uk-child-width-1-2@s")
-            .video__col(v-if="!loading && videos && videos.length !== 0" v-for="item in videos" :key="item.id")
-                article.teaser.uk-article.uk-card
-                    router-link.teaser__link.uk-display-block(
-                        :to="{ name: 'single-video', params: { id: item.id }}"
-                    )
-                        .teaser__image.uk-card-media-top
-                            img(:src="item.image" :alt="item.alt")
-                    
-                        .teaser__body
-                            h5.teaser__title.uk-card-title.uk-text-uppercase {{ item.title }}
+            .video__col(
+                v-for="item in videos" 
+                :key="item.id"
+            )
+                template(v-if="!loading && videos && videos.length !== 0")
+                    article.teaser.uk-article.uk-card
+                        router-link.teaser__link.uk-display-block(
+                            :to="{ name: 'single-video', params: { id: item.id }}"
+                        )
+                            .teaser__image.uk-card-media-top
+                                img(:src="item.image" :alt="item.alt")
+                        
+                            .teaser__body
+                                h5.teaser__title.uk-card-title.uk-text-uppercase {{ item.title }}
         
         .video__empty(v-if="!loading && videos.length === 0")
             h2.uk-text-uppercase.uk-text-center.uk-text-muted Список видео пуст

@@ -25,9 +25,11 @@ export const mutations = {
         state.video = video;
     },
     [types.FETCH_VIDEOS_FAILURE] (state, err) {
+        state.videos = [];
         state.error = err;
     },
     [types.FETCH_VIDEO_FAILURE] (state, err) {
+        state.video = null;
         state.error = err;
     }
 };

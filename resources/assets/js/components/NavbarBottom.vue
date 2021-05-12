@@ -26,10 +26,11 @@ footer.footer
                                 :title="item.title"
                                 :key="item.text"
                             )
-                                i.contacts__icon
-                                    svg.contacts__icon-svg(:fill="item.color")
-                                        use(:xlink:href="sprites + item.icon")
-                                span.contacts__text(:class="item.id") {{ item.text }}
+                                template(v-if="item.flag")
+                                    i.contacts__icon
+                                        svg.contacts__icon-svg(:fill="item.color")
+                                            use(:xlink:href="sprites + item.icon")
+                                    span.contacts__text(:class="item.id") {{ item.text }}
                 
                 .uk-width-1-1(class="uk-width-1-1@s uk-width-auto@m")
                     .social
@@ -38,11 +39,12 @@ footer.footer
                                 v-for="item in social"
                                 :key="item.text"
                             )
-                                a.social__link(href="#/" :title="item.title")
-                                    i.social__icon(class="uk-hidden@m")
-                                        svg.social__icon-svg(:fill="item.color")
-                                            use(:xlink:href="sprites + item.icon")
-                                    span.social__link-text(class="uk-visible@m") {{ item.text }}
+                                template(v-if="item.flag")
+                                    a.social__link(href="#/" :title="item.title")
+                                        i.social__icon(class="uk-hidden@m")
+                                            svg.social__icon-svg(:fill="item.color")
+                                                use(:xlink:href="sprites + item.icon")
+                                        span.social__link-text(class="uk-visible@m") {{ item.text }}
 
     section.copyright.uk-padding-small
         .uk-container
@@ -62,23 +64,31 @@ footer.footer
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
     name: 'NavbarBottom',
     setup() {
         const store = useStore();
+        store.dispatch('fetchSocial');
+        store.dispatch('fetchContacts');
+
         const navigation = computed(() => store.getters.navigation);
         const sprites = computed(() => store.getters.sprites);
         const social = computed(() => store.getters.social);
         const contacts = computed(() => store.getters.contacts);
 
+        watchEffect(() => {
+            social.value;
+            contacts.value;
+        });
+
         return {
-            navigation: navigation.value,
-            social: social.value,
-            contacts: contacts.value,
-            sprites: sprites.value,
+            navigation,
+            social,
+            contacts,
+            sprites,
         };
     }
 };

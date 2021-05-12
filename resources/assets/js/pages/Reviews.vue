@@ -5,16 +5,16 @@ section.reviews.uk-section
             class="uk-child-width-1-3@m uk-child-width-1-2@s"
         )
             .reviews__col(
-                v-if="!loading && reviews && reviews.length !== 0"
                 v-for="item in reviews"
                 :key="item.id" 
             )
-                a.reviews__link.uk-inline(
-                    :href="`https://www.youtube-nocookie.com/embed/${item.video}`"
-                    :data-caption="item.title"
-                    data-type="iframe"
-                )
-                    img.reviews__image(:src="item.image" :alt="item.alt")
+                template(v-if="!loading && reviews && reviews.length !== 0")
+                    a.reviews__link.uk-inline(
+                        :href="`https://www.youtube-nocookie.com/embed/${item.video}`"
+                        :data-caption="item.title"
+                        data-type="iframe"
+                    )
+                        img.reviews__image(:src="item.image" :alt="item.alt")
                                     
         .reviews__empty(v-if="!loading && reviews && reviews.length === 0")
             h2.uk-text-uppercase.uk-text-center.uk-text-muted Список отзывов пуст

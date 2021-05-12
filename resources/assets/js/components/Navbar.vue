@@ -7,19 +7,21 @@ header.header
                     .social-bar
                         ul.social-bar__list.uk-flex.uk-flex-row.uk-padding-remove-left
                             li.social-bar__list-item(v-for="item in social" :key="item.title")
-                                a.social-bar__link(href="#/" :title="item.title")
-                                    i.social-bar__icon
-                                        svg.social-bar__icon-svg(:fill="item.color")
-                                            use(:xlink:href="sprites + item.icon")
+                                template(v-if="item.flag")
+                                    a.social-bar__link(:href="item.path" :title="item.title")
+                                        i.social-bar__icon
+                                            svg.social-bar__icon-svg(:fill="item.color")
+                                                use(:xlink:href="sprites + item.icon")
                                         
                 .uk-width-auto
                     .contacts-bar
                         ul.contacts-bar__list.uk-flex.uk-padding-remove-left
                             li.contacts-bar__list-item(v-for="item in contacts" :key="item.title" :title="item.title")
-                                i.contacts-bar__icon
-                                    svg.contacts-bar__icon-svg(:fill="item.color")
-                                        use(:xlink:href="sprites + item.icon")
-                                span.contacts-bar__text {{ item.text }}
+                                template(v-if="item.flag")
+                                    i.contacts-bar__icon
+                                        svg.contacts-bar__icon-svg(:fill="item.color")
+                                            use(:xlink:href="sprites + item.icon")
+                                    span.contacts-bar__text {{ item.text }}
 
     section.header__main.uk-padding-small
         .uk-container
@@ -55,10 +57,8 @@ header.header
 </template>
 
 <script>
-import { onMounted, computed } from 'vue';
-import { 
-    useStore,
-} from 'vuex';
+import { onMounted, computed, watchEffect } from 'vue';
+import { useStore } from 'vuex';
 
 import { sticky } from 'uikit';
 
@@ -72,20 +72,28 @@ export default {
     },
     setup() {
         const store = useStore();
+        store.dispatch('fetchSocial');
+        store.dispatch('fetchContacts');
+
         const navigation = computed(() => store.getters.navigation);
         const sprites = computed(() => store.getters.sprites);
         const social = computed(() => store.getters.social);
         const contacts = computed(() => store.getters.contacts);
+
+        watchEffect(() => {
+            social.value;
+            contacts.value;
+        });
 
         onMounted(() => {
             sticky('.header__main');
         });
 
         return {
-            navigation: navigation.value,
-            social: social.value,
-            contacts: contacts.value,
-            sprites: sprites.value,
+            navigation,
+            social,
+            contacts,
+            sprites
         };
     }
 };

@@ -2,33 +2,35 @@
 section.posts.uk-section
     .uk-container.uk-position-relative
         .grid.uk-child-width-1-1.uk-grid-divider.uk-grid-match(class="uk-child-width-1-1@m")
-            .post__col(v-for="item in posts" :key="item.id" v-if="!loading && posts && posts.length !== 0")
-                article.teaser.uk-article.article
-                    router-link.teaser__link.uk-flex.uk-flex-column.uk-flex-wrap.uk-card.uk-card-default.uk-card-hover(
-                        :to="{ name: 'single-post', params: { id: item.id }}"
-                    )
-                        .teaser__item-wrap.uk-card-media-top.uk-width-1-1(class="uk-width-1-3@m")
-                            .teaser__link
-                                img.teaser__img(:src="item.image", :alt="item.alt")
-                    
-                        .teaser__content.uk-flex.uk-flex-column.uk-width-1-1(class="uk-width-2-3@m")
-                            .teaser__header.uk-card-headers
-                                h5.teaser__title.uk-card-title.uk-text-normal.uk-text-uppercase.decorating-line {{ item.title }}
+            .post__col(v-for="item in posts" :key="item.id")
+                template(v-if="!loading && posts && posts.length !== 0")
+                    article.teaser.uk-article.article
+                        router-link.teaser__link.uk-flex.uk-flex-column.uk-flex-wrap.uk-card.uk-card-default.uk-card-hover(
+                            :to="{ name: 'single-post', params: { id: item.id }}"
+                        )
+                            .teaser__item-wrap.uk-card-media-top.uk-width-1-1(class="uk-width-1-3@m")
+                                .teaser__link
+                                    img.teaser__img(:src="item.image", :alt="item.alt")
+                        
+                            .teaser__content.uk-flex.uk-flex-column.uk-width-1-1(class="uk-width-2-3@m")
+                                .teaser__header.uk-card-headers
+                                    h5.teaser__title.uk-card-title.uk-text-normal.uk-text-uppercase.decorating-line {{ item.title }}
 
-                                p.teaser__meta-info.uk-text-meta
-                                    time(
-                                        datetime="2004-07-24T18:18"
-                                        aria-label="Date of publication"
-                                    ) {{ item.date }}
+                                    p.teaser__meta-info.uk-text-meta
+                                        time(
+                                            datetime="2004-07-24T18:18"
+                                            aria-label="Date of publication"
+                                        ) {{ item.date }}
 
-                            .teaser__body.uk-card-body.uk-flex-1
-                                p.teaser__desc.uk-text-break {{ item.message }}
+                                .teaser__body.uk-card-body.uk-flex-1
+                                    p.teaser__desc.uk-text-break {{ item.message }}
 
-                            .teaser__footer.uk-card-footer
-                                span.teaser__text.uk-text-uppercase.uk-text-middle Далее
-                                i.teaser__icon
-                                    svg.teaser__icon-svg
-                                        use(:xlink:href="sprites + '#icon-arrow-right'")
+                                .teaser__footer.uk-card-footer
+                                    span.teaser__text.uk-text-uppercase.uk-text-middle Далее
+                                    i.teaser__icon
+                                        svg.teaser__icon-svg
+                                            use(:xlink:href="sprites + '#icon-arrow-right'")
+
         .posts__empty(v-if="!loading && posts.length === 0")
             h2.uk-text-uppercase.uk-text-center.uk-text-muted Список записей пуст
 
@@ -40,7 +42,6 @@ import {
     onMounted, 
     computed,
     watchEffect,
-    // watch
 } from 'vue';
 import { useStore } from 'vuex';
 import { grid } from 'uikit';
@@ -63,7 +64,6 @@ export default {
         watchEffect(() => {
             posts.value;
         });
-
 
         onMounted(() => {
             grid('.grid');

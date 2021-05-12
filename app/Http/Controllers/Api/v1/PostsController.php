@@ -38,16 +38,6 @@ class PostsController extends Controller
      */
     public function store(PostRequest $request)
     {
-        // $validated = $request->validate([
-        //     'title' => 'required|min:3|max:30',
-        //     'message' => 'required|min:5|max:100',
-        //     'alt' => 'required|min:3|max:30',
-        // ]);
-
-        // if ($validated->fails()) {
-        //     return $validator->messages();
-        // }
-
         $post = new Post();
         $post->title = $request->input('title');
         $post->message = $request->input('message');
@@ -55,6 +45,11 @@ class PostsController extends Controller
         $post->alt = $request->input('alt');
 
         $post->save();
+
+        return [
+            'status' => true,
+            'post' => $post
+        ];
     }
 
     /**
@@ -64,8 +59,17 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $post = Post::find($id);
+
+        if (!$post) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Post not found'
+            ])->setStatusCode(404);
+        }
+
+        return $post;
     }
 
     /**

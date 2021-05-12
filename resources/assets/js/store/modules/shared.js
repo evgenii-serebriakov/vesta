@@ -1,44 +1,66 @@
 import * as types from '../mutation-types';
+import { _contacts, _social } from '@/js/api/data';
+import { fetchData } from '@/js/api';
 
 export const state = {
     sprites: '/assets/images/sprites.svg',
     navigation: [
-        {
-            text: 'Главная', icon: '#icon-home', path: '/'
-        },
-        {text: 'Видео', icon: '#icon-camera', path: '/video'},
-        {text: 'Блог', icon: '#icon-news', path: '/posts'},
-        {text: 'Отзывы', icon: '#icon-comment', path: '/reviews'}
+        { text: 'Главная', icon: '#icon-home', path: '/' },
+        { text: 'Видео', icon: '#icon-camera', path: '/video' },
+        { text: 'Блог', icon: '#icon-news', path: '/posts' },
+        { text: 'Отзывы', icon: '#icon-comment', path: '/reviews' },
     ],
-    contacts: [
-        {title: 'Телефон', text: '8 (922) 631 02 00', icon: '#icon-phone', color: '#17c42e'},
-        {title: 'Почта', text: 't28051962l@yandex.ru', icon: '#icon-mail', color: '#22b9f5', id: 'contacts__text'},
-        {title: 'Адрес', text: 'г. Снежинск, ул. Ленина, д. 8, оф. 31', icon: '#icon-map', color: '#be0000'}
-    ],
-    social: [
-        {title: 'Youtube', text: 'Youtube', icon: '#icon-youtube', color: '#FF0000'},
-        {title: 'Instagram', text: 'Instagram', icon: '#icon-instagram', color: '#8134AF'},
-        {title: 'WhatsApp', text: 'WhatsApp', icon: '#icon-whatsapp', color: '#4FCE5D'},
-        {title: 'Twitter', text: 'Twitter', icon: '#icon-twitter', color: '#55ACEE'},
-        {title: 'Facebook', text: 'Facebook', icon: '#icon-facebook', color: '#3C5898'},
-        {title: 'Вконтакте', text: 'VK', icon: '#icon-vk', color: '#5181B8'},
-        {title: 'Viber', text: 'Viber', icon: '#icon-viber', color: '#665CAC'}
-    ],
+    contacts: [],
+    social: [],
     loading: false,
-    error: null
+    error: null,
 };
-
 
 export const getters = {
     sprites: (state) => state.sprites,
     navigation: (state) => state.navigation,
     contacts: (state) => state.contacts,
     social: (state) => state.social,
-    loading: (state) => state.loading
+    loading: (state) => state.loading,
 };
 
 export const mutations = {
     [types.IS_LOADING] (state, loading) {
         state.loading = loading;
+    },
+    [types.FETCH_SOCIAL_SUCCESS] (state, social) {
+        state.social = social;
+    },
+    [types.FETCH_SOCIAL_FAILURE] (state, err) {
+        state.social = [];
+        state.error = err;
+    },
+    [types.FETCH_CONTACTS_SUCCESS] (state, contacts) {
+        state.contacts = contacts;
+    },
+    [types.FETCH_CONTACTS_FAILURE] (state, err) {
+        state.contacts = [];
+        state.error = err;
+    }
+};
+
+export const actions = {
+    async fetchSocial ({ commit }) {
+        try {
+            const social = await fetchData(_social);
+
+            commit(types.FETCH_SOCIAL_SUCCESS, social);
+        } catch (err) {
+            commit(types.FETCH_SOCIAL_FAILURE, err);
+        }
+    },
+    async fetchContacts ({ commit }) {
+        try {
+            const contacts = await fetchData(_contacts);
+
+            commit(types.FETCH_CONTACTS_SUCCESS, contacts);
+        } catch (err) {
+            commit(types.FETCH_CONTACTS_FAILURE, err);
+        }
     }
 };

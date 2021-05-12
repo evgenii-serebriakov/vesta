@@ -19,9 +19,9 @@ export const mutations = {
         state.reviews = reviews;
     }, 
     [types.FETCH_REVIEWS_FAILURE] (state, err) {
+        state.reviews = [];
         state.error = err;
-    },
-  
+    }
 };
 
 export const actions = {
