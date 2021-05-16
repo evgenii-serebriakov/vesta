@@ -30,9 +30,9 @@ section.posts()
 
                                     p.teasers__meta-info.uk-text-meta
                                         time(
-                                            datetime="2004-07-24T18:18"
+                                            :datetime="item.updated_at"
                                             aria-label="Date of publication"
-                                        ) {{ item.date }}
+                                        ) {{ getDate(item.updated_at) }}
                                 .teasers__footer.uk-card-footer
                                     span.teasers__text.uk-text-uppercase.uk-text-middle Далее
                                     i.teasers__icon
@@ -54,6 +54,8 @@ section.posts()
 import { onMounted, computed, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 import { slider } from 'uikit';
+import { orderBy } from 'lodash';
+import { getDate } from '@/js/utils';
 
 export default {
     name: 'HomePostPreview',
@@ -61,8 +63,8 @@ export default {
         const store = useStore();
         store.dispatch('fetchPosts');
 
-        const posts = computed(() => store.getters.posts);
         const sprites = computed(() => store.getters.sprites);
+        const posts = computed(() => orderBy(store.getters.posts, ['updated_at'],['desc']));
 
         watchEffect(() => posts.value);
 
@@ -72,7 +74,8 @@ export default {
         
         return {
             posts,
-            sprites
+            sprites,
+            getDate
         };
     }
 };

@@ -3,7 +3,7 @@ section.post.uk-section.uk-position-relative
     article.uk-article(v-if="!loading && post !== null")
         .uk-container.uk-container-small
             .uk-flex.uk-flex-wrap.uk-flex-center
-                .uk-width-1-1(v-if="post.image")
+                .uk-width-1-1(v-if="isImage(post.image)")
                     .post__image
                         img(:src="post.image", :alt="post.alt")
 
@@ -13,9 +13,9 @@ section.post.uk-section.uk-position-relative
                             h2.post__caption.uk-text-uppercase.uk-margin-remove.decorating-line  {{ post.title }}
                             p.post__meta-info.uk-text-meta
                                 time(
-                                    datetime="2004-07-24T18:18"
+                                    :datetime="post.updated_at"
                                     aria-label="Date of publication"
-                                ) {{ post.date }}
+                                ) {{ getDate(post.updated_at) }} 
 
                             p.post__message.uk-text-break {{ post.message }}
     spinner.uk-position-absolute(v-else)
@@ -25,6 +25,8 @@ section.post.uk-section.uk-position-relative
 import { computed, onMounted, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
+import { isImage, getDate } from '@/js/utils';
+
 import Spinner from '@/js/components/Spinner';
 
 export default {
@@ -50,7 +52,9 @@ export default {
 
         return {
             post,
-            loading
+            loading,
+            isImage,
+            getDate
         };
     }
 };

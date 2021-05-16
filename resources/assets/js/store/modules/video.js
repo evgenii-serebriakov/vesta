@@ -1,9 +1,8 @@
 import * as types from '../mutation-types';
-import { _videos } from '@/js/api/data';
 
 import {
     fetchData,
-    fetchVideoApi
+    fetchVideo
 } from '@/js/api';
 
 export const state = {
@@ -39,7 +38,8 @@ export const actions = {
         commit(types.IS_LOADING, true);
 
         try {
-            const videos = await fetchData(_videos);
+            const videos = await fetchData('/apt/videos');
+            console.log(videos);
 
             commit(types.FETCH_VIDEOS_SUCCESS, videos);
         } catch (err) {
@@ -52,7 +52,7 @@ export const actions = {
         commit(types.IS_LOADING, true);
 
         try {
-            const video = await fetchVideoApi(id);
+            const video = await fetchVideo(`/api/videos/${id}`);
 
             commit(types.FETCH_VIDEO_SUCCESS, video);
         } catch (err) {

@@ -1,9 +1,8 @@
 import * as types from '../mutation-types';
-import { _posts } from '@/js/api/data';
 
 import {
     fetchData,
-    fetchPostApi
+    fetchPost
 } from '@/js/api';
 
 export const state = {
@@ -39,8 +38,7 @@ export const actions = {
         commit(types.IS_LOADING, true);
 
         try {
-            const posts = await fetchData(_posts);
-            // const posts = await fetchData('api/posts');
+            const posts = await fetchData('/api/posts');
 
             commit(types.FETCH_POSTS_SUCCESS, posts);
         } catch (err) {
@@ -53,7 +51,7 @@ export const actions = {
         commit(types.IS_LOADING, true);
 
         try {
-            const post = await fetchPostApi(id);
+            const post = await fetchPost(`/api/posts/${id}`);
 
             commit(types.FETCH_POST_SUCCESS, post);
         } catch (err) {

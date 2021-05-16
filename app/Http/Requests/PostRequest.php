@@ -24,9 +24,19 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3|max:30',
-            'message' => 'required|min:5|max:1000',
-            'alt' => 'required|min:3|max:30',
+            'title' => 'required|min:3',
+            'message' => 'required|min:5',
+            'image' => 'max:5048'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Заполните поле!',
+            'title.min' => 'Минимальная длинна заголовка 3 символа!',
+            'message.required' => 'Заполните поле!',
+            'message.min' => 'Минимальная длинна описания 5 символов!',
         ];
     }
 }

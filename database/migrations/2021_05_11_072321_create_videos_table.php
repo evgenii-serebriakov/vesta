@@ -18,7 +18,7 @@ class CreateVideosTable extends Migration
             $table->string('title')->nullable();
             $table->text('message')->nullable();
             $table->string('video')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->string('alt')->nullable();
             $table->timestamps();
         });

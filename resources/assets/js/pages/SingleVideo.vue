@@ -30,9 +30,9 @@ section.single-video.uk-section.uk-position-relative
                             h2.single-video__caption.uk-card-title.uk-text-uppercase {{ video.title }}
                             p.single-video__meta-info.uk-text-meta
                                 time(
-                                    datetime="2004-07-24T18:18"
+                                    :datetime="video.updated_at"
                                     aria-label="Date of publication"
-                                ) {{ video.date }}
+                                ) {{ getDate(video.updated_at) }}
                             p.single-video__text.uk-text-break {{ video.message }}
     spinner.uk-position-absolute(v-else)
 </template>
@@ -41,6 +41,8 @@ section.single-video.uk-section.uk-position-relative
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
+import { getDate } from '@/js/utils';
+
 import Spinner from '@/js/components/Spinner';
 
 export default {
@@ -64,7 +66,8 @@ export default {
             video,
             hasChanges,
             onFrameLoading,
-            loading
+            loading,
+            getDate
         };
     }
 };

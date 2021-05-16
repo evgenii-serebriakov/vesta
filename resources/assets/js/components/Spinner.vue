@@ -4,23 +4,28 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { spinner } from 'uikit';
 
 export default {
     name: 'Spinner',
+    props: {
+        ratio: {
+            type: Number,
+            default: 3
+        }
+    },
     setup() {
         const store = useStore();
         const sprites = store.state.shared.sprites;
-
-        onMounted(() => {
-            spinner('.spinner__icon', { ratio: 3 });
-        });
+        
         return {
             sprites
         };
     },
+    mounted() {
+        spinner('.spinner__icon', { ratio: this.ratio });
+    }
 };
 </script>
 

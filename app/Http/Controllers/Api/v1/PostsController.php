@@ -38,18 +38,28 @@ class PostsController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $hasFile = $request->hasFile('image');
+        // $isValid = boolval($request->file('image')->isValid());
+        $imageFullName = '';
+
+        if (/* $isValid && */ $hasFile) {
+            $imageFullName = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('images', $imageFullName, 'public');
+        }
+        
         $post = new Post();
         $post->title = $request->input('title');
         $post->message = $request->input('message');
-        $post->image = $request->input('image');
+        $post->image = $imageFullName;
         $post->alt = $request->input('alt');
 
         $post->save();
 
-        return [
+        return response()->json([
             'status' => true,
+            'message' => 'Пост успеншно создан!',
             'post' => $post
-        ];
+        ])->setStatusCode(200);
     }
 
     /**
@@ -65,7 +75,7 @@ class PostsController extends Controller
         if (!$post) {
             return response()->json([
                 'status' => false,
-                'message' => 'Post not found'
+                'message' => 'Пост не найден'
             ])->setStatusCode(404);
         }
 

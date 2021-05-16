@@ -8,7 +8,7 @@ section.posts.uk-section
                         router-link.teaser__link.uk-flex.uk-flex-column.uk-flex-wrap.uk-card.uk-card-default.uk-card-hover(
                             :to="{ name: 'single-post', params: { id: item.id }}"
                         )
-                            .teaser__item-wrap.uk-card-media-top.uk-width-1-1(class="uk-width-1-3@m")
+                            .teaser__item-wrap.uk-card-media-top.uk-width-1-1(v-if="isImage(item.image)" class="uk-width-1-3@m")
                                 .teaser__link
                                     img.teaser__img(:src="item.image", :alt="item.alt")
                         
@@ -18,9 +18,9 @@ section.posts.uk-section
 
                                     p.teaser__meta-info.uk-text-meta
                                         time(
-                                            datetime="2004-07-24T18:18"
+                                            :datetime="item.updated_at"
                                             aria-label="Date of publication"
-                                        ) {{ item.date }}
+                                        ) {{ getDate(item.updated_at) }}
 
                                 .teaser__body.uk-card-body.uk-flex-1
                                     p.teaser__desc.uk-text-break {{ item.message }}
@@ -45,6 +45,9 @@ import {
 } from 'vue';
 import { useStore } from 'vuex';
 import { grid } from 'uikit';
+import { isImage, getDate } from '@/js/utils';
+import { orderBy } from 'lodash';
+
 import Spinner from '@/js/components/Spinner';
 
 export default {
@@ -52,27 +55,28 @@ export default {
     components: {
         Spinner
     },
-    async setup() {
+    setup() {
         const store = useStore();
-        const sprites = store.state.shared.sprites;
         
         store.dispatch('fetchPosts');
 
-        const posts = computed(() => store.getters.posts);
+        const sprites = computed(() => store.getters.sprites);
+        // const posts = computed(() => store.getters.posts);
+        const posts = computed(() => orderBy(store.getters.posts, ['updated_at'],['desc']));
         const loading = computed(() => store.getters.loading);
 
         watchEffect(() => {
             posts.value;
         });
 
-        onMounted(() => {
-            grid('.grid');
-        });
+        onMounted(() => grid('.grid'));
         
         return {
             sprites,
             posts,
-            loading
+            loading,
+            isImage,
+            getDate
         };
     }
 };
