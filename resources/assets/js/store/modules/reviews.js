@@ -1,5 +1,5 @@
 import * as types from '../mutation-types';
-import { _reviews } from '@/js/api/data';
+import { orderBy } from 'lodash';
 
 import {
     fetchData,
@@ -11,7 +11,7 @@ export const state = {
 };
 
 export const getters = {
-    reviews: (store) => store.reviews
+    reviews: (state) => orderBy(state.reviews, ['updated_at'],['desc'])
 };
 
 export const mutations = {
@@ -29,7 +29,7 @@ export const actions = {
         commit(types.IS_LOADING, true);
 
         try {
-            const reviews = await fetchData(_reviews);
+            const reviews = await fetchData('/api/reviews');
 
             commit(types.FETCH_REVIEWS_SUCCESS, reviews);
         } catch (err) {

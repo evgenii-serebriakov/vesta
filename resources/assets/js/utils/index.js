@@ -1,3 +1,5 @@
+import { truncate } from 'lodash';
+
 /**
  * @param {String} path
  */
@@ -36,3 +38,10 @@ export const getDate = (date) => {
 
     return new Date(date).toLocaleDateString('ru-RU', options);
 };
+
+export const shortenSrt = (message) => truncate(
+    message, {
+        'length': 48,
+        'omission': '...'
+    }
+);

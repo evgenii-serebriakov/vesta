@@ -4,6 +4,8 @@ import * as videos from './modules/video';
 import * as shared from './modules/shared';
 import * as reviews from './modules/reviews';
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 export default createStore({
     modules: {
         posts,
@@ -11,5 +13,6 @@ export default createStore({
         shared,
         reviews
     },
-    devtools: true
+    devtools: isDev,
+    strict: isDev
 });

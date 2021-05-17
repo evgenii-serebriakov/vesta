@@ -23,7 +23,7 @@ section.posts.uk-section
                                         ) {{ getDate(item.updated_at) }}
 
                                 .teaser__body.uk-card-body.uk-flex-1
-                                    p.teaser__desc.uk-text-break {{ item.message }}
+                                    p.teaser__desc.uk-text-break {{ shortenSrt(item.message) }}
 
                                 .teaser__footer.uk-card-footer
                                     span.teaser__text.uk-text-uppercase.uk-text-middle Далее
@@ -45,8 +45,7 @@ import {
 } from 'vue';
 import { useStore } from 'vuex';
 import { grid } from 'uikit';
-import { isImage, getDate } from '@/js/utils';
-import { orderBy } from 'lodash';
+import { isImage, getDate, shortenSrt } from '@/js/utils';
 
 import Spinner from '@/js/components/Spinner';
 
@@ -61,8 +60,7 @@ export default {
         store.dispatch('fetchPosts');
 
         const sprites = computed(() => store.getters.sprites);
-        // const posts = computed(() => store.getters.posts);
-        const posts = computed(() => orderBy(store.getters.posts, ['updated_at'],['desc']));
+        const posts = computed(() => store.getters.posts);
         const loading = computed(() => store.getters.loading);
 
         watchEffect(() => {
@@ -76,7 +74,8 @@ export default {
             posts,
             loading,
             isImage,
-            getDate
+            getDate,
+            shortenSrt
         };
     }
 };

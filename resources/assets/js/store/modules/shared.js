@@ -1,5 +1,4 @@
 import * as types from '../mutation-types';
-import { _contacts, _social } from '@/js/api/data';
 import { fetchData } from '@/js/api';
 
 export const state = {
@@ -9,7 +8,7 @@ export const state = {
         { text: 'Видео', icon: '#icon-camera', path: '/video' },
         { text: 'Блог', icon: '#icon-news', path: '/posts' },
         { text: 'Отзывы', icon: '#icon-comment', path: '/reviews' },
-        { text: 'Panel', icon: '#icon-comment', path: '/control-panel' }
+        { text: 'Panel', icon: '#icon-comment', path: '/eMdcJ5gCGwPbJRW7' }
     ],
     contacts: [],
     social: [],
@@ -48,7 +47,7 @@ export const mutations = {
 export const actions = {
     async fetchSocial ({ commit }) {
         try {
-            const social = await fetchData(_social);
+            const social = await fetchData('/api/social');
 
             commit(types.FETCH_SOCIAL_SUCCESS, social);
         } catch (err) {
@@ -57,7 +56,7 @@ export const actions = {
     },
     async fetchContacts ({ commit }) {
         try {
-            const contacts = await fetchData(_contacts);
+            const contacts = await fetchData('/api/contacts');
 
             commit(types.FETCH_CONTACTS_SUCCESS, contacts);
         } catch (err) {

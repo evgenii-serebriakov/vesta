@@ -54,7 +54,6 @@ section.posts()
 import { onMounted, computed, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 import { slider } from 'uikit';
-import { orderBy } from 'lodash';
 import { getDate } from '@/js/utils';
 
 export default {
@@ -64,7 +63,7 @@ export default {
         store.dispatch('fetchPosts');
 
         const sprites = computed(() => store.getters.sprites);
-        const posts = computed(() => orderBy(store.getters.posts, ['updated_at'],['desc']));
+        const posts = computed(() => store.getters.posts);
 
         watchEffect(() => posts.value);
 

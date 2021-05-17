@@ -1,4 +1,5 @@
 import * as types from '../mutation-types';
+import { orderBy } from 'lodash';
 
 import {
     fetchData,
@@ -13,7 +14,7 @@ export const state = {
 
 export const getters = {
     post: (state) => state.post,
-    posts: (state) => state.posts
+    posts: (state) => orderBy(state.posts, ['updated_at'],['desc'])
 };
 
 export const mutations = {

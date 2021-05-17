@@ -2,7 +2,9 @@
     <div class="list-posts">
         <div class="link-form">
             <router-link 
-                :to="{ name: 'form-post', params: { postId: 'form-post' }}"
+                :to="{ name: 'form-post', params: {
+                    postId: 'form-post' 
+                }}"
                 class="list-posts__link link-form__post uk-text-uppercase"
                 active-class="list-post__link--active"
             >
@@ -11,10 +13,13 @@
         </div>
 
         <h3 class="list-posts__caption">
-            Список постов
+            {{ posts && posts.length !== 0 ? 'Список записей' : 'Список записей пуст' }}
         </h3>
 
-        <ul class="list-posts__list uk-padding-remove-left">
+        <ul
+            v-if="posts && posts.length !== 0"
+            class="list-posts__list uk-padding-remove-left"
+        >
             <li
                 v-for="item in posts"
                 :key="item.id"

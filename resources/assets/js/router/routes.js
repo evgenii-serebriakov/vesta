@@ -14,22 +14,24 @@ export default [
         component: () => import(/* webpackChunkName: 'single-video' */  '@/js/pages/SingleVideo')
     },
     {
-        path: '/control-panel', 
+        path: '/eMdcJ5gCGwPbJRW7', 
         name: 'control-panel',
         component: () => import(/* webpackChunkName: 'control-panel' */  '@/js/pages/ControlPanel'),
         children: [
             {
-                path: '/control-panel',
+                path: '',
                 name: 'welcome-panel',
                 component: () => import(/* webpackChunkName: 'welcome-panel' */  '@/js/components/WelcomePanel')
             },
             {
-                path: '/control-panel/:listPostId',
+                path: ':listPostId',
+                // path: 'list-posts',
                 name: 'list-posts',
                 component: () => import(/* webpackChunkName: 'list-posts' */  '@/js/components/List/ListPosts'),
             },
             {
-                path: '/control-panel/:postId',
+                path: ':postId',
+                // path: 'form-post',
                 name: 'form-post',
                 component: () => import(/* webpackChunkName: 'form-post' */  '@/js/components/Forms/FormPost')
             }

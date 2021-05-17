@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\PostsController;
+use App\Http\Controllers\Api\v1\VideoController;
+use App\Http\Controllers\Api\v1\ContactsController;
+use App\Http\Controllers\Api\v1\SocialController;
+use App\Http\Controllers\Api\v1\ReviewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +24,11 @@ use App\Http\Controllers\Api\v1\PostsController;
 // });
 
 Route::resource('posts', PostsController::class);
+
+Route::resource('video', VideoController::class);
+
+Route::resource('reviews', ReviewsController::class);
+
+Route::resource('contacts', ContactsController::class);
+
+Route::resource('social', SocialController::class);

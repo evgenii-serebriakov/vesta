@@ -1,4 +1,5 @@
 import * as types from '../mutation-types';
+import { orderBy } from 'lodash';
 
 import {
     fetchData,
@@ -12,8 +13,8 @@ export const state = {
 };
 
 export const getters = {
-    video: (store) => store.video,
-    videos: (store) => store.videos
+    video: (state) => state.video,
+    videos: (state) => orderBy(state.videos, ['updated_at'],['desc'])
 };
 
 export const mutations = {
@@ -38,8 +39,7 @@ export const actions = {
         commit(types.IS_LOADING, true);
 
         try {
-            const videos = await fetchData('/apt/videos');
-            console.log(videos);
+            const videos = await fetchData('/api/video');
 
             commit(types.FETCH_VIDEOS_SUCCESS, videos);
         } catch (err) {
@@ -52,7 +52,7 @@ export const actions = {
         commit(types.IS_LOADING, true);
 
         try {
-            const video = await fetchVideo(`/api/videos/${id}`);
+            const video = await fetchVideo(`/api/video/${id}`);
 
             commit(types.FETCH_VIDEO_SUCCESS, video);
         } catch (err) {

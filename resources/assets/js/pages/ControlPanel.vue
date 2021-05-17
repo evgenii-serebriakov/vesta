@@ -3,54 +3,60 @@
         <div class="uk-container">
             <div class="uk-flex uk-flex-wrap uk-flex-between">
                 <div class="uk-width-1-1 uk-width-1-4@m">
-                    <ul class="control-panel__list uk-padding-remove-left uk-list uk-list-divider uk-visible@m">
-                        <li
-                            v-for="item in links"
-                            :key="item.text"
-                            class="control-panel__list-item"
-                        >
-                            <router-link 
-                                :to="item.path"
-                                class="control-panel__link"
-                                active-class="control-panel__link--active"
+                    <aside
+                        class="control-panel__sidebar"
+                        aria-label="Sidebar"
+                    >
+                        <ul class="control-panel__list uk-padding-remove-left uk-list uk-list-divider uk-visible@m">
+                            <li
+                                v-for="item in links"
+                                :key="item.text"
+                                class="control-panel__list-item"
                             >
-                                {{ item.text }}
-                            </router-link>
-                        </li>
-                    </ul>
+                                <router-link 
+                                    :to="item.path"
+                                    class="control-panel__link"
+                                    active-class="control-panel__link--active"
+                                >
+                                    {{ item.text }}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </aside>
 
-                    <ul class="control-panel__list-mobile accordion uk-list-divider uk-hidden@m">
-                        <li>
+                    <nav
+                        class="control-panel__navigation-mobile uk-nav-divider uk-hidden@m"
+                        aria-label="Mobile navigation"
+                    >
+                        <div class="uk-parent">
                             <a
-                                class="uk-accordion-title"
                                 href="#"
-                            >   
+                                class="control-panel__navigation-toggle"
+                                aria-label="Toggle navigation"
+                            >
                                 <svg class="trigger__icon">
                                     <use :xlink:href="sprites + '#icon-menu'" />
                                 </svg>
                             </a>
 
-                            <div class="uk-accordion-content">
-                                <ul class="control-panel__list uk-padding-remove-left uk-list uk-list-divider">
-                                    <li
-                                        v-for="item in links"
-                                        :key="item.text"
-                                        class="control-panel__list-item"
+                            <ul class="control-panel__navigation-list uk-nav-sub">
+                                <li
+                                    v-for="item in links"
+                                    :key="item.text"
+                                    class="control-panel__list-item"
+                                >
+                                    <router-link 
+                                        :to="item.path"
+                                        class="control-panel__navigation-link"
+                                        active-class="control-panel__link--active"
                                     >
-                                        <router-link 
-                                            :to="item.path"
-                                            class="control-panel__link"
-                                            active-class="control-panel__link--active"
-                                        >
-                                            {{ item.text }}
-                                        </router-link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
+                                        {{ item.text }}
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
-
 
                 <div class="uk-width-1-1 uk-width-2-3@m">
                     <router-view />
@@ -61,7 +67,7 @@
 </template>
 
 <script>
-import { accordion } from 'uikit';
+import { nav } from 'uikit';
 import { useStore } from 'vuex';
 import { onMounted, computed } from 'vue';
 
@@ -74,14 +80,23 @@ export default {
                 path: { name: 'list-posts', params: { listPostId: 'list-posts' }},
                 text: 'Посты'
             },
+            {
+                id: 1,
+                path: { name: 'list-posts', params: { listPostId: 'list-posts' }},
+                text: 'Видео'
+            },
+            {
+                id: 2,
+                path: { name: 'list-posts', params: { listPostId: 'list-posts' }},
+                text: 'Отзывы'
+            },
         ];
 
         const store = useStore();
         const sprites = computed(() => store.getters.sprites);
 
         onMounted(() => {
-            const acc = accordion('.accordion');
-            console.log(acc);
+            nav('.control-panel__navigation-mobile');
         });
 
         return {
@@ -103,22 +118,6 @@ export default {
     &__list {
         list-style: none;
         border-right: 1px solid #e5e5e5;
-
-        &-mobile {
-            position: relative;
-            padding-bottom: rem(20);
-            padding-left: rem(25);
-
-            &::after {
-                position: absolute;
-                content: '';
-                width: 100%;
-                height: 1px;
-                background: #e5e5e5;
-                top: 38px;
-                left: 0;
-            }
-        }
     }
 
     &__link {
@@ -127,7 +126,7 @@ export default {
         color: $greyColor;
         font-size: 20px;
         text-decoration: none;
-        // padding: 8px 16px;
+        padding: 8px 16px;
 
         &:hover {
             color: $purpleSaturate;
@@ -135,6 +134,36 @@ export default {
 
         &--active {
             color: $purpleSaturate;
+        }
+    }
+
+    &__navigation {
+        &-mobile {
+            position: relative;
+            padding-bottom: rem(20);
+
+            &::after {
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 1px;
+                background: #e5e5e5;
+                top: 35px;
+                left: 0;
+            }
+        }
+
+        &-list {
+            padding-top: rem(20);
+        }
+
+        &-link {
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        &-toggle {
+            padding-left: rem(30);
         }
     }
 

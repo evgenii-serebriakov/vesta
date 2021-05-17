@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostRequest;
-use App\Models\Post;
 use Illuminate\Http\Request;
-use Dotenv\Validator;
+use App\Models\Contacts;
 
-class PostsController extends Controller
+class ContactsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        return Contacts::all();
     }
 
     /**
@@ -36,28 +34,21 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(Request $request)
     {
-        $hasFile = $request->hasFile('image');
-        $imageFullName = '';
+        $contacts = new Contacts();
+        $contacts->title = $request->input('title');
+        $contacts->text = $request->input('text');
+        $contacts->color = $request->input('color');
+        $contacts->icon = $request->input('icon');
+        $contacts->flag = $request->boolean('flag');
 
-        if ($hasFile) {
-            $imageFullName = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('images', $imageFullName, 'public');
-        }
-        
-        $post = new Post();
-        $post->title = $request->input('title');
-        $post->message = $request->input('message');
-        $post->image = $imageFullName;
-        $post->alt = $request->input('alt');
-
-        $post->save();
+        $contacts->save();
 
         return response()->json([
             'status' => true,
-            'message' => 'Пост успеншно создан!',
-            'post' => $post
+            'message' => 'Контакт успеншно создан!',
+            'contacts' => $contacts
         ])->setStatusCode(200);
     }
 
@@ -68,17 +59,8 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-        $post = Post::find($id);
-
-        if (!$post) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Пост не найден'
-            ])->setStatusCode(404);
-        }
-
-        return $post;
+    {
+        //
     }
 
     /**

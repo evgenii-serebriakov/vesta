@@ -82,6 +82,9 @@
                         Добавить изображение
                     </button>
                 </div>
+                <p class="form-post__file-text">
+                    Максимальный размер файла не более 5 <i>MB</i>
+                </p>
             </div>
 
             <div class="form-post__button uk-margin">
@@ -220,6 +223,11 @@ export default {
 
     &__custom-file {
         cursor: pointer;
+    }
+
+    &__file-text {
+        color: #ff6969;
+        padding-top: rem(15);
     }
 }
 

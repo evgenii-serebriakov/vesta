@@ -43,9 +43,7 @@ export default {
 
         watchEffect(() => videos.value);
 
-        onMounted(() => {
-            grid('.grid');
-        });
+        onMounted(() =>  grid('.grid'));
 
         return {
             videos,

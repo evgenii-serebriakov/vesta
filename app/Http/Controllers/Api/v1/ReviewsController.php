@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostRequest;
-use App\Models\Post;
 use Illuminate\Http\Request;
-use Dotenv\Validator;
 
-class PostsController extends Controller
+class ReviewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +14,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        //
     }
 
     /**
@@ -36,29 +33,9 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(Request $request)
     {
-        $hasFile = $request->hasFile('image');
-        $imageFullName = '';
-
-        if ($hasFile) {
-            $imageFullName = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('images', $imageFullName, 'public');
-        }
-        
-        $post = new Post();
-        $post->title = $request->input('title');
-        $post->message = $request->input('message');
-        $post->image = $imageFullName;
-        $post->alt = $request->input('alt');
-
-        $post->save();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Пост успеншно создан!',
-            'post' => $post
-        ])->setStatusCode(200);
+        //
     }
 
     /**
@@ -68,17 +45,8 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-        $post = Post::find($id);
-
-        if (!$post) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Пост не найден'
-            ])->setStatusCode(404);
-        }
-
-        return $post;
+    {
+        //
     }
 
     /**

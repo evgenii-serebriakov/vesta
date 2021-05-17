@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostRequest;
-use App\Models\Post;
 use Illuminate\Http\Request;
-use Dotenv\Validator;
+use App\Http\Requests\VideoRequest;
+use App\Models\Video;
 
-class PostsController extends Controller
+class VideoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        return Video::all();
     }
 
     /**
@@ -36,7 +35,7 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(VideoRequest $request)
     {
         $hasFile = $request->hasFile('image');
         $imageFullName = '';
@@ -46,18 +45,19 @@ class PostsController extends Controller
             $request->file('image')->storeAs('images', $imageFullName, 'public');
         }
         
-        $post = new Post();
-        $post->title = $request->input('title');
-        $post->message = $request->input('message');
-        $post->image = $imageFullName;
-        $post->alt = $request->input('alt');
+        $video = new Video();
+        $video->title = $request->input('title');
+        $video->message = $request->input('message');
+        $video->video = $request->input('video');
+        $video->image = $imageFullName;
+        $video->alt = $request->input('alt');
 
-        $post->save();
+        $video->save();
 
         return response()->json([
             'status' => true,
-            'message' => 'Пост успеншно создан!',
-            'post' => $post
+            'message' => 'Видео успеншно создано!',
+            'video' => $video
         ])->setStatusCode(200);
     }
 
@@ -68,17 +68,17 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-        $post = Post::find($id);
+    {
+        $video = Video::find($id);
 
-        if (!$post) {
+        if (!$video) {
             return response()->json([
                 'status' => false,
-                'message' => 'Пост не найден'
+                'message' => 'Видео не найдено'
             ])->setStatusCode(404);
         }
 
-        return $post;
+        return $video;
     }
 
     /**
