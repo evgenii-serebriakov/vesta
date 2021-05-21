@@ -16,4 +16,9 @@ class Video extends Model
         'image',
         'alt'
     ];
+
+    // public function getImageAttribute($value)
+    // {
+    //     return Storage::url("images/" . $value);
+    // }
 }

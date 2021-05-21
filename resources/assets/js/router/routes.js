@@ -1,41 +1,78 @@
 export default [
-    { path: '/', name: 'home', component: () => import(/* webpackChunkName: 'home' */  '@/js/pages/home/HomePage')},
-    { path: '/video', name: 'video', component: () => import(/* webpackChunkName: 'video' */  '@/js/pages/Video') },
-    { path: '/posts', name: 'posts', component: () => import(/* webpackChunkName: 'posts' */  '@/js/pages/Posts') },
-    { path: '/reviews', name: 'reviews', component: () => import(/* webpackChunkName: 'reviews' */  '@/js/pages/Reviews') },
-    { 
-        path: '/posts/:id', 
-        name: 'single-post',
-        component: () => import(/* webpackChunkName: 'single-post' */  '@/js/pages/SinglePost')
-    },
-    { 
-        path: '/video/:id', 
-        name: 'single-video',
-        component: () => import(/* webpackChunkName: 'single-video' */  '@/js/pages/SingleVideo')
+    {
+        path: '/',
+        name: 'home',
+        component: () =>
+            import(/* webpackChunkName: 'home' */ '@/js/pages/home/HomePage'),
     },
     {
-        path: '/eMdcJ5gCGwPbJRW7', 
+        path: '/video',
+        name: 'video',
+        component: () =>
+            import(/* webpackChunkName: 'video' */ '@/js/pages/Video')
+    },
+    {
+        path: '/posts',
+        name: 'posts',
+        component: () =>
+            import(/* webpackChunkName: 'posts' */ '@/js/pages/Posts')
+    },
+    {
+        path: '/reviews',
+        name: 'reviews',
+        component: () =>
+            import(/* webpackChunkName: 'reviews' */ '@/js/pages/Reviews'),
+    },
+    {
+        path: '/posts/:id',
+        name: 'single-post',
+        component: () =>
+            import(
+                /* webpackChunkName: 'single-post' */ '@/js/pages/SinglePost'
+            ),
+    },
+    {
+        path: '/video/:id',
+        name: 'single-video',
+        component: () =>
+            import(
+                /* webpackChunkName: 'single-video' */ '@/js/pages/SingleVideo'
+            ),
+    },
+    {
+        path: '/eMdcJ5gCGwPbJRW7',
         name: 'control-panel',
-        component: () => import(/* webpackChunkName: 'control-panel' */  '@/js/pages/ControlPanel'),
+        component: () =>
+            import(
+                /* webpackChunkName: 'control-panel' */ '@/js/pages/ControlPanel'
+            ),
         children: [
             {
                 path: '',
                 name: 'welcome-panel',
-                component: () => import(/* webpackChunkName: 'welcome-panel' */  '@/js/components/WelcomePanel')
+                component: () =>
+                    import(
+                        /* webpackChunkName: 'welcome-panel' */ '@/js/components/WelcomePanel'
+                    ),
             },
             {
                 path: ':listPostId',
-                // path: 'list-posts',
                 name: 'list-posts',
-                component: () => import(/* webpackChunkName: 'list-posts' */  '@/js/components/List/ListPosts'),
+                component: () =>
+                    import(
+                        /* webpackChunkName: 'list-posts' */ '@/js/components/List/ListPosts'
+                    ),
             },
             {
                 path: ':postId',
-                // path: 'form-post',
                 name: 'form-post',
-                component: () => import(/* webpackChunkName: 'form-post' */  '@/js/components/Forms/FormPost')
-            }
-        ]
+                component: () =>
+                    import(
+                        /* webpackChunkName: 'form-post' */ '@/js/components/Forms/FormPost'
+                    ),
+            },
+        ],
     },
-    { path: '/:any(.*)/:path(.*)?', redirect: { name: 'home' } }
+    { path: '/:any(.*)/:path(.*)?', redirect: { name: 'home' } },
 ];
+

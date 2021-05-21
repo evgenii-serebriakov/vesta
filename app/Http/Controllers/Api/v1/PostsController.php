@@ -56,7 +56,7 @@ class PostsController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'Пост успеншно создан!',
+            'message' => 'Пост успешно создан!',
             'post' => $post
         ])->setStatusCode(200);
     }
@@ -101,7 +101,27 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $hasFile = $request->hasFile('image');
+        $imageFullName = '';
+
+        if ($hasFile) {
+            $imageFullName = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('images', $imageFullName, 'public');
+        }
+        
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->message = $request->input('message');
+        $post->image = $imageFullName;
+        $post->alt = $request->input('alt');
+
+        $post->update();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Пост успешно обновлен!',
+            'post' => $post
+        ])->setStatusCode(200);
     }
 
     /**
@@ -112,6 +132,12 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post = delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Пост успешно удален!',
+        ])->setStatusCode(200);
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReviewsRequest;
+use App\Models\Reviews;
 
 class ReviewsController extends Controller
 {
@@ -14,7 +16,7 @@ class ReviewsController extends Controller
      */
     public function index()
     {
-        //
+        return Reviews::all();
     }
 
     /**
@@ -33,9 +35,29 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReviewsRequest $request)
     {
-        //
+        $hasFile = $request->hasFile('image');
+        $imageFullName = '';
+
+        if ($hasFile) {
+            $imageFullName = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('images', $imageFullName, 'public');
+        }
+        
+        $reviews = new Reviews();
+        $reviews->title = $request->input('title');
+        $reviews->video = $request->input('video');
+        $reviews->image = $imageFullName;
+        $reviews->alt = $request->input('alt');
+
+        $reviews->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Видео успеншно создано!',
+            'reviews' => $reviews
+        ])->setStatusCode(200);
     }
 
     /**

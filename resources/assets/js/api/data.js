@@ -95,11 +95,11 @@ export const _videos = [
 export const _reviews = [
     {
         id: '1',
+        title: 'Lorem, ipsum dolor 1',
         video: 'FWGyiSTQ0yo',
         image: '/assets/images/video_5.jpg',
         alt: 'bg-1',
         date: 'Март 06 2021',
-        title: 'Lorem, ipsum dolor 1',
     },
     {
         id: '2',

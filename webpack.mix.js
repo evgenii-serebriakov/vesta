@@ -72,7 +72,8 @@ const config = mix
    
 
 if (isEnvProduction) {
-    config.version().extract(['vue']);
+    config.extract(['vue'])
+        .version();
 } else {
     config.sourceMaps().bladeReload();
 }

@@ -8,7 +8,7 @@ export const state = {
         { text: 'Видео', icon: '#icon-camera', path: '/video' },
         { text: 'Блог', icon: '#icon-news', path: '/posts' },
         { text: 'Отзывы', icon: '#icon-comment', path: '/reviews' },
-        { text: 'Panel', icon: '#icon-comment', path: '/eMdcJ5gCGwPbJRW7' }
+        // { text: 'Panel', icon: '#icon-comment', path: '/eMdcJ5gCGwPbJRW7' }
     ],
     contacts: [],
     social: [],

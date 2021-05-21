@@ -80,16 +80,16 @@ export default {
                 path: { name: 'list-posts', params: { listPostId: 'list-posts' }},
                 text: 'Посты'
             },
-            {
-                id: 1,
-                path: { name: 'list-posts', params: { listPostId: 'list-posts' }},
-                text: 'Видео'
-            },
-            {
-                id: 2,
-                path: { name: 'list-posts', params: { listPostId: 'list-posts' }},
-                text: 'Отзывы'
-            },
+            // {
+            //     id: 1,
+            //     path: { name: 'list-video', params: { listVideoId: 'list-video' }},
+            //     text: 'Видео'
+            // },
+            // {
+            //     id: 2,
+            //     path: { name: 'list-reviews', params: { listReviewsId: 'list-reviews' }},
+            //     text: 'Отзывы'
+            // },
         ];
 
         const store = useStore();

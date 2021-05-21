@@ -10,11 +10,12 @@
         <meta content="yes" name="apple-mobile-web-app-capable">
         <meta content="ie=edge" http-equiv="x-ua-compatible">
         <meta name="robots" content="noindex,nofollow">
-        {{-- <link rel="canonical" href="https://vesta.ru"> --}}
+        {{-- <meta name="robots" content="index,follow" /> --}}
+        <link rel="canonical" href="https://vesta74.ru/">
 
         <title>Веста</title>
         <meta name="description" content="Центр реабилитации">
-        <meta name="keywords" content="центр, реабилитация, массаж">
+        <meta name="keywords" content="центр, реабилитация, массаж, веста, vesta, vesta74">
         <meta name="theme-color" content="#ffffff">
         
         <link rel="apple-touch-icon" 
@@ -35,7 +36,7 @@
             id="app"
             class="uk-flex uk-flex-column wrapper"
         ></div>
-        
+
         <script src="{{ mix('/assets/js/main.js') }}"></script>
     </body>
 </html>

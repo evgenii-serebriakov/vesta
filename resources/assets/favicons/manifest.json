@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "start_url": "http://localhost:3000",
+    "start_url": "https://vesta74.ru/",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "display": "standalone"

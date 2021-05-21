@@ -9,17 +9,3 @@ createApp(App)
     .use(store)
     .use(router)
     .mount('#app');
-
-// "unit-allowed-list": [
-//     "em",
-//     "rem",
-//     "%",
-//     "px",
-//     "vh",
-//     "vm",
-//     "vw",
-//     "vmax",
-//     "vmin",
-//     "deg",
-//     "s"
-// ]
