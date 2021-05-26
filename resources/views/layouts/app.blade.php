@@ -13,8 +13,9 @@
         {{-- <meta name="robots" content="index,follow" /> --}}
         <link rel="canonical" href="https://vesta74.ru/">
 
-        <title>Веста</title>
-        <meta name="description" content="Центр реабилитации">
+        <title>{{ $title ?? 'Defaul'}}</title>
+        {{-- <meta name="description" content="Центр реабилитации"> --}}
+        <meta name="description" content="{{ $desc }}">
         <meta name="keywords" content="центр, реабилитация, массаж, веста, vesta, vesta74">
         <meta name="theme-color" content="#ffffff">
         
@@ -31,12 +32,22 @@
         
         <link rel="stylesheet" href="{{ mix('/assets/css/main.css') }}">
     </head>
-    <body class="page">
-        <div
-            id="app"
-            class="uk-flex uk-flex-column wrapper"
-        ></div>
+    <body class="page uk-position-relative">
+        <x-scroll-up :sprites="$sprites" />
 
+        {{-- <div id="offcanvas-reveal">
+            <div class="uk-offcanvas-bar offcanvas-bar--padding">
+                <x-drawer :close-drawer="closeDrawer"/>
+            </div>
+        </div> --}}
+
+        {{-- <x-navbar :open-drawer="openDrawer" /> --}}
+
+        <main class="main-content">
+            {{ $slot }}
+        </main>
+
+        <x-navbar-bottom />
         <script src="{{ mix('/assets/js/main.js') }}"></script>
     </body>
 </html>
