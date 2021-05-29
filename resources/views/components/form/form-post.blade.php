@@ -1,3 +1,11 @@
-<div>
-    <!-- Let all your things have their places; let each part of your business have its time. - Benjamin Franklin -->
-</div>
+<form method="POST" action="/profile">
+    @csrf
+
+    <label for="title">Post Title</label>
+
+    <input id="title" type="text" class="@error('title') is-invalid @enderror">
+
+    @error('title')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</form>

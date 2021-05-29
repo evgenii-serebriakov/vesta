@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Api\v1\PostsController;
 
 /*
 |
@@ -16,32 +18,38 @@ use Illuminate\Support\Facades\Route;
 //     return view('home');
 // })->where('any', '(.*)');
 
-Route::get('/', function () {
-    return view('pages.home.home', [
-        'title' => 'The current UNIX timestamp',
-        'list' => ['a' => 3, 'b' => 7,'c' => 3, 'd' => 4]
-    ]);
-})->name('home');
+Route::get('/', [PostsController::class, 'index'])->name('home');
+
+// Route::get('/', function (Request $request) {
+//     // dd($request);
+
+//     return view('pages.home.home', [
+//         'title' => 'The current UNIX timestamp',
+//         'list' => ['a' => 3, 'b' => 7,'c' => 3, 'd' => 4]
+//     ]);
+// })->name('home');
 
 
 Route::get('/video', function () {
-    return view('video');
+    return view('pages.video');
 })->name('video');
 
+
 Route::get('/video/123', function () {
-    return view('single-video');
+    return view('pages.single-video');
 })->name('single-video');
 
+
 Route::get('/posts', function () {
-    return view('posts');
+    return view('pages.posts');
 })->name('posts');
 
-Route::get('/posts/123', function () {
-    return view('single-post');
+
+Route::get('/posts/{slug}', function () {
+    return view('pages.single-post');
 })->name('single-post');
 
-Route::get('/reviews', function () {
-    return view('reviews');
-})->name('reviews');
 
-// Route::get('/{any}', 'HomeController@vueroute')->where('any', '(.*)');
+Route::get('/reviews', function () {
+    return view('pages.reviews');
+})->name('reviews');

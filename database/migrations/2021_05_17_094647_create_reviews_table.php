@@ -15,10 +15,10 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable()->default('');
-            $table->string('video')->nullable()->default('');
-            $table->string('image')->nullable()->default('');
-            $table->string('alt')->nullable()->default('');
+            $table->string('title');
+            $table->string('video');
+            $table->string('image');
+            $table->string('alt');
             $table->timestamps();
         });
     }

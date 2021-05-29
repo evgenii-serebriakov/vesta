@@ -17,7 +17,12 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        // return Post::all();
+        $posts = Post::all();
+        
+        return view('pages.home.home', [
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -40,6 +45,7 @@ class PostsController extends Controller
     {
         $hasFile = $request->hasFile('image');
         $imageFullName = '';
+        $slug = strtolower($request->input('title'));
 
         if ($hasFile) {
             $imageFullName = $request->file('image')->getClientOriginalName();
@@ -51,6 +57,7 @@ class PostsController extends Controller
         $post->message = $request->input('message');
         $post->image = $imageFullName;
         $post->alt = $request->input('alt');
+        $post->slug = $slug;
 
         $post->save();
 
@@ -114,6 +121,7 @@ class PostsController extends Controller
         $post->message = $request->input('message');
         $post->image = $imageFullName;
         $post->alt = $request->input('alt');
+        $post->slug = $request->input('slug');
 
         $post->update();
 

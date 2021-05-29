@@ -1,5 +1,9 @@
-@extends('layouts.app')
+<x-app>
+    <x-slot name="title">
+        Посты
+    </x-slot>
 
-@section('video')
-    <h1>video</h1>
-@endsection
+    <x-slot name="desc">Страница постов</x-slot>
+   
+    <h2>Videos</h2>
+</x-app>

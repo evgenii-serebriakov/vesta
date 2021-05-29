@@ -1,9 +1,9 @@
-@extends('layouts.app')
+<x-app>
+    <x-slot name="title">
+        Посты
+    </x-slot>
 
-@section('title')
-    Posts
-@endsection
-
-@section('posts')
-    <h1>Posts</h1>
-@endsection
+    <x-slot name="desc">Страница постов</x-slot>
+   
+    <h2>Posts</h2>
+</x-app>

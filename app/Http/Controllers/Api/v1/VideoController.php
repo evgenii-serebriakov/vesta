@@ -39,6 +39,7 @@ class VideoController extends Controller
     {
         $hasFile = $request->hasFile('image');
         $imageFullName = '';
+        $slug = strtolower($request->input('title'));
 
         if ($hasFile) {
             $imageFullName = $request->file('image')->getClientOriginalName();
@@ -51,6 +52,7 @@ class VideoController extends Controller
         $video->video = $request->input('video');
         $video->image = $imageFullName;
         $video->alt = $request->input('alt');
+        $video->slug = $slug;
 
         $video->save();
 

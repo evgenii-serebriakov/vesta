@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContactsTable extends Migration
+class CreateNavigationMenuTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateContactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('navigation_menu', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->bigInteger('parent_id')->unsigned();
             $table->string('text');
             $table->string('icon');
-            $table->string('color');
-            $table->boolean('flag')->default(false);
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('navigation_menu');
     }
 }

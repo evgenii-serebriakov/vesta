@@ -15,11 +15,13 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable()->default('');
-            $table->text('message')->nullable()->default('');
-            $table->string('video')->nullable()->default('');
-            $table->string('image')->nullable()->default('');
-            $table->string('alt')->nullable()->default('');
+            $table->bigInteger('category_id')->unsigned();
+            $table->string('title');
+            $table->text('message');
+            $table->string('video');
+            $table->string('image');
+            $table->string('alt');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

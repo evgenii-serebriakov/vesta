@@ -14,13 +14,13 @@ class CreateSocialsTable extends Migration
     public function up()
     {
         Schema::create('socials', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('path')->nullable()->default('');
-            $table->string('title')->nullable()->default('');
-            $table->string('text')->nullable()->default('');
-            $table->string('icon')->nullable()->default('');
-            $table->string('color')->nullable()->default('');
-            $table->boolean('flag')->nullable()->default(false);
+            $table->id();
+            $table->string('path');
+            $table->string('title');
+            $table->string('text');
+            $table->string('icon');
+            $table->string('color');
+            $table->boolean('flag')->default(false);
             $table->timestamps();
         });
     }
