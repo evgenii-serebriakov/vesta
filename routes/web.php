@@ -35,7 +35,7 @@ Route::get('/video', function () {
 })->name('video');
 
 
-Route::get('/video/123', function () {
+Route::get('/video/{slug}', function () {
     return view('pages.single-video');
 })->name('single-video');
 

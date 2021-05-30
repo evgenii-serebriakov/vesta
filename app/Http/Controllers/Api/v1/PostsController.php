@@ -7,6 +7,7 @@ use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Dotenv\Validator;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
@@ -17,9 +18,12 @@ class PostsController extends Controller
      */
     public function index()
     {
-        // return Post::all();
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
         
+        // dd($posts);
+
         return view('pages.home.home', [
             'posts' => $posts
         ]);

@@ -9,9 +9,30 @@ class CategoriesSeeder extends Seeder
 {
     function __construct() {
         $this->categories = [
-            ['parent_id' => 0, 'title' => 'Массаж', 'icon' => '#icon-arrow', 'slug' => 'massage'],
-            ['parent_id' => 0, 'title' => 'Здоровье', 'icon' => '#icon-arrow', 'slug' => 'health'],
-            ['parent_id' => 0, 'title' => 'Семья', 'icon' => '#icon-arrow', 'slug' => 'family'],
+            [
+                'created_at' => '2001-03-10 17:16:18',
+                'updated_at' => '2001-03-10 17:16:18',
+                'parent_id' => 0,
+                'title' => 'Массаж',
+                'icon' => '#icon-arrow',
+                'slug' => 'mass'
+            ],
+            [
+                'created_at' => '2001-03-11 17:16:18',
+                'updated_at' => '2001-03-11 17:16:18',
+                'parent_id' => 0,
+                'title' => 'Здоровье',
+                'icon' => '#icon-arrow',
+                'slug' => 'health'
+            ],
+            [
+                'created_at' => '2001-03-12 17:16:18',
+                'updated_at' => '2001-03-12 17:16:18',
+                'parent_id' => 0,
+                'title' => 'Семья',
+                'icon' => '#icon-arrow',
+                'slug' => 'family'
+            ]
         ];
     }
 
@@ -28,6 +49,8 @@ class CategoriesSeeder extends Seeder
                 'icon' => $category['icon'],
                 'slug' => $category['slug'],
                 'parent_id' => $category['parent_id'],
+                'created_at' => $category['created_at'],
+                'updated_at' => $category['updated_at']
             ]);
         endforeach;
     }

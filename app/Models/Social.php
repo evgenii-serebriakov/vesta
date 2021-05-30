@@ -17,4 +17,6 @@ class Social extends Model
         'path',
         'flag'
     ];
+
+    protected $dateFormat = 'F j, Y, g:i a';
 }

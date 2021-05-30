@@ -10,6 +10,8 @@ class VideosSeeder extends Seeder
     function __construct() {
         $this->videos = [
             [
+                'created_at' => '2001-03-10 17:16:18',
+                'updated_at' => '2001-03-10 17:16:18',
                 'category_id' => 0,
                 'video' => 'FWGyiSTQ0yo',
                 'image' => 'video_1.jpeg',
@@ -19,6 +21,8 @@ class VideosSeeder extends Seeder
                 'message' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, obcaecati dolor sit amet consectetur adipisicing.'
             ],
             [
+                'created_at' => '2001-03-11 17:16:18',
+                'updated_at' => '2001-03-11 17:16:18',
                 'category_id' => 0,
                 'video' => 'VsIl16MhL-I',
                 'image' => 'video_4.jpeg',
@@ -28,6 +32,8 @@ class VideosSeeder extends Seeder
                 'message' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, obcaecati dolor sit amet consectetur adipisicing.'
             ],
             [
+                'created_at' => '2001-03-12 17:16:18',
+                'updated_at' => '2001-03-12 17:16:18',
                 'category_id' => 0,
                 'video' => 'h9L-U-hg8x4',
                 'image' => 'video_5.jpg',
@@ -37,6 +43,8 @@ class VideosSeeder extends Seeder
                 'message' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, obcaecati dolor sit amet consectetur adipisicing.'
             ],
             [
+                'created_at' => '2001-03-13 17:16:18',
+                'updated_at' => '2001-03-13 17:16:18',
                 'category_id' => 0,
                 'video' => 'TgNDm7ulSkY',
                 'image' => 'video_4.jpg',
@@ -46,6 +54,8 @@ class VideosSeeder extends Seeder
                 'message' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, obcaecati dolor sit amet consectetur adipisicing.'
             ],
             [
+                'created_at' => '2001-03-15 17:16:18',
+                'updated_at' => '2001-03-15 17:16:18',
                 'category_id' => 0,
                 'video' => '-xSTF6w9Wfo',
                 'image' => 'video_5.jpg',
@@ -72,7 +82,9 @@ class VideosSeeder extends Seeder
                 'image' => $video['image'],
                 'alt' => $video['alt'],
                 'slug' => "{$video['slug']}-{$key}",
-                'category_id' => $video['category_id']
+                'category_id' => $video['category_id'],
+                'created_at' => $video['created_at'],
+                'updated_at' => $video['updated_at']
             ]);
         endforeach;
     }

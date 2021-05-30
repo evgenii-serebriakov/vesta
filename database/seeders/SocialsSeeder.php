@@ -11,6 +11,8 @@ class SocialsSeeder extends Seeder
     function __construct() {
         $this->socials = [
             [
+                'created_at' => '2001-03-10 17:16:18',
+                'updated_at' => '2001-03-10 17:16:18',
                 'path' => '#/',
                 'flag' => true,
                 'title' => 'Youtube',
@@ -19,6 +21,8 @@ class SocialsSeeder extends Seeder
                 'color' => '#FF0000'
             ],
             [
+                'created_at' => '2001-03-11 17:16:18',
+                'updated_at' => '2001-03-11 17:16:18',
                 'path' => '#/',
                 'flag' => true,
                 'title' => 'Instagram',
@@ -27,6 +31,8 @@ class SocialsSeeder extends Seeder
                 'color' => '#8134AF'
             ],
             [
+                'created_at' => '2001-03-17 17:16:18',
+                'updated_at' => '2001-03-17 17:16:18',
                 'path' => '#/',
                 'flag' => true,
                 'title' => 'WhatsApp',
@@ -35,6 +41,8 @@ class SocialsSeeder extends Seeder
                 'color' => '#4FCE5D'
             ],
             [
+                'created_at' => '2001-03-12 17:16:18',
+                'updated_at' => '2001-03-12 17:16:18',
                 'path' => '#/',
                 'flag' => true,
                 'title' => 'Twitter',
@@ -43,6 +51,8 @@ class SocialsSeeder extends Seeder
                 'color' => '#55ACEE'
             ],
             [
+                'created_at' => '2001-03-16 17:16:18',
+                'updated_at' => '2001-03-16 17:16:18',
                 'path' => '#/',
                 'flag' => true,
                 'title' => 'Facebook',
@@ -51,6 +61,8 @@ class SocialsSeeder extends Seeder
                 'color' => '#3C5898'
             ],
             [
+                'created_at' => '2001-03-13 17:16:18',
+                'updated_at' => '2001-03-13 17:16:18',
                 'path' => '#/',
                 'flag' => true,
                 'title' => 'Вконтакте',
@@ -59,6 +71,8 @@ class SocialsSeeder extends Seeder
                 'color' => '#5181B8'
             ],
             [
+                'created_at' => '2001-03-15 17:16:18',
+                'updated_at' => '2001-03-15 17:16:18',
                 'path' => '#/',
                 'flag' => true,
                 'title' => 'Viber',
@@ -82,7 +96,9 @@ class SocialsSeeder extends Seeder
                 'flag' => $social['flag'],
                 'text' => $social['text'],
                 'icon' => $social['icon'],
-                'color' => $social['color']
+                'color' => $social['color'],
+                'created_at' => $social['created_at'],
+                'updated_at' => $social['updated_at']
             ]);
         endforeach;
     }

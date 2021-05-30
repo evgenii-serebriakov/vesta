@@ -16,8 +16,10 @@ class Reviews extends Model
         'alt'
     ];
 
-    // public function getImageAttribute($value)
-    // {
-    //     return Storage::url("images/" . $value);
-    // }
+    protected $dateFormat = 'F j, Y, g:i a';
+
+    public function getImageAttribute($value)
+    {
+        return Storage::url("images/" . $value);
+    }
 }
