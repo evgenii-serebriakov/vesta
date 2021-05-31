@@ -35,11 +35,11 @@
     <body class="page uk-position-relative">
         <x-scroll-up :sprites="$sprites" />
 
-        {{-- <div id="offcanvas-reveal">
+        <div id="offcanvas-reveal">
             <div class="uk-offcanvas-bar offcanvas-bar--padding">
-                <x-drawer :close-drawer="closeDrawer"/>
+                {{-- <x-drawer :close-drawer="closeDrawer"/> --}}
             </div>
-        </div> --}}
+        </div>
 
         {{-- <x-navbar :open-drawer="openDrawer" /> --}}
 

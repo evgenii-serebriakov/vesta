@@ -1,0 +1,28 @@
+.massage {
+    position: relative;
+    background-image: url("/assets/images/massage_bg.jpg");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: rem(100) 0;
+
+    @include media-laptop {
+        padding: rem(200) 0;
+    }
+
+    &__inner {
+        color: white;
+        text-transform: uppercase;
+    }
+
+    &__caption {
+        font-size: rem(45);
+        position: relative;
+        color: white;
+
+        &::before {
+            top: 60px;
+        }
+    }
+}

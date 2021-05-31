@@ -1,0 +1,66 @@
+.posts {
+    background-image: radial-gradient(circle at left bottom, #f8f8f8 49%, rgba(150, 23, 23, 0) 0%);
+
+    &__inner {
+        padding-top: 50px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    &__title {
+        position: relative;
+        color: $greyColor;
+        margin-left: 15px;
+        margin-bottom: rem(40);
+    }
+
+    .isoteric {
+        &__icon {
+            fill: $purpleSaturate;
+            display: block;
+            text-align: center;
+
+            &-svg {
+                width: 300px;
+                height: 35px;
+            }
+        }
+    }
+
+    .teasers {
+        &__content {
+            padding: 0.7rem 1rem;
+        }
+
+        &__title {
+            font-size: 22px;
+            color: $default-color;
+            margin: 0;
+        }
+
+        &__meta-info {
+            color: $greyColor;
+        }
+
+        &__footer {
+            padding: 0.7rem 1rem;
+            color: $greyColor;
+            fill: $greyColor;
+
+            &:hover {
+                color: $purpleSaturate;
+                fill: $purpleSaturate;
+            }
+        }
+
+        &__text {
+            font-size: 14px;
+            padding-right: 2px;
+        }
+
+        &__icon-svg {
+            width: 11px;
+            height: 11px;
+        }
+    }
+}

@@ -1,2 +1,2 @@
 # Vesta
-<p>Static template</p>
+<p>Laravel application</p>

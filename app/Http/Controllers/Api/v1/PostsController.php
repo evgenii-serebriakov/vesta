@@ -16,16 +16,16 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getProducts()
     {
         $posts = Post::orderBy('created_at', 'desc')
             ->take(10)
             ->get();
-        
+        // echo env('APP_URL');
         // dd($posts);
-
-        return view('pages.home.home', [
-            'posts' => $posts
+        return view('pages.home', [
+            'posts' => $posts,
+            'sprites' => '/assets/images/sprites.svg'
         ]);
     }
 

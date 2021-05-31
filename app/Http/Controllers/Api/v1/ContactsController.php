@@ -13,7 +13,7 @@ class ContactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getContacts()
     {
         return Contacts::all();
     }

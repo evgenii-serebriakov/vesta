@@ -1,7 +1,3 @@
-@php
-    // dd($posts)   ;
-@endphp
-
 <x-app>
     <x-slot name="title">
         Веста
@@ -15,10 +11,13 @@
             <a href="{{ route('posts') }}">ПОСТЫ</a>
         </nav>
         
-        @foreach ($posts as $post)
-            <h2>{{ $post->title }}</h2>
-            <date>{{ $post->updated_at }}</date>
-            <img src="{{ $post->image }}" alt="{{ $post->alt }}">
-        @endforeach
+        <x-home.home-banner />
+
+        <x-home.home-post-preview :posts="$posts" :sprites="$sprites" />
+
+        <x-home.home-services />
+
+        <x-home.home-massage />
+            
     </div>
 </x-app>

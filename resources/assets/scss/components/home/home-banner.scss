@@ -1,43 +1,3 @@
-<template>
-    <section class="banner">
-        <div class="uk-container uk-container-expand">
-            <div class="uk-flex uk-flex-center uk-flex-middle uk-flex-right@m">
-                <div class="uk-width-auto">
-                    <div class="banner__inner uk-text-center">
-                        <h2 class="banner__caption white-line">
-                            Душевное спокойствие
-                        </h2>
-                        <p class="banner__subtitle uk-margin-remove uk-text-break">
-                            это состояние гармонии со своим телом
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</template>
-
-<script>
-import { onMounted } from 'vue';
-import { scrollspy } from 'uikit';
-
-export default {
-    name: 'HomeBanner',
-    setup() {
-        onMounted(() => {
-            scrollspy('.banner__inner', {
-                cls: 'uk-animation-slide-bottom-medium'
-            });
-        });
-    }
-};
-</script>
-
-<style lang="scss" scoped>
-@import "@/scss/utils/_variables";
-
-@import "@/scss/mixins/_media";
-
 .banner {
     padding: rem(100) 0;
     position: relative;
@@ -119,4 +79,3 @@ export default {
     transform: rotate(180deg);
     fill: rgb(180, 67, 255);
 }
-</style>

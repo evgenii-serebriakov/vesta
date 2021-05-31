@@ -18,16 +18,20 @@ use App\Http\Controllers\Api\v1\PostsController;
 //     return view('home');
 // })->where('any', '(.*)');
 
-Route::get('/', [PostsController::class, 'index'])->name('home');
+Route::get('/', [PostsController::class, 'getProducts'])->name('home');
 
-// Route::get('/', function (Request $request) {
-//     // dd($request);
 
-//     return view('pages.home.home', [
-//         'title' => 'The current UNIX timestamp',
-//         'list' => ['a' => 3, 'b' => 7,'c' => 3, 'd' => 4]
-//     ]);
-// })->name('home');
+Route::get('/posts', function () {
+    return view('pages.posts');
+})->name('posts');
+
+
+Route::get('/posts/{slug}', function ($slug) {
+    return view('pages.single-post', [
+        'slug' => $slug,
+        'post' => ''
+        ]);
+})->name('single-post');
 
 
 Route::get('/video', function () {
@@ -40,14 +44,7 @@ Route::get('/video/{slug}', function () {
 })->name('single-video');
 
 
-Route::get('/posts', function () {
-    return view('pages.posts');
-})->name('posts');
 
-
-Route::get('/posts/{slug}', function () {
-    return view('pages.single-post');
-})->name('single-post');
 
 
 Route::get('/reviews', function () {

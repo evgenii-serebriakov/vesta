@@ -1,0 +1,20 @@
+.services {
+    &-top {
+        padding-top: rem(50);
+    }
+
+    &-bottom {
+        padding-bottom: rem(50);
+    }
+}
+
+.services-top,
+.services-bottom {
+    &__caption {
+        color: $greyColor;
+    }
+
+    &__text {
+        font-size: 24px;
+    }
+}

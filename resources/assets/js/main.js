@@ -1,4 +1,4 @@
-import { spinner, alert, close, scroll } from 'uikit';
+import { spinner, alert, close, scroll, slider } from 'uikit';
 
 // import { createApp } from 'vue';
 // import router from '@/js/router';
@@ -10,14 +10,13 @@ import { spinner, alert, close, scroll } from 'uikit';
 // createApp(App)
 //     .use(store)
 //     .use(router)
-//     .mount('#app');
+//     // .mount('#app');
 
 class App {
     constructor (props) {
         this.ratio = props.ratio;
         this.elemAsScroll = document.querySelector('.scroll-up__icon-svg');
         this.parentNode = this.elemAsScroll.parentNode;
-        
     }
 
     spinner () {
@@ -30,6 +29,10 @@ class App {
         console.log(popupMessage);
 
         // setTimeout(() => popupMessage.close(), 1000);
+    }
+
+    slider () {
+        slider('.slider');
     }
 
     scrollChange (quantity) {
@@ -53,6 +56,7 @@ class App {
         this.alert();
         this.scrollChange(300);
         this.scrollUp();
+        this.slider();
     }
 
 }

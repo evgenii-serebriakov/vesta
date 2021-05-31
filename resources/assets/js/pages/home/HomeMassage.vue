@@ -1,29 +1,36 @@
-<template lang="pug">
-section.massage
-    .uk-container
-        .uk-flex.uk-flex-center(class="uk-flex-right@m")
-            .uk-width-auto
-                .massage__inner.uk-text-center
-                    h2.massage__caption.white-line Расслабляющий массаж
-                    p.masage__subtitle.uk-text-large.uk-margin-remove.uk-text-break Успокоит ваше тело и мысли
+<template>
+    <section class="massage">
+        <div class="uk-container">
+            <div class="uk-flex uk-flex-center uk-flex-right@m">
+                <div class="uk-width-auto">
+                    <div class="massage__inner uk-text-center">
+                        <h2 class="massage__caption white-line">
+                            асслабляющий массаж
+                        </h2>
+                        <p class="masage__subtitle uk-text-large uk-margin-remove uk-text-break">
+                            Успокоит ваше тело и мысли
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>
-import { onMounted } from 'vue';
-import { scrollspy } from 'uikit';
+import { onMounted } from "vue";
+import { scrollspy } from "uikit";
 
 export default {
-    name: 'HomeMassage',
+    name: "HomeMassage",
     setup() {
-        
         onMounted(() => {
-            scrollspy('.massage__inner', {
-                cls: 'uk-animation-slide-bottom-medium'
+            scrollspy(".massage__inner", {
+                cls: "uk-animation-slide-bottom-medium",
             });
         });
 
-        return {
-        };
+        return {};
     },
 };
 </script>
@@ -35,7 +42,7 @@ export default {
 
 .massage {
     position: relative;
-    background-image: url('/assets/images/massage_bg.jpg');
+    background-image: url("/assets/images/massage_bg.jpg");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;

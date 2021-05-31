@@ -1,6 +1,5 @@
 <template lang="pug">
 section.videos
-section.videos
     .uk-container-large.uk-margin-auto.videos__inner
         .isoteric
             i.isoteric__icon
