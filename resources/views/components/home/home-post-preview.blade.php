@@ -1,9 +1,6 @@
-@props(['posts', 'sprites'])
 @php
-    // dd($posts);
-    // echo count($posts) !== 0;
+    $posts = null;
 @endphp
-
 <section class="posts">
     <div class="uk-container-large uk-margin-auto posts__inner">
 
@@ -33,7 +30,7 @@
                                 <article class="teasers uk-article article">
                                     <a
                                         class="teasers__link uk-display-block uk-card uk-card-default uk-card-hover"
-                                        href="{{ route('single-post', $post->slug) }}"
+                                        href="{{ route('single-post', ['slug' => $post->slug]) }}"
                                         >
                                         <div class="teasers__item-wrap uk-card-media-top">
                                             <div class="teasers__link">

@@ -2,11 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\v1\PostsController;
-use App\Http\Controllers\Api\v1\VideoController;
-use App\Http\Controllers\Api\v1\ContactsController;
-use App\Http\Controllers\Api\v1\SocialController;
-use App\Http\Controllers\Api\v1\ReviewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +18,12 @@ use App\Http\Controllers\Api\v1\ReviewsController;
 //     return $request->user();
 // });
 
-Route::resource('posts', PostsController::class);
+// Route::resource('/posts', 'Api\v1\PostsController', /* ['only' => ['index', 'store'], 'except' => ['index', 'store']] */);
 
-Route::resource('video', VideoController::class);
+Route::resource('/video', 'Api\v1\VideoController');
 
-Route::resource('reviews', ReviewsController::class);
+Route::resource('/reviews', 'Api\v1\ReviewsController');
 
-Route::resource('contacts', ContactsController::class);
+Route::resource('/contacts', 'Api\v1\ContactsController');
 
-Route::resource('social', SocialController::class);
+Route::resource('/social', 'Api\v1\SocialController');

@@ -7,20 +7,13 @@ use Illuminate\View\Component;
 class ScrollUp extends Component
 {
     /**
-     * Path to sprites
-     *
-     * @var string
-     */
-    public $sprites;
-
-    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($sprites)
+    public function __construct()
     {
-        $this->sprites = $sprites;
+
     }
 
     /**

@@ -7,13 +7,6 @@ use Illuminate\View\Component;
 class App extends Component
 {
     /**
-     * Path to sprites
-     *
-     * @var string
-     */
-    public $sprites = '/assets/images/sprites.svg';
-    
-    /**
      * Create a new component instance.
      *
      * @return void

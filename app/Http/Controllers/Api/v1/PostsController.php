@@ -7,26 +7,31 @@ use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Dotenv\Validator;
-use Illuminate\Support\Facades\DB;
+use App\Repositories\Interfaces\PostsRepositoryInterface;
+
 
 class PostsController extends Controller
 {
+    private $postsRepository;
+
+    public function __construct(PostsRepositoryInterface $postsRepository)
+    {
+        $this->postsRepository = $postsRepository;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function index() {
+        echo __METHOD__;
+    }
+
     public function getProducts()
     {
-        $posts = Post::orderBy('created_at', 'desc')
-            ->take(10)
-            ->get();
-        // echo env('APP_URL');
-        // dd($posts);
-        return view('pages.home', [
-            'posts' => $posts,
-            'sprites' => '/assets/images/sprites.svg'
-        ]);
+        $posts = $this->postsRepository->all();
+
+        return view('pages.posts')->with('posts', $posts);
     }
 
     /**
@@ -36,7 +41,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        echo __METHOD__;
     }
 
     /**
@@ -100,7 +105,7 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        echo $id;
     }
 
     /**

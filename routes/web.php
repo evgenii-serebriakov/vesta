@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\v1\PostsController;
 
 /*
 |
@@ -18,19 +17,16 @@ use App\Http\Controllers\Api\v1\PostsController;
 //     return view('home');
 // })->where('any', '(.*)');
 
-Route::get('/', [PostsController::class, 'getProducts'])->name('home');
+Route::get('/', function () {
+    return view('pages.home');
+})->name('home');
 
 
-Route::get('/posts', function () {
-    return view('pages.posts');
-})->name('posts');
-
+Route::get('/posts', 'Api\v1\PostsController@getProducts')->name('posts');
 
 Route::get('/posts/{slug}', function ($slug) {
-    return view('pages.single-post', [
-        'slug' => $slug,
-        'post' => ''
-        ]);
+
+    return view('pages.single-post')->with('slug', $slug);
 })->name('single-post');
 
 
@@ -50,3 +46,30 @@ Route::get('/video/{slug}', function () {
 Route::get('/reviews', function () {
     return view('pages.reviews');
 })->name('reviews');
+
+
+Route::prefix('admin')->group(function () {
+    Route::middleware("check")->get('create/{id}', function ($id) {
+        print($id);
+        // $route = Route::current();
+        // echo $route->methods[0];
+        // dd($route);
+        // return redirect()->route('home');
+    })->name('admin.create');
+    
+    Route::get('edit', function () {
+        echo 'Edit';
+    });
+
+});
+
+// Для формирования единых контролеров
+// Route::controller('/self', 'Api\v2\PostsController', [
+//     /* задать имя маршрута */
+//     // 'getIndex' => 'self'
+//     // 'getCreate' => 'self.create'
+// ]);
+
+Route::fallback(function () {
+    return 'Route not found';
+});

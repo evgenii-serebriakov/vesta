@@ -1,4 +1,11 @@
-import { spinner, alert, close, scroll, slider } from 'uikit';
+import {
+    spinner,
+    alert,
+    close,
+    scroll,
+    slider, 
+    grid
+} from 'uikit';
 
 // import { createApp } from 'vue';
 // import router from '@/js/router';
@@ -14,56 +21,84 @@ import { spinner, alert, close, scroll, slider } from 'uikit';
 
 class App {
     constructor (props) {
-        this.ratio = props.ratio;
-        this.elemAsScroll = document.querySelector('.scroll-up__icon-svg');
-        this.parentNode = this.elemAsScroll.parentNode;
+        this.spinner = props.spinner;
+        this.slider = props.slider;
+        this.grid = props.grid;
+        this.scroll = props.scroll;
+        this.alert = props.alert;
+
+        this.elemAsScroll = document.querySelector(this.scroll.target);
     }
 
-    spinner () {
-        spinner('.spinner__icon', { ratio: this.ratio });
-    }
-
-    alert () {
-        const popupMessage = alert('.alert-message');
-        close('.alert-message__link');
+    createAlert (options) {
+        const popupMessage = alert(options.selector);
+        close(options.close);
         console.log(popupMessage);
 
         // setTimeout(() => popupMessage.close(), 1000);
     }
 
-    slider () {
-        slider('.slider');
-    }
-
     scrollChange (quantity) {
+        const parentNode = this.elemAsScroll.parentNode;
+
         document.addEventListener('scroll', () => {
             if (document.documentElement.scrollTop >= quantity) {
-                this.parentNode.classList.add('visible');
+                parentNode.classList.add('visible');
             } else {
-                this.parentNode.classList.remove('visible');
+                parentNode.classList.remove('visible');
             }
         });
     }
 
-    scrollUp () {
+    scrollUp (options) {
         this.elemAsScroll.addEventListener('click', () => {
-            scroll('.scroll-up');
+            scroll(options.selector);
         });
     }
 
+    createGrid (options) {
+        options.selectors.forEach((selector) => grid(selector));
+    }
+    
+    createSlider (options) {
+        options.selectors.forEach((selector) => slider(selector));
+    }
+    
+    createSpinner (options) {
+        spinner(options.selector, { ratio: options.ratio });
+    }
+
     run () {
-        this.spinner();
-        this.alert();
-        this.scrollChange(300);
-        this.scrollUp();
-        this.slider();
+        this.scrollChange(this.scroll.quantity);
+        this.scrollUp(this.scroll);
+        this.createAlert(this.alert);
+        this.createSpinner(this.spinner);
+        this.createSlider(this.slider);
+        this.createGrid(this.grid);
     }
 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const app = new App({ ratio: 3 });
-
-    app.run();
-
+const app = new App({
+    alert: {
+        selector: '.alert-message', 
+        close: '.alert-message__link'
+    },
+    spinner: {
+        selector: '.spinner__icon', 
+        ratio: 3 
+    },
+    slider: {
+        selectors: ['.slider']
+    },
+    grid: {
+        selectors: ['.grid']
+    },
+    scroll: {
+        selector: '.scroll-up',
+        target: '.scroll-up__icon-svg',
+        quantity: 300
+    }
 });
+
+app.run();

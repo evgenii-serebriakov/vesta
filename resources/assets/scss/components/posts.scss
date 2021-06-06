@@ -1,0 +1,64 @@
+.posts {
+    background-image: radial-gradient(circle at 100% 50%, #f8f8f8 50%, rgba(150, 23, 23, 0) 0%);
+
+    .teaser {
+        &__link {
+            text-decoration: none;
+
+            @include media-breakpoint(960) {
+                flex-direction: row;
+            }
+        }
+
+        &__header {
+            padding: 0.7rem 1rem;
+        }
+
+        &__title {
+            position: relative;
+            font-size: 22px;
+            color: $default-color;
+            margin: 0;
+
+            &::before {
+                top: 59px;
+                background: #e5e5e5;
+            }
+        }
+
+        &__meta-info {
+            color: $greyColor;
+        }
+
+        &__body {
+            padding: 0.7rem 1rem;
+        }
+
+        &__desc {
+            background: transparent;
+            color: $greyColor;
+            font-size: rem(26);
+        }
+
+        &__footer {
+            padding: 0.7rem 1rem;
+            color: $greyColor;
+            fill: $greyColor;
+
+            &:hover {
+                color: $purpleSaturate;
+                fill: $purpleSaturate;
+            }
+        }
+
+        &__text {
+            font-size: 14px;
+            padding-right: 2px;
+        }
+
+        &__icon-svg {
+            width: 11px;
+            height: 11px;
+        }
+    }
+}

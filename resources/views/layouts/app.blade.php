@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="{{ mix('/assets/css/main.css') }}">
     </head>
     <body class="page uk-position-relative">
-        <x-scroll-up :sprites="$sprites" />
+        <x-scroll-up />
 
         <div id="offcanvas-reveal">
             <div class="uk-offcanvas-bar offcanvas-bar--padding">
@@ -42,6 +42,10 @@
         </div>
 
         {{-- <x-navbar :open-drawer="openDrawer" /> --}}
+        <nav>
+            <a href="{{ route('home') }}">ГЛАВНАЯ</a>
+            <a href="{{ route('posts') }}">ПОСТЫ</a>
+        </nav>
 
         <main class="main-content">
             {{ $slot }}
