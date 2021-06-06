@@ -1,5 +1,5 @@
 @php
-    $posts = null;
+    // dd($posts);
 @endphp
 <section class="posts">
     <div class="uk-container-large uk-margin-auto posts__inner">

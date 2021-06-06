@@ -1,3 +1,6 @@
+@php
+    // dd($posts);
+@endphp
 <x-app>
     <x-slot name="title">
         Посты
