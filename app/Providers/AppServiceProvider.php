@@ -7,6 +7,8 @@ use App\Repositories\Interfaces\PostsRepositoryInterface;
 use App\Http\View\Composers\PostsComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Blade;
+use Jenssegers\Date\Date;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Date::setlocale(config('app.locale'));
+
         $this->app->bind(
             PostsRepositoryInterface::class, 
             PostsRepository::class

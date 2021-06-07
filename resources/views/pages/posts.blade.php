@@ -1,6 +1,5 @@
 @php
-    // print($sprites);
-    // dd($posts);
+    // dd(trim_message)
 @endphp
 
 <x-app>
@@ -34,13 +33,19 @@
                                                 {{ $post->title }}
                                             </h5>
                                             <p class="teaser__meta-info uk-text-meta">
-                                                <time datetime="{{ $post->updated_at }}" aria-label="Date of publication">
-                                                    {{ $post->updated_at }}
+                                                <time 
+                                                    class="uk-text-capitalize" 
+                                                    datetime="{{ $post->updated_at }}" 
+                                                    aria-label="Date of publication"
+                                                >
+                                                    {{ Date::parse($post->updated_at)->format('F j, Y') }}
                                                 </time>
                                             </p>
                                         </div>
                                         <div class="teaser__body uk-card-body uk-flex-1">
-                                            <p class="teaser__desc uk-text-break">{{ $post->message }}</p>
+                                            <p class="teaser__desc uk-text-break">
+                                                {{ trim_message($post->message) }}
+                                            </p>
                                         </div>
 
                                         <div class="teaser__footer uk-card-footer">

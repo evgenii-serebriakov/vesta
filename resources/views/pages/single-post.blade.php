@@ -1,15 +1,6 @@
 @php
     // dd($post);
-
-    function format_date($date)
-    {
-        return date('F j, Y, g:i a', strtotime($date));
-       
-        // $date = new DateTime($data);
-
-        // return $date->format('F j, Y, g:i a');
-    }
-
+    // dd(Date)
 @endphp
 
 <x-app>
@@ -38,8 +29,12 @@
                                         {{ $post->title }}
                                     </h2>
                                     <p class="post__meta-info uk-text-meta">
-                                        <time datetime="{{ $post->updated_at }}" aria-label="Date of publication">
-                                            {{ format_date($post->updated_at) }}
+                                        <time 
+                                            class="uk-text-capitalize" 
+                                            datetime="{{ $post->updated_at }}" 
+                                            aria-label="Date of publication"
+                                        >
+                                            {{ Date::parse($post->updated_at)->format('F j, Y') }}
                                         </time>
                                     </p>
                                     <p class="post__message uk-text-break">{{ $post->message }}</p>

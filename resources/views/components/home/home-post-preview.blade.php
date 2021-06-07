@@ -47,8 +47,12 @@
                                                 {{ $post->title }}
                                             </h5>
                                             <p class="teasers__meta-info uk-text-meta">
-                                                <time datetime="{{ $post->updated_at }}" aria-label="Date of publication">
-                                                    {{ $post->updated_at }}
+                                                <time 
+                                                    class="uk-text-capitalize" 
+                                                    datetime="{{ $post->updated_at }}" 
+                                                    aria-label="Date of publication"
+                                                >
+                                                    {{ Date::parse($post->updated_at)->format('F j, Y') }}
                                                 </time>
                                             </p>
                                         </div>
