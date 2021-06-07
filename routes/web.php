@@ -26,11 +26,10 @@ Route::get('/posts', 'Api\v1\PostsController@getProducts')->name('posts');
 
 Route::get('/posts/{slug}', 'Api\v1\PostsController@getProduct')->name('single-post');
 
-Route::get('/posts/{slug}', function ($slug) {
-
-    return view('pages.single-post')->with('slug', $slug);
-})->name('single-post');
-
+Route::post(
+    '/admin/post/create',
+    'Api\v1\PostsController@createProduct'
+)->name('post.store');
 
 Route::get('/video', function () {
     return view('pages.video');

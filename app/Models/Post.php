@@ -17,7 +17,7 @@ class Post extends Model
         'alt'
     ];
 
-    protected $dateFormat = 'F j, Y, g:i a';
+    // protected $dateFormat = 'F j, Y, g:i a';
 
     public function getImageAttribute($value)
     {

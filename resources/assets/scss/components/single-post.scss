@@ -1,0 +1,22 @@
+.post {
+    background-image: radial-gradient(circle at 0% 50%, #f8f8f8 50%, rgba(150, 23, 23, 0) 0%);
+
+    &__image {
+        margin-bottom: rem(40);
+    }
+
+    &__caption {
+        position: relative;
+        font-size: 28px;
+
+        &::before {
+            top: 59px;
+            background: #e5e5e5;
+        }
+    }
+
+    &__message {
+        padding-top: rem(40);
+        font-size: 26px;
+    }
+}

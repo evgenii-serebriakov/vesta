@@ -23,13 +23,16 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        echo __METHOD__;
-    }
-
     public function getProducts()
     {
         $posts = $this->postsRepository->all();
+
+        if (!$posts) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Посты не найдены'
+            ])->setStatusCode(404);
+        }
 
         return view('pages.posts')->with('posts', $posts);
     }
@@ -50,25 +53,9 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function createProduct(PostRequest $request)
     {
-        $hasFile = $request->hasFile('image');
-        $imageFullName = '';
-        $slug = strtolower($request->input('title'));
-
-        if ($hasFile) {
-            $imageFullName = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('images', $imageFullName, 'public');
-        }
-        
-        $post = new Post();
-        $post->title = $request->input('title');
-        $post->message = $request->input('message');
-        $post->image = $imageFullName;
-        $post->alt = $request->input('alt');
-        $post->slug = $slug;
-
-        $post->save();
+        $post = $this->postsRepository->store($request);
 
         return response()->json([
             'status' => true,
@@ -83,9 +70,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getProduct($slug)
     {   
-        $post = Post::find($id);
+        $post = $this->postsRepository->show($slug);
 
         if (!$post) {
             return response()->json([
@@ -94,7 +81,8 @@ class PostsController extends Controller
             ])->setStatusCode(404);
         }
 
-        return $post;
+
+        return view('pages.single-post')->with('post', $post);
     }
 
     /**

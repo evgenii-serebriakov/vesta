@@ -34,7 +34,7 @@
                                                 {{ $post->title }}
                                             </h5>
                                             <p class="teaser__meta-info uk-text-meta">
-                                                <time :datetime="item.updated_at" aria-label="Date of publication">
+                                                <time datetime="{{ $post->updated_at }}" aria-label="Date of publication">
                                                     {{ $post->updated_at }}
                                                 </time>
                                             </p>
