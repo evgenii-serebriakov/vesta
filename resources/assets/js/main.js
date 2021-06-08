@@ -4,8 +4,12 @@ import {
     close,
     scroll,
     slider, 
-    grid
+    grid,
+    scrollspy,
+    sticky
 } from 'uikit';
+
+import Drawer from './drawer';
 
 // import { createApp } from 'vue';
 // import router from '@/js/router';
@@ -26,8 +30,12 @@ class App {
         this.grid = props.grid;
         this.scroll = props.scroll;
         this.alert = props.alert;
-
+        this.scrollspy = props.scrollspy;
+        this.sticky = props.sticky;
+        
         this.elemAsScroll = document.querySelector(this.scroll.target);
+
+        this.drawer = props.drawer;
     }
 
     createAlert (options) {
@@ -68,6 +76,16 @@ class App {
         spinner(options.selector, { ratio: options.ratio });
     }
 
+    scrollSpy (options) {
+        options.selectors.forEach(
+            (selector) => scrollspy(selector, options.settings)
+        );
+    }
+
+    stickHeader (options) {
+        sticky(options.selector);
+    }
+
     run () {
         this.scrollChange(this.scroll.quantity);
         this.scrollUp(this.scroll);
@@ -75,6 +93,12 @@ class App {
         this.createSpinner(this.spinner);
         this.createSlider(this.slider);
         this.createGrid(this.grid);
+        this.scrollSpy(this.scrollspy);
+        this.stickHeader(this.sticky);
+        
+        // this.drawer.drawerHandler('.trigger__btn', this.drawer.openDrawer);
+        // this.drawer.drawerHandler('.close__btn', this.drawer.closeDrawer);
+
     }
 
 }
@@ -98,7 +122,24 @@ const app = new App({
         selector: '.scroll-up',
         target: '.scroll-up__icon-svg',
         quantity: 300
-    }
+    },
+    scrollspy: {
+        selectors: ['.banner__inner', '.massage__inner'],
+        settings: {
+            cls: 'uk-animation-slide-bottom-medium'
+        }
+    },
+    sticky: {
+        selector: '.header__main'
+    },
+   
+    drawer: new Drawer({
+        selector: '#offcanvas-reveal',
+        settings: {
+            mode: 'reveal',
+            overlay: true
+        } 
+    })
 });
 
 app.run();

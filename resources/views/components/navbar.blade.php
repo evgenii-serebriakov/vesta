@@ -1,56 +1,101 @@
-header.header
-    section.header__secondary.uk-padding-small(class="uk-visible@m")
-        .uk-container
-            .uk-flex.uk-flex-center.uk-flex-wrap(class="uk-flex-between@m")
-                .uk-width-auto
-                    .social-bar
-                        ul.social-bar__list.uk-flex.uk-flex-row.uk-padding-remove-left
-                            li.social-bar__list-item(v-for="item in social" :key="item.title")
-                                template(v-if="item.flag")
-                                    a.social-bar__link(:href="item.path" :title="item.title")
-                                        i.social-bar__icon
-                                            svg.social-bar__icon-svg(:fill="item.color")
-                                                use(:xlink:href="sprites + item.icon")
-                                        
-                .uk-width-auto
-                    .contacts-bar
-                        ul.contacts-bar__list.uk-flex.uk-padding-remove-left
-                            li.contacts-bar__list-item(v-for="item in contacts" :key="item.title" :title="item.title")
-                                template(v-if="item.flag")
-                                    i.contacts-bar__icon
-                                        svg.contacts-bar__icon-svg(:fill="item.color")
-                                            use(:xlink:href="sprites + item.icon")
-                                    span.contacts-bar__text {{ item.text }}
+@php
+    // dd($navigation); 
+@endphp
+<header class="header">
+    <section class="header__secondary uk-padding-small uk-visible@m">
+        <div class="uk-container">
+            <div class="uk-flex uk-flex-center uk-flex-wrap uk-flex-between@m">
+                <div class="uk-width-auto">
+                    <div class="social-bar">
+                        <ul class="social-bar__list uk-flex uk-flex-row uk-padding-remove-left">
+                            @foreach ($social as $item)
+                                <li class="social-bar__list-item">
+                                    @if ($item->flag)
+                                        <a
+                                            class="social-bar__link" 
+                                            href="{{ $item->path }}"
+                                            title="{{ $item->title }}"
+                                        >
+                                            <i class="social-bar__icon">
+                                                <svg class="social-bar__icon-svg" fill="{{ $item->color }}">
+                                                    <use xlink:href="{{ $sprites }}{{ $item->icon }}" />
+                                                </svg>
+                                            </i>
+                                        </a>
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <div class="uk-width-auto">
+                    <div class="contacts-bar">
+                        <ul class="contacts-bar__list uk-flex uk-padding-remove-left">
+                            @foreach ($contacts as $item)
+                                <li class="contacts-bar__list-item" title="{{ $item->title }}">
+                                    @if ($item->flag)
+                                        <i class="contacts-bar__icon">
+                                            <svg class="contacts-bar__icon-svg" fill="{{ $item->color }}">
+                                                <use xlink:href="{{ $sprites }}{{ $item->icon }}" />
+                                            </svg>
+                                        </i>
+                                        <span class="contacts-bar__text">
+                                            {{ $item->text }}
+                                        </span>
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    section.header__main.uk-padding-small
-        .uk-container
-            .uk-flex.uk-flex-between.uk-flex-middle
-                .uk-width-auto.trigger(class="uk-hidden@m")
-                    button.trigger__btn(
-                        type="button"
-                        aria-label="Toggle navigation"
-                        @click="openDrawer"
-                    )
-                        svg.trigger__icon
-                            use(:xlink:href="sprites + '#icon-filter'")
-
-                .uk-width-auto.logo(class="uk-visible@m")
-                    router-link.logo__link(to="/")
-                        svg.logo__icon
-                            use(:xlink:href="sprites + '#icon-logo-desktop-left'")
-                    
-                .uk-width-auto.logo-mobile(class="uk-hidden@m")
-                    router-link.logo-mobile__link(to="/")
-                        svg.logo-mobile__icon
-                            use(:xlink:href="sprites + '#icon-logo-mobile'")
-
-                nav.uk-width-auto.navigation(
-                    class="uk-visible@m"
-                    aria-label="Navigation menu"
-                )
-                    ul.navigation__list.uk-padding-remove-left
-                        li.navigation__list-item(v-for="item in navigation" :key="item.text")
-                            router-link.navigation__link(
-                                :to="item.path" 
-                                active-class="navigation__link--active"
-                            ) {{ item.text }}
+    <section class="header__main uk-padding-small">
+        <div class="uk-container">
+            <div class="uk-flex uk-flex-between uk-flex-middle">
+                <div class="uk-width-auto trigger uk-hidden@m">
+                    <button 
+                        class="trigger__btn" 
+                        type="button" 
+                        aria-label="Toggle navigation" 
+                    >
+                        <svg class="trigger__icon">
+                            <use xlink:href="{{ $sprites }}#icon-filter" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="uk-width-auto logo uk-visible@m">
+                    <a class="logo__link" href="{{ route('home') }}">
+                        <svg class="logo__icon">
+                            <use xlink:href="{{ $sprites }}#icon-logo-desktop-left" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="uk-width-auto logo-mobile uk-hidden@m">
+                    <a class="logo-mobile__link" href="{{ route('home') }}">
+                        <svg class="logo-mobile__icon">
+                            <use xlink:href="{{ $sprites }}#icon-logo-mobile" />
+                        </svg>
+                    </a>
+                </div>
+                <nav class="uk-width-auto navigation uk-visible@m" aria-label="Navigation menu">
+                    <ul class="navigation__list uk-padding-remove-left">
+                        @foreach ($navigation as $item)
+                            <li class="navigation__list-item">
+                                <a 
+                                    href="{{ route($item->slug) }}" 
+                                    class="navigation__link" 
+                                    active-class="navigation__link--active"
+                                >
+                                    {{ $item->text }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+</header>

@@ -1,0 +1,117 @@
+.header {
+    &__secondary {
+        background-color: #f5f5f5;
+        border-bottom: 1px solid $light-black;
+    }
+
+    &__main {
+        position: relative;
+        background-color: #fff;
+        box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 15%);
+        z-index: 1;
+    }
+
+    .social-bar,
+    .contacts-bar {
+        &__list {
+            list-style: none;
+        }
+
+        &__link {
+            padding: 8px 8px;
+        }
+
+        &__icon {
+            &-svg {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+
+    .contacts-bar {
+        &__list {
+            &-item {
+                padding-right: rem(15);
+            }
+        }
+
+        &__icon {
+            padding-right: rem(10);
+
+            &-svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+
+    .logo {
+        &__link {
+            display: block;
+        }
+
+        &__icon {
+            width: 150px;
+            height: 40px;
+            fill: $themeColor;
+        }
+    }
+
+    .logo-mobile {
+        &__link {
+            display: block;
+        }
+
+        &__icon {
+            width: 35px;
+            height: 45px;
+            fill: $themeColor;
+        }
+    }
+
+    .trigger {
+        &__btn {
+            border: none;
+            outline: none;
+            background-color: transparent;
+        }
+
+        &__icon {
+            width: 40px;
+            height: 40px;
+            fill: $purpleSaturate;
+
+            &:hover {
+                fill: $purpleColor100;
+            }
+        }
+    }
+
+    .navigation {
+        &__list {
+            display: flex;
+            list-style: none;
+        }
+
+        &__link {
+            text-decoration: none;
+            font-size: 20px;
+            text-transform: uppercase;
+            color: $greyColor;
+            padding: 0.5rem 1rem;
+
+            &:focus {
+                color: $purpleSaturate;
+            }
+
+            &:hover {
+                color: $purpleSaturate;
+            }
+
+            &--active {
+                color: $purpleSaturate;
+            }
+        }
+    }
+}

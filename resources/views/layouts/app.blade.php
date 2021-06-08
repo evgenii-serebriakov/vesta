@@ -41,11 +41,7 @@
             </div>
         </div>
 
-        {{-- <x-navbar :open-drawer="openDrawer" /> --}}
-        <nav>
-            <a href="{{ route('home') }}">ГЛАВНАЯ</a>
-            <a href="{{ route('posts') }}">ПОСТЫ</a>
-        </nav>
+        <x-navbar />
 
         <main class="main-content">
             {{ $slot }}

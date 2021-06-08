@@ -16,6 +16,4 @@ class Contacts extends Model
         'icon',
         'flag'
     ];
-
-    // protected $dateFormat = 'F j, Y, g:i a';
 }

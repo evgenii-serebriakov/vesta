@@ -1,5 +1,6 @@
 @php
     // dd(trim_message)
+    // print(format_bytes(2048));
 @endphp
 
 <x-app>
@@ -44,7 +45,7 @@
                                         </div>
                                         <div class="teaser__body uk-card-body uk-flex-1">
                                             <p class="teaser__desc uk-text-break">
-                                                {{ trim_message($post->message) }}
+                                                {{ Str::words($post->message, 15, '...') }}
                                             </p>
                                         </div>
 

@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Repositories\PostsRepository;
 use App\Repositories\Interfaces\PostsRepositoryInterface;
 use App\Http\View\Composers\PostsComposer;
+use App\Http\View\Composers\SharedComposer;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
@@ -39,5 +41,10 @@ class AppServiceProvider extends ServiceProvider
         View::share('sprites', config('app.sprites'));
 
         View::composer('components.home.home-post-preview', PostsComposer::class);
+
+        View::composer(
+            ['components.navbar', 'components.navbar-bottom'],
+            SharedComposer::class
+        );
     }
 }
