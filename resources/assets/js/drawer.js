@@ -3,15 +3,15 @@ import { offcanvas } from 'uikit';
 class Drawer {
     constructor ({ selector, settings }) {
         this.offcanvas = offcanvas(selector, settings);
+        this.openDrawer = this.openDrawer.bind(this);
+        this.closeDrawer = this.closeDrawer.bind(this);
     }
 
     openDrawer () {
-        console.log('Open drawer');
         this.offcanvas.show();
     }
     
     closeDrawer () {
-        console.log('Close drawer');
         this.offcanvas.hide();
     }
     

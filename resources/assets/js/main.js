@@ -96,7 +96,7 @@ class App {
         this.scrollSpy(this.scrollspy);
         this.stickHeader(this.sticky);
         
-        // this.drawer.drawerHandler('.trigger__btn', this.drawer.openDrawer);
+        this.drawer.drawerHandler('.trigger__btn', this.drawer.openDrawer);
         // this.drawer.drawerHandler('.close__btn', this.drawer.closeDrawer);
 
     }

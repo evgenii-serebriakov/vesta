@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Post;
 use App\Repositories\Interfaces\PostsRepositoryInterface;
+use Illuminate\Support\Str;
 
 class PostsRepository implements PostsRepositoryInterface
 {
@@ -23,7 +24,7 @@ class PostsRepository implements PostsRepositoryInterface
     {
         $hasFile = $request->hasFile('image');
         $imageFullName = '';
-        $slug = strtolower($request->input('title'));
+        $slug = Str::of($request->input('title'))->ascii()->slug('-');
 
         if ($hasFile) {
             $imageFullName = $request

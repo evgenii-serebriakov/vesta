@@ -1,0 +1,131 @@
+.footer {
+    .seperator {
+        border-top: 1px solid $light-black;
+        border-bottom: 1px solid $light-black;
+        padding: rem(15) 0;
+
+        @include media-laptop {
+            padding: rem(40) 0;
+        }
+    }
+
+    .bottom-nav {
+        &__list {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        &__link {
+            color: rgb(82, 78, 78);
+            display: block;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+
+            &:hover {
+                color: $default-color;
+            }
+
+            &--active {
+                color: $default-color;
+            }
+        }
+    }
+
+    .social {
+        &__list {
+            padding: 0;
+            list-style: none;
+
+            @include media-breakpoint(960) {
+                flex-direction: column;
+            }
+        }
+
+        &__link {
+            display: block;
+            color: rgb(82, 78, 78);
+            text-transform: uppercase;
+            padding: 8px 16px;
+            text-decoration: none;
+
+            &:hover {
+                color: $default-color;
+            }
+        }
+
+        &__icon {
+            &-svg {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+
+    .contacts {
+        color: rgb(82, 78, 78);
+        padding-left: 16px;
+
+        &__title {
+            font-size: 18px;
+        }
+
+        &__list {
+            list-style: none;
+            padding-left: 0;
+
+            &-item {
+                padding: rem(4) 0;
+
+                @include media-laptop {
+                    padding: rem(8) 0;
+                }
+            }
+        }
+
+        &__text {
+            font-size: 20px;
+        }
+
+        &__icon {
+            padding-right: rem(10);
+
+            &-svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+
+    .copyright {
+        &__logo {
+            max-width: 90px;
+        }
+
+        &__icon {
+            &-logo {
+                width: 90px;
+                height: 25px;
+                fill: $themeColor;
+            }
+
+            &-svg {
+                fill: $greyColor;
+                width: 15px;
+                height: 15px;
+                padding-right: 5px;
+                vertical-align: text-bottom;
+            }
+        }
+
+        &__text {
+            font-size: 13px;
+            text-transform: uppercase;
+            color: $greyColor;
+            padding-top: rem(10);
+
+            @include media-breakpoint(960) {
+                padding: 0;
+            }
+        }
+    }
+}

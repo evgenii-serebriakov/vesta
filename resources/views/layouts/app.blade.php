@@ -14,7 +14,6 @@
         <link rel="canonical" href="https://vesta74.ru/">
 
         <title>{{ $title ?? 'Defaul'}}</title>
-        {{-- <meta name="description" content="Центр реабилитации"> --}}
         <meta name="description" content="{{ $desc }}">
         <meta name="keywords" content="центр, реабилитация, массаж, веста, vesta, vesta74">
         <meta name="theme-color" content="#ffffff">
@@ -37,7 +36,7 @@
 
         <div id="offcanvas-reveal">
             <div class="uk-offcanvas-bar offcanvas-bar--padding">
-                {{-- <x-drawer :close-drawer="closeDrawer"/> --}}
+                <x-drawer />
             </div>
         </div>
 
