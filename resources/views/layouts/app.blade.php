@@ -32,21 +32,23 @@
         <link rel="stylesheet" href="{{ mix('/assets/css/main.css') }}">
     </head>
     <body class="page uk-position-relative">
-        <x-scroll-up />
+        <div class="wrapper">
+            <x-scroll-up />
 
-        <div id="offcanvas-reveal">
-            <div class="uk-offcanvas-bar offcanvas-bar--padding">
-                <x-drawer />
+            <div id="offcanvas-reveal">
+                <div class="uk-offcanvas-bar uk-padding-remove">
+                    <x-drawer />
+                </div>
             </div>
+
+            <x-navbar />
+
+            <main class="main-content">
+                {{ $slot }}
+            </main>
+
+            <x-navbar-bottom />
         </div>
-
-        <x-navbar />
-
-        <main class="main-content">
-            {{ $slot }}
-        </main>
-
-        <x-navbar-bottom />
         <script src="{{ mix('/assets/js/main.js') }}"></script>
     </body>
 </html>

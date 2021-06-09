@@ -97,7 +97,7 @@ class App {
         this.stickHeader(this.sticky);
         
         this.drawer.drawerHandler('.trigger__btn', this.drawer.openDrawer);
-        // this.drawer.drawerHandler('.close__btn', this.drawer.closeDrawer);
+        this.drawer.drawerHandler('.close__btn', this.drawer.closeDrawer);
 
     }
 

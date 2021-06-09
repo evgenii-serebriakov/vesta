@@ -85,9 +85,8 @@
                         @foreach ($navigation as $item)
                             <li class="navigation__list-item">
                                 <a 
-                                    active-class="navigation__link--active"
-                                    href="{{ route($item->slug) }}" 
-                                    class="navigation__link" 
+                                class="navigation__link {{ Route::is($item->slug) ? 'navigation__link--active' : null }}" 
+                                href="{{ route($item->slug) }}" 
                                 >
                                     {{ $item->text }}
                                 </a>

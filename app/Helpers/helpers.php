@@ -39,3 +39,20 @@ if (! function_exists('truncates_text')) {
         return $string."… ";
     }
 }
+
+if (! function_exists('check_image')) {
+    /**
+     * Checks if there is an image.
+     *
+     * @param  string  $string
+     * @return bool
+     */
+    function check_image($string)
+    {   
+        gettype($string);
+        return preg_match('/\/storage\/images\/(.+)/', $string);
+    }
+}
+
+
+

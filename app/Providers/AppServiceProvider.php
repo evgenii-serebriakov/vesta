@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('components.home.home-post-preview', PostsComposer::class);
 
         View::composer(
-            ['components.navbar', 'components.navbar-bottom'],
+            ['components.navbar', 'components.navbar-bottom', 'components.drawer'],
             SharedComposer::class
         );
     }

@@ -15,13 +15,13 @@
             <article class="uk-article">
                 <div class="uk-container uk-container-small">
                     <div class="uk-flex uk-flex-wrap uk-flex-center">
-
-                        <div class="uk-width-1-1" v-if="isImage(post->image)">
-                            <div class="post__image">
-                                <img src="{{ $post->image }}" alt="{{ $post->alt }}" />
+                        @if (check_image($post->image))
+                            <div class="uk-width-1-1">
+                                <div class="post__image">
+                                    <img src="{{ $post->image }}" alt="{{ $post->alt }}" />
+                                </div>
                             </div>
-                        </div>
-                        
+                        @endif
                         <div class="uk-width-1-1">
                             <div class="uk-card uk-card-default uk-card-hover">
                                 <div class="uk-card-body">

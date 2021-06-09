@@ -1,0 +1,79 @@
+.drawer {
+    min-height: 100vh;
+    border-right: 2px solid $purpleSaturate;
+    background-color: #fff;
+
+    .menu {
+        background-color: #f5f5f5;
+        border-bottom: 1px solid $light-black;
+
+        &__caption {
+            padding-left: rem(10);
+        }
+
+        &__text {
+            color: rgba(0, 0, 0, 0.63);
+            font-size: 18px;
+        }
+    }
+
+    .close {
+        &__btn {
+            border: none;
+            background-color: transparent;
+        }
+
+        &__icon {
+            width: 40px;
+            height: 40px;
+            fill: $purpleSaturate;
+
+            &:hover {
+                fill: $purpleColor100;
+            }
+        }
+    }
+
+    .nav-main {
+        background-color: #f5f5f5;
+        border-bottom: 1px solid $light-black;
+
+        &__list {
+            list-style: none;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        &__link {
+            font-size: 16px;
+            text-transform: uppercase;
+            color: $greyColor;
+            padding: 10px 8px;
+            text-decoration: none;
+
+            &:hover {
+                color: $purpleSaturate;
+            }
+
+            &-text {
+                font-size: 18px;
+                padding-left: 8px;
+            }
+
+            &--active {
+                color: $purpleSaturate;
+            }
+        }
+    }
+
+    .icon {
+        display: inline-block;
+        vertical-align: text-bottom;
+        fill: $purpleSaturate;
+
+        &__svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+}

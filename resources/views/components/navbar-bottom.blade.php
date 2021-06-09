@@ -8,8 +8,7 @@
                             @foreach ($navigation as $item)
                                 <li class="bottom-nav__list-item">
                                     <a 
-                                        active-class="bottom-nav__link--active"
-                                        class="bottom-nav__link uk-text-uppercase" 
+                                        class="bottom-nav__link uk-text-uppercase {{ Route::is($item->slug) ? 'bottom-nav__link--active' : null }}" 
                                         href="{{ route($item->slug) }}" 
                                     >
                                         <span class="bottom-nav__link-text">
@@ -87,7 +86,7 @@
                         <i
                             class="copyright__icon">
                             <svg class="copyright__icon-svg">
-                                <use :xlink:href="sprites + '#icon-copyright'" />
+                                <use xlink:href="{{ $sprites }}#icon-copyright" />
                             </svg>
                         </i>
                         <span>
