@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use App\Repositories\PostsRepository;
 use App\Repositories\Interfaces\PostsRepositoryInterface;
+use App\Repositories\ReviewsRepository;
+use App\Repositories\Interfaces\ReviewsRepositoryInterface;
+
 use App\Http\View\Composers\PostsComposer;
 use App\Http\View\Composers\SharedComposer;
 
@@ -36,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             PostsRepositoryInterface::class, 
             PostsRepository::class
+        );
+        
+        $this->app->bind(
+            ReviewsRepositoryInterface::class, 
+            ReviewsRepository::class
         );
 
         View::share('sprites', config('app.sprites'));

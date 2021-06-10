@@ -1,6 +1,5 @@
 @php
     // dd($reviews);
-    $reviews = null;
 @endphp
 <x-app>
     <x-slot name="title">

@@ -14,6 +14,9 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'http://vesta.loc/admin/post/create',
         'http://vesta.loc/admin/post/*',
-        'http://vesta.loc/admin/post/edit/*'
+        'http://vesta.loc/admin/post/edit/*',
+        'http://vesta.loc/admin/review/create',
+        'http://vesta.loc/admin/review/*',
+        'http://vesta.loc/admin/review/edit/*',
     ];
 }

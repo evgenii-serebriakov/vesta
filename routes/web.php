@@ -21,7 +21,9 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
-
+/**
+ * 
+ */
 Route::get('/posts', 'Api\v1\PostsController@getProducts')->name('posts');
 
 Route::get('/posts/{slug}', 'Api\v1\PostsController@getProduct')->name('post.show');
@@ -53,13 +55,27 @@ Route::get('/video/{slug}', function () {
     return view('pages.single-video');
 })->name('single-video');
 
+/**
+ * 
+ */
+Route::get('/reviews', 'Api\v1\ReviewsController@getReviews')->name('reviews');
 
+Route::prefix('admin')->group(function () {
+    Route::post(
+        'review/create',
+        'Api\v1\ReviewsController@createReview'
+    )->name('review.store');
+    
+    Route::put(
+        'review/edit/{id}',
+        'Api\v1\ReviewsController@updateReview'
+    )->name('review.update');
 
-
-
-Route::get('/reviews', function () {
-    return view('pages.reviews');
-})->name('reviews');
+    Route::delete(
+        'review/{id}',
+        'Api\v1\ReviewsController@removeReview'
+    )->name('review.destroy');
+});
 
 
 Route::prefix('admin')->group(function () {

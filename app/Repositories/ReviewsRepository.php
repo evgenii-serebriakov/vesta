@@ -2,29 +2,23 @@
 
 namespace App\Repositories;
 
-use App\Models\Post;
-use App\Repositories\Interfaces\PostsRepositoryInterface;
+use App\Models\Reviews;
+use App\Repositories\Interfaces\ReviewsRepositoryInterface;
 use Illuminate\Support\Str;
 
-class PostsRepository implements PostsRepositoryInterface
+class ReviewsRepository implements ReviewsRepositoryInterface
 {
     public function all()
     {
-        return Post::orderBy('updated_at', 'desc')
+        return Reviews::orderBy('id', 'desc')
             ->take(10)
             ->get();
     }
 
-    public function show($slug)
-    {
-        return Post::where('slug', $slug)->first();
-    }
-    
     public function store($request)
     {
         $hasFile = $request->hasFile('image');
         $imageFullName = '';
-        $slug = Str::of($request->input('title'))->ascii()->slug('-');
 
         if ($hasFile) {
             $imageFullName = $request
@@ -35,24 +29,21 @@ class PostsRepository implements PostsRepositoryInterface
                 ->storeAs('images', $imageFullName, 'public');
         }
         
-        $post = new Post();
-        $post->title = $request->input('title');
-        $post->message = $request->input('message');
-        $post->image = $imageFullName;
-        $post->alt = $request->input('alt');
-        $post->slug = $slug;
-        $post->category_id = 0;
+        $reviews = new Reviews();
+        $reviews->title = $request->input('title');
+        $reviews->video = $request->input('video');
+        $reviews->image = $imageFullName;
+        $reviews->alt = $request->input('alt');
 
-        $post->save();
+        $reviews->save();
 
-        return $post;
+        return $reviews;
     }
 
     public function update($request, $id)
     {
         $hasFile = $request->hasFile('image');
         $imageFullName = '';
-        $slug = Str::of($request->input('title'))->ascii()->slug('-');
 
         if ($hasFile) {
             $imageFullName = $request
@@ -63,22 +54,20 @@ class PostsRepository implements PostsRepositoryInterface
                 ->storeAs('images', $imageFullName, 'public');
         }
         
-        $post = Post::find($id);
-        $post->title = $request->input('title');
-        $post->message = $request->input('message');
-        $post->image = $imageFullName;
-        $post->alt = $request->input('alt');
-        $post->slug = $slug;
-        $post->category_id = 0;
+        $reviews = reviews::find($id);
+        $reviews->title = $request->input('title');
+        $reviews->video = $request->input('video');
+        $reviews->image = $imageFullName;
+        $reviews->alt = $request->input('alt');
 
-        $post->save();
+        $reviews->save();
 
-        return $post;
+        return $reviews;
     }
 
     public function destroy($id)
     {
-        Post::find($id)->delete();
+        Reviews::find($id)->delete();
     }
 
     /**
@@ -88,6 +77,6 @@ class PostsRepository implements PostsRepositoryInterface
      */
     public function destroyAll()
     {
-        Post::truncate();
+        Reviews::truncate();
     }
 }

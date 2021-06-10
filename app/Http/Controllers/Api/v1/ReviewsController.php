@@ -3,20 +3,36 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\ReviewsRequest;
+use App\Repositories\Interfaces\ReviewsRepositoryInterface;
 use App\Models\Reviews;
+use Illuminate\Http\Request;
 
 class ReviewsController extends Controller
 {
+    private $reviewsRepository;
+
+    public function __construct(ReviewsRepositoryInterface $reviewsRepository)
+    {
+        $this->reviewsRepository = $reviewsRepository;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getReviews()
     {
-        return Reviews::all();
+        $reviews = $this->reviewsRepository->all();
+
+        if ($reviews === null) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Отзывы не найдены'
+            ])->setStatusCode(404);
+        }
+
+        return view('pages.reviews')->with('reviews', $reviews);
     }
 
     /**
@@ -35,40 +51,15 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ReviewsRequest $request)
+    public function createReview(ReviewsRequest $request)
     {
-        $hasFile = $request->hasFile('image');
-        $imageFullName = '';
-
-        if ($hasFile) {
-            $imageFullName = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('images', $imageFullName, 'public');
-        }
-        
-        $reviews = new Reviews();
-        $reviews->title = $request->input('title');
-        $reviews->video = $request->input('video');
-        $reviews->image = $imageFullName;
-        $reviews->alt = $request->input('alt');
-
-        $reviews->save();
+        $reviews = $this->reviewsRepository->store($request);
 
         return response()->json([
             'status' => true,
-            'message' => 'Видео успеншно создано!',
+            'message' => 'Отзыв успеншно создан!',
             'reviews' => $reviews
         ])->setStatusCode(200);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -89,9 +80,15 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateReview(Request $request, $id)
     {
-        //
+        $reviews = $this->reviewsRepository->update($request, $id);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Отзыв успешно обновлен!',
+            'post' => $reviews
+        ])->setStatusCode(200);
     }
 
     /**
@@ -100,8 +97,29 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function removeReview($id)
     {
-        //
+        $this->reviewsRepository->destroy($id);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Отзыв успешно удален!',
+        ])->setStatusCode(200);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function removeAllReviews()
+    {
+        $this->reviewsRepository->destroyAll();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Все отзывы удалены!',
+        ])->setStatusCode(200);
     }
 }
