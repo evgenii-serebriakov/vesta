@@ -103,24 +103,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateProduct(PostRequest $request, $id)
     {
-        $hasFile = $request->hasFile('image');
-        $imageFullName = '';
-
-        if ($hasFile) {
-            $imageFullName = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('images', $imageFullName, 'public');
-        }
-        
-        $post = Post::find($id);
-        $post->title = $request->input('title');
-        $post->message = $request->input('message');
-        $post->image = $imageFullName;
-        $post->alt = $request->input('alt');
-        $post->slug = $request->input('slug');
-
-        $post->update();
+        $post = $this->postsRepository->update($request, $id);
 
         return response()->json([
             'status' => true,
@@ -135,14 +120,28 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function removePost($id)
     {
-        $post = Post::find($id);
-        $post = delete();
+        $this->postsRepository->destroy($id);
 
         return response()->json([
             'status' => true,
             'message' => 'Пост успешно удален!',
+        ])->setStatusCode(200);
+    }
+
+    /**
+     * Removes all records from the database associated with the model.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function removeAllPosts()
+    {
+        $this->postsRepository->destroyAll();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Все посты удалены!',
         ])->setStatusCode(200);
     }
 }

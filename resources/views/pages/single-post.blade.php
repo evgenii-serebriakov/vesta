@@ -4,11 +4,9 @@
 @endphp
 
 <x-app>
-    <x-slot name="title">
-        Посты
-    </x-slot>
+    <x-slot name="title">{{ $post->title }}</x-slot>
 
-    <x-slot name="desc">Страница постов</x-slot>
+    <x-slot name="desc">{{ $post->message }}</x-slot>
    
     <section class="post uk-section uk-position-relative">
         @if ($post !== null)

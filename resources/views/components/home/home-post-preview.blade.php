@@ -30,18 +30,19 @@
                                 <article class="teasers uk-article article">
                                     <a
                                         class="teasers__link uk-display-block uk-card uk-card-default uk-card-hover"
-                                        href="{{ route('single-post', ['slug' => $post->slug]) }}"
+                                        href="{{ route('post.show', ['slug' => $post->slug]) }}"
                                         >
-                                        <div class="teasers__item-wrap uk-card-media-top">
-                                            <div class="teasers__link">
-                                                <img
-                                                    class="teasers__img" 
-                                                    src="{{ $post->image }}"
-                                                    alt="{{ $post->alt }}" 
-                                                />
+                                        @if (check_image($post->image))
+                                            <div class="teasers__item-wrap uk-card-media-top">
+                                                <div class="teasers__link">
+                                                    <img
+                                                        class="teasers__img" 
+                                                        src="{{ $post->image }}"
+                                                        alt="{{ $post->alt }}" 
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-
+                                        @endif
                                         <div class="teasers__content uk-card-body">
                                             <h5 class="teasers__title uk-card-title uk-text-normal uk-text-uppercase">
                                                 {{ $post->title }}

@@ -24,12 +24,25 @@ Route::get('/', function () {
 
 Route::get('/posts', 'Api\v1\PostsController@getProducts')->name('posts');
 
-Route::get('/posts/{slug}', 'Api\v1\PostsController@getProduct')->name('single-post');
+Route::get('/posts/{slug}', 'Api\v1\PostsController@getProduct')->name('post.show');
 
-Route::post(
-    '/admin/post/create',
-    'Api\v1\PostsController@createProduct'
-)->name('post.store');
+Route::prefix('admin')->group(function () {
+    Route::post(
+        'post/create',
+        'Api\v1\PostsController@createProduct'
+    )->name('post.store');
+    
+    Route::put(
+        'post/edit/{id}',
+        'Api\v1\PostsController@updateProduct'
+    )->name('post.update');
+
+    Route::delete(
+        'post/{id}',
+        'Api\v1\PostsController@removePost'
+    )->name('post.destroy');
+});
+
 
 Route::get('/video', function () {
     return view('pages.video');
@@ -72,5 +85,5 @@ Route::prefix('admin')->group(function () {
 // ]);
 
 Route::fallback(function () {
-    return 'Route not found';
+    return redirect()->route('home');
 });

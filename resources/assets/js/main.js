@@ -6,7 +6,8 @@ import {
     slider, 
     grid,
     scrollspy,
-    sticky
+    sticky,
+    lightbox
 } from 'uikit';
 
 import Drawer from './drawer';
@@ -32,6 +33,7 @@ class App {
         this.alert = props.alert;
         this.scrollspy = props.scrollspy;
         this.sticky = props.sticky;
+        this.lightbox = props.lightbox;
         
         this.elemAsScroll = document.querySelector(this.scroll.target);
 
@@ -86,6 +88,10 @@ class App {
         sticky(options.selector);
     }
 
+    createLightbox (options) {
+        lightbox(options.selector, options.settings);
+    }
+
     run () {
         this.scrollChange(this.scroll.quantity);
         this.scrollUp(this.scroll);
@@ -95,6 +101,7 @@ class App {
         this.createGrid(this.grid);
         this.scrollSpy(this.scrollspy);
         this.stickHeader(this.sticky);
+        this.createLightbox(this.lightbox);
         
         this.drawer.drawerHandler('.trigger__btn', this.drawer.openDrawer);
         this.drawer.drawerHandler('.close__btn', this.drawer.closeDrawer);
@@ -116,7 +123,7 @@ const app = new App({
         selectors: ['.slider']
     },
     grid: {
-        selectors: ['.grid']
+        selectors: ['.grid-posts', '.grid-reviews']
     },
     scroll: {
         selector: '.scroll-up',
@@ -132,6 +139,14 @@ const app = new App({
     sticky: {
         selector: '.header__main'
     },
+    lightbox: {
+        selector: '.grid-reviews',
+        setting:  {
+            animation: 'scale',
+            toggle: '.reviews__link'
+        }
+    }, 
+       
    
     drawer: new Drawer({
         selector: '#offcanvas-reveal',
@@ -143,3 +158,4 @@ const app = new App({
 });
 
 app.run();
+           

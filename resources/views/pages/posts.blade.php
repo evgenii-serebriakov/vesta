@@ -12,16 +12,16 @@
         <div class="uk-container uk-position-relative">
             @if ($posts && count($posts) !== 0)
 
-                <div class="grid uk-child-width-1-1 uk-grid-divider uk-grid-match uk-child-width-1-1@m">
+                <div class="grid-posts uk-child-width-1-1 uk-grid-divider uk-grid-match uk-child-width-1-1@m">
                     @foreach ($posts as $post)
                         <div class="post__col" data-v-for="item in posts">
                             <article class="teaser uk-article article">
                                 <a
                                     class="teaser__link uk-flex uk-flex-column uk-flex-wrap uk-card uk-card-default uk-card-hover"
-                                    href="{{ route('single-post', ['slug' => $post->slug]) }}"
+                                    href="{{ route('post.show', ['slug' => $post->slug]) }}"
                                 >
                                     @if (check_image($post->image))
-                                        <div class="teaser__item-wrap uk-card-media-top uk-width-1-1 uk-width-1-3@m" v-if="isImage(item.image)">
+                                        <div class="teaser__item-wrap uk-card-media-top uk-width-1-1 uk-width-1-3@m">
                                             <div class="teaser__link">
                                                 <img class="teaser__img" src="{{ $post->image }}" alt="{{ $post->alt }}" />
                                             </div>

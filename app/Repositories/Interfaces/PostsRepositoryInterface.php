@@ -2,8 +2,6 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Http\Requests\PostRequest;
-
 interface PostsRepositoryInterface
 {
     public function all();
@@ -11,4 +9,10 @@ interface PostsRepositoryInterface
     public function show($slug);
 
     public function store($request);
+
+    public function update($request, $id);
+
+    public function destroy($id);
+    
+    public function destroyAll();
 }

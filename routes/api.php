@@ -22,8 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/video', 'Api\v1\VideoController');
 
-Route::resource('/reviews', 'Api\v1\ReviewsController');
+// Route::resource('/reviews', 'Api\v1\ReviewsController');
 
-Route::resource('/contacts', 'Api\v1\ContactsController');
+// Route::resource('/contacts', 'Api\v1\ContactsController');
 
-Route::resource('/social', 'Api\v1\SocialController');
+// Route::resource('/social', 'Api\v1\SocialController');
+
