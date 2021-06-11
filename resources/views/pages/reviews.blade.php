@@ -2,9 +2,7 @@
     // dd($reviews);
 @endphp
 <x-app>
-    <x-slot name="title">
-        Отзывы
-    </x-slot>
+    <x-slot name="title">Отзывы</x-slot>
 
     <x-slot name="desc">Отзывы клиентов</x-slot>
    

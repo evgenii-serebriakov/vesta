@@ -3,20 +3,34 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\VideoRequest;
-use App\Models\Video;
+use App\Repositories\Interfaces\VideoRepositoryInterface;
 
 class VideoController extends Controller
 {
+    private $videoRepository;
+
+    public function __construct(VideoRepositoryInterface $videoRepository)
+    {
+        $this->videoRepository = $videoRepository;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getVideos()
     {
-        return Video::all();
+        $videos = $this->videoRepository->all();
+
+        if (! $videos) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Видео не найдены'
+            ])->setStatusCode(404);
+        }
+
+        return view('pages.videos')->with('videos', $videos);
     }
 
     /**
@@ -35,26 +49,9 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VideoRequest $request)
+    public function createVideo(VideoRequest $request)
     {
-        $hasFile = $request->hasFile('image');
-        $imageFullName = '';
-        $slug = strtolower($request->input('title'));
-
-        if ($hasFile) {
-            $imageFullName = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('images', $imageFullName, 'public');
-        }
-        
-        $video = new Video();
-        $video->title = $request->input('title');
-        $video->message = $request->input('message');
-        $video->video = $request->input('video');
-        $video->image = $imageFullName;
-        $video->alt = $request->input('alt');
-        $video->slug = $slug;
-
-        $video->save();
+        $video = $this->videoRepository->store($request);
 
         return response()->json([
             'status' => true,
@@ -69,18 +66,18 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getVideo($slug)
     {
-        $video = Video::find($id);
+        $video = $this->videoRepository->show($slug);
 
-        if (!$video) {
+        if (! $video) {
             return response()->json([
                 'status' => false,
                 'message' => 'Видео не найдено'
             ])->setStatusCode(404);
         }
 
-        return $video;
+        return view('pages.single-video')->with('video', $video);
     }
 
     /**
@@ -101,9 +98,15 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateVideo(VideoRequest $request, $id)
     {
-        //
+        $video = $this->videoRepository->update($request, $id);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Видео успешно обновлено!',
+            'post' => $video
+        ])->setStatusCode(200);
     }
 
     /**
@@ -112,8 +115,28 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function removeVideo($id)
     {
-        //
+        $this->videoRepository->destroy($id);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Видео успешно удалено!',
+        ])->setStatusCode(200);
+    }
+
+    /**
+     * Removes all records from the database associated with the model.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function removeAllVideos()
+    {
+        $this->videoRepository->destroyAll();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Все видео удалены!',
+        ])->setStatusCode(200);
     }
 }

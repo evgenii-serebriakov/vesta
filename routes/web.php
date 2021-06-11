@@ -17,6 +17,9 @@ use Illuminate\Http\Request;
 //     return view('home');
 // })->where('any', '(.*)');
 
+/**
+ * 
+ */
 Route::get('/', function () {
     return view('pages.home');
 })->name('home');
@@ -45,16 +48,29 @@ Route::prefix('admin')->group(function () {
     )->name('post.destroy');
 });
 
+/**
+ * 
+ */
+Route::get('/videos', 'Api\v1\VideoController@getVideos')->name('videos');
 
-Route::get('/video', function () {
-    return view('pages.video');
-})->name('video');
+Route::get('/videos/{slug}', 'Api\v1\VideoController@getVideo')->name('video.show');
 
+Route::prefix('admin')->group(function () {
+    Route::post(
+        'video/create',
+        'Api\v1\VideoController@createVideo'
+    )->name('video.store');
+    
+    Route::put(
+        'video/edit/{id}',
+        'Api\v1\VideoController@updateVideo'
+    )->name('video.update');
 
-Route::get('/video/{slug}', function () {
-    return view('pages.single-video');
-})->name('single-video');
-
+    Route::delete(
+        'video/{id}',
+        'Api\v1\VideoController@removeVideo'
+    )->name('video.destroy');
+});
 /**
  * 
  */
@@ -78,20 +94,20 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::prefix('admin')->group(function () {
-    Route::middleware("check")->get('create/{id}', function ($id) {
-        print($id);
-        // $route = Route::current();
-        // echo $route->methods[0];
-        // dd($route);
-        // return redirect()->route('home');
-    })->name('admin.create');
+// Route::prefix('admin')->group(function () {
+//     Route::middleware("check")->get('create/{id}', function ($id) {
+//         print($id);
+//         // $route = Route::current();
+//         // echo $route->methods[0];
+//         // dd($route);
+//         // return redirect()->route('home');
+//     })->name('admin.create');
     
-    Route::get('edit', function () {
-        echo 'Edit';
-    });
+//     Route::get('edit', function () {
+//         echo 'Edit';
+//     });
 
-});
+// });
 
 // Для формирования единых контролеров
 // Route::controller('/self', 'Api\v2\PostsController', [

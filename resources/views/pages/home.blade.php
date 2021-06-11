@@ -11,8 +11,10 @@
     <x-home.home-banner />
 
     <x-home.home-post-preview />
-
+    
     <x-home.home-services />
+
+    <x-home.home-video-preview />
 
     <x-home.home-massage />
         

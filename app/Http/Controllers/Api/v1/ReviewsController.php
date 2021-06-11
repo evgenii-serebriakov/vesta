@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReviewsRequest;
 use App\Repositories\Interfaces\ReviewsRepositoryInterface;
-use App\Models\Reviews;
-use Illuminate\Http\Request;
 
 class ReviewsController extends Controller
 {
@@ -80,7 +78,7 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateReview(Request $request, $id)
+    public function updateReview(ReviewsRequest $request, $id)
     {
         $reviews = $this->reviewsRepository->update($request, $id);
 

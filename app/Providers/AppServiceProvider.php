@@ -6,13 +6,15 @@ use App\Repositories\PostsRepository;
 use App\Repositories\Interfaces\PostsRepositoryInterface;
 use App\Repositories\ReviewsRepository;
 use App\Repositories\Interfaces\ReviewsRepositoryInterface;
+use App\Repositories\VideoRepository;
+use App\Repositories\Interfaces\VideoRepositoryInterface;
 
 use App\Http\View\Composers\PostsComposer;
+use App\Http\View\Composers\VideoComposer;
 use App\Http\View\Composers\SharedComposer;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Blade;
 use Jenssegers\Date\Date;
 
 class AppServiceProvider extends ServiceProvider
@@ -42,6 +44,11 @@ class AppServiceProvider extends ServiceProvider
         );
         
         $this->app->bind(
+            VideoRepositoryInterface::class, 
+            VideoRepository::class
+        );
+        
+        $this->app->bind(
             ReviewsRepositoryInterface::class, 
             ReviewsRepository::class
         );
@@ -49,6 +56,8 @@ class AppServiceProvider extends ServiceProvider
         View::share('sprites', config('app.sprites'));
 
         View::composer('components.home.home-post-preview', PostsComposer::class);
+
+        View::composer('components.home.home-video-preview', VideoComposer::class);
 
         View::composer([
             'components.navbar', 

@@ -2,8 +2,8 @@
 
 namespace App\Http\View\Composers;
 
-use Illuminate\View\View;
 use App\Repositories\Interfaces\PostsRepositoryInterface;
+use Illuminate\View\View;
 
 class PostsComposer
 {

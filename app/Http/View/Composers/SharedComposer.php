@@ -15,7 +15,11 @@ class SharedComposer
 
     protected $navigation;
 
-    public function __construct(Social $social, Contacts $contacts, Navigation $navigation)
+    public function __construct(
+        Social $social, 
+        Contacts $contacts, 
+        Navigation $navigation
+    )
     {
         $this->social = $social;
         $this->contacts = $contacts;

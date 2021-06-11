@@ -19,12 +19,3 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Route::resource('/posts', 'Api\v1\PostsController', /* ['only' => ['index', 'store'], 'except' => ['index', 'store']] */);
-
-Route::resource('/video', 'Api\v1\VideoController');
-
-// Route::resource('/reviews', 'Api\v1\ReviewsController');
-
-// Route::resource('/contacts', 'Api\v1\ContactsController');
-
-// Route::resource('/social', 'Api\v1\SocialController');
-

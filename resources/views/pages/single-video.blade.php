@@ -1,9 +1,11 @@
-<x-app>
-    <x-slot name="title">
-        Посты
-    </x-slot>
+@php
+    // dd($video);
+@endphp
 
-    <x-slot name="desc">Страница постов</x-slot>
+<x-app>
+    <x-slot name="title">{{ $video->title }}</x-slot>
+
+    <x-slot name="desc">{{ $video->message }}</x-slot>
    
     <h2>Single video</h2>
 </x-app>
