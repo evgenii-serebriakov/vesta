@@ -1,24 +1,23 @@
 @php
     // dd($posts);
 @endphp
-<section class="posts">
-    <div class="uk-container-large uk-margin-auto posts__inner">
+@if ($posts && count($posts) !== 0)
+    <section class="posts">
+        <div class="uk-container-large uk-margin-auto posts__inner">
 
-        <div class="isoteric">
-            <i class="isoteric__icon">
-                <svg class="isoteric__icon-svg">
-                    <use xlink:href="{{ $sprites }}#icon-isoteric" />
-                </svg>
-            </i>
-        </div>
+            <div class="isoteric">
+                <i class="isoteric__icon">
+                    <svg class="isoteric__icon-svg">
+                        <use xlink:href="{{ $sprites }}#icon-isoteric" />
+                    </svg>
+                </i>
+            </div>
 
-        <h2 class="posts__title uk-text-uppercase uk-text-bold decorating-line">
-            Последние посты
-        </h2>
+            <h2 class="posts__title uk-text-uppercase uk-text-bold decorating-line">
+                Последние посты
+            </h2>
 
-        <div class="uk-slider-container-offset slider">
-            @if ($posts && count($posts) !== 0)
-    
+            <div class="uk-slider-container-offset slider">
                 <div 
                     class="uk-position-relative uk-visible-toggle uk-light" 
                     tabindex="-1"
@@ -89,7 +88,6 @@
             </div>
             
             <div class="separator-line"></div>
-
-        @endif
-    </div>
-</section>
+        </div>
+    </section>
+@endif

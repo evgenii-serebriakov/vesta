@@ -67,11 +67,11 @@ class App {
     }
 
     createGrid (options) {
-        options.selectors.forEach((selector) => grid(selector));
+        grid(options.selector);
     }
     
     createSlider (options) {
-        options.selectors.forEach((selector) => slider(selector));
+        slider(options.selector);
     }
     
     createSpinner (options) {
@@ -120,10 +120,10 @@ const app = new App({
         ratio: 3 
     },
     slider: {
-        selectors: ['.slider']
+        selector: '.slider'
     },
     grid: {
-        selectors: ['.grid-posts', '.grid-reviews']
+        selector: '.grid'
     },
     scroll: {
         selector: '.scroll-up',
@@ -140,7 +140,7 @@ const app = new App({
         selector: '.header__main'
     },
     lightbox: {
-        selector: '.grid-reviews',
+        selector: '.lightbox',
         setting:  {
             animation: 'scale',
             toggle: '.reviews__link'

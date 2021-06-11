@@ -9,7 +9,7 @@
     <section class="reviews uk-section">
         <div class="uk-container uk-position-relative">
             @if ($reviews && count($reviews) !== 0)
-                <div class="grid-reviews uk-child-width-1-1 uk-grid-divider uk-child-width-1-3@m uk-child-width-1-2@s">
+                <div class="grid lightbox uk-child-width-1-1 uk-grid-divider uk-child-width-1-3@m uk-child-width-1-2@s">
                     @foreach ($reviews as $item)
                         <div class="reviews__col">
                             <a 

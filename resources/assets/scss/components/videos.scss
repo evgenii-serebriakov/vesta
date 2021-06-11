@@ -1,0 +1,38 @@
+.video {
+    background-image: radial-gradient(circle at 0% 50%, #f8f8f8 50%, rgba(150, 23, 23, 0) 0%);
+
+    .teaser {
+        &__link {
+            text-decoration: none;
+        }
+
+        &__title {
+            padding-top: rem(10);
+            font-size: 22px;
+            color: $default-color;
+            margin: 0;
+
+            &::after {
+                content: " ";
+                display: block;
+                width: 0%;
+                margin: 0 auto;
+                height: 1px;
+                background: $purpleSaturate;
+                transition: width 0.4s, ease 0.4s;
+            }
+
+            &:hover {
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .teaser:hover .teaser__title {
+        &::after {
+            width: 100%;
+        }
+    }
+}

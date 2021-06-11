@@ -18,4 +18,19 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// Route::resource('/posts', 'Api\v1\PostsController', /* ['only' => ['index', 'store'], 'except' => ['index', 'store']] */);
+Route::prefix('post')->group(function () {
+    Route::post(
+        'create',
+        'Api\v1\PostsController@createProduct'
+    )->name('post.store');
+    
+    Route::put(
+        'edit/{id}',
+        'Api\v1\PostsController@updateProduct'
+    )->name('post.update');
+
+    Route::delete(
+        '{id}',
+        'Api\v1\PostsController@removePost'
+    )->name('post.destroy');
+});

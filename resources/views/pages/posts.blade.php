@@ -12,7 +12,7 @@
         <div class="uk-container uk-position-relative">
             @if ($posts && count($posts) !== 0)
 
-                <div class="grid-posts uk-child-width-1-1 uk-grid-divider uk-grid-match uk-child-width-1-1@m">
+                <div class="grid uk-child-width-1-1 uk-grid-divider uk-grid-match uk-child-width-1-1@m">
                     @foreach ($posts as $post)
                         <div class="post__col" data-v-for="item in posts">
                             <article class="teaser uk-article article">

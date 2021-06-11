@@ -13,6 +13,7 @@
             <article class="uk-article">
                 <div class="uk-container uk-container-small">
                     <div class="uk-flex uk-flex-wrap uk-flex-center">
+                        
                         @if (check_image($post->image))
                             <div class="uk-width-1-1">
                                 <div class="post__image">
@@ -20,6 +21,7 @@
                                 </div>
                             </div>
                         @endif
+
                         <div class="uk-width-1-1">
                             <div class="uk-card uk-card-default uk-card-hover">
                                 <div class="uk-card-body">
@@ -43,8 +45,7 @@
                     </div>
                 </div>
             </article>
-        @else
-            <x-spinner class="uk-position-absolute" />
         @endif
+            {{-- <x-spinner class="uk-position-absolute" /> --}}
     </section>
 </x-app>
